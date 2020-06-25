@@ -2,9 +2,11 @@ package service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBConnection;
+import model.MyFile;
 
 public class LogService {
 	
@@ -30,6 +32,31 @@ public class LogService {
 		}
 	}
 	
+	public MyFile getStatusER() {
+		MyFile file = new MyFile();
+		Connection connection;
+		try {
+			connection = DBConnection.getConnection("control");
+			PreparedStatement ps = connection.prepareStatement("SELECT file_name, file_type FROM log WHERE status='ER' AND active=1");
+			ResultSet rs = ps.executeQuery();
+			rs.last();
+			if (rs.getRow()>=1) {
+				rs.first();
+				file.setFileName(rs.getString("file_name"));
+				file.setFileType(rs.getString("file_type"));
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return file;
+	}
 	
+	public static void main(String[] args) {
+		LogService log = new LogService();
+		System.out.println(log.getStatusER().toString());
+	}
 
 }
