@@ -14,6 +14,7 @@ public class Configuration {
 	private String sourceRemoteFile = "";
 	private String sourceUsername = "";
 	private String sourcePassword = "";
+	private int sourcePort = 2227;
 	private String fileName = "";
 	private String fileColumnList = "";
 	private String variabless = "";
@@ -29,18 +30,19 @@ public class Configuration {
 			ps.setString(1, configName);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				this.configID = rs.getInt("");
+				this.configID = rs.getInt("config_id");
 				this.configName = configName;
-				this.sourceHost = rs.getString("");
-				this.sourceRemoteFile = rs.getString("");
-				this.sourceUsername = rs.getString("");
-				this.sourcePassword = rs.getString("");
-				this.fileName = rs.getString("");
-				this.fileColumnList = rs.getString("");
-				this.variabless = rs.getString("");
-				this.downloadPath = rs.getString("");
-				this.successPath = rs.getString("");
-				this.errorPath = rs.getString("");
+				this.sourceHost = rs.getString("source_host");
+				this.sourceRemoteFile = rs.getString("source_remote_path");
+				this.sourceUsername = rs.getString("source_username");
+				this.sourcePassword = rs.getString("source_password");
+				this.sourcePort = rs.getInt("source_port");
+				this.fileName = rs.getString("file_name");
+				this.fileColumnList = rs.getString("file_column_list");
+				this.variabless = rs.getString("variabless");
+				this.downloadPath = rs.getString("downloadPath");
+				this.successPath = rs.getString("successPath");
+				this.errorPath = rs.getString("errorPath");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,7 +96,19 @@ public class Configuration {
 	public String getErrorPath() {
 		return errorPath;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost
+				+ ", sourceRemoteFile=" + sourceRemoteFile + ", sourceUsername=" + sourceUsername + ", sourcePassword="
+				+ sourcePassword + ", sourcePort=" + sourcePort + ", fileName=" + fileName + ", fileColumnList="
+				+ fileColumnList + ", variabless=" + variabless + ", downloadPath=" + downloadPath + ", successPath="
+				+ successPath + ", errorPath=" + errorPath + "]";
+	}
+
+	public static void main(String[] args) {
+		Configuration configuration = new Configuration("sinhvien");
+		System.out.println(configuration.toString());
+	}
 
 }
