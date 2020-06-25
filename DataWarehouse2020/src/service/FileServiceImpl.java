@@ -1,8 +1,11 @@
 package service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -20,10 +23,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileServiceImpl implements FileService {
 	static final String NUMBER_REGEX = "^[0-9]+$";
-	
+
 	public FileServiceImpl() {
 	}
-	
+
+	@Override
 	public String readLines(String value, String delim) {
 		String values = "";
 		StringTokenizer stoken = new StringTokenizer(value, delim);
@@ -45,17 +49,19 @@ public class FileServiceImpl implements FileService {
 		return values;
 	}
 
-	public String readValuesTXT(File s_file, String delim) {
+	@Override
+	public String readValuesTXT(String sourceFile, String delim) {
 		String values = "";
 		try {
-			BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream(s_file)));
+			File file = new File(sourceFile);
+			BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 			String line;
 			while ((line = bReader.readLine()) != null) {
-				System.out.println(line);
 				values += readLines(line, delim);
 			}
+			System.out.println(values);
 			bReader.close();
-			return values.substring(0, values.length() - 1);
+			return values;
 
 		} catch (NoSuchElementException | IOException e) {
 			e.printStackTrace();
@@ -63,11 +69,13 @@ public class FileServiceImpl implements FileService {
 		}
 	}
 
-	public String readValuesXLSX(File s_file) {
+	@Override
+	public String readValuesXLSX(String sourceFile) {
 		String values = "";
 		String value = "";
 		try {
-			FileInputStream fileIn = new FileInputStream(s_file);
+			File file = new File(sourceFile);
+			FileInputStream fileIn = new FileInputStream(file);
 			XSSFWorkbook workBooks = new XSSFWorkbook(fileIn);
 			XSSFSheet sheet = workBooks.getSheetAt(0);
 			Iterator<Row> rows = sheet.iterator();
@@ -86,6 +94,7 @@ public class FileServiceImpl implements FileService {
 						} else {
 							value += (long) cell.getNumericCellValue() + "|";
 						}
+
 						break;
 					case STRING:
 						value += cell.getStringCellValue() + "|";
@@ -94,6 +103,7 @@ public class FileServiceImpl implements FileService {
 						break;
 					}
 				}
+				System.out.println(value);
 				values += readLines(value.substring(0, value.length() - 1), "|");
 				value = "";
 			}
@@ -105,5 +115,26 @@ public class FileServiceImpl implements FileService {
 		}
 	}
 
+	@Override
+	public boolean moveFile(String target_dir, File file) {
+		try {
+			BufferedInputStream bReader = new BufferedInputStream(new FileInputStream(file));
+			BufferedOutputStream bWriter = new BufferedOutputStream(
+					new FileOutputStream(target_dir + File.separator + file.getName()));
+			byte[] buff = new byte[1024 * 10];
+			int data = 0;
+			while ((data = bReader.read(buff)) != -1) {
+				bWriter.write(buff, 0, data);
+			}
+			bReader.close();
+			bWriter.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			file.delete();
+		}
+	}
 
 }
