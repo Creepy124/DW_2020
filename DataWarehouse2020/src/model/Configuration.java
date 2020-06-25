@@ -40,9 +40,9 @@ public class Configuration {
 				this.fileName = rs.getString("file_name");
 				this.fileColumnList = rs.getString("file_column_list");
 				this.variabless = rs.getString("variabless");
-				this.downloadPath = rs.getString("downloadPath");
-				this.successPath = rs.getString("successPath");
-				this.errorPath = rs.getString("errorPath");
+				this.downloadPath = rs.getString("download_path");
+				this.successPath = rs.getString("success_path");
+				this.errorPath = rs.getString("error_path");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

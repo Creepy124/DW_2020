@@ -15,6 +15,7 @@ public class DBServiceImpl implements DBService{
 		this.targetDBName = targetDBName;
 	}
 
+	@Override
 	public boolean existTable(String table_name) {
 		try {
 			DatabaseMetaData dbm = DBConnection.getConnection(targetDBName).getMetaData();
@@ -31,16 +32,16 @@ public class DBServiceImpl implements DBService{
 			e.printStackTrace();
 			return false;
 		}
-
 		return false;
 	}
 
-	public boolean insertValues(String column_list, String values, String target_table) {
+	@Override
+	public boolean insertValues(String target_table, String column_list, String values) {
 		Connection connection;
 		try {
 			connection = DBConnection.getConnection(targetDBName);
-			PreparedStatement ps = connection
-					.prepareStatement("INSERT INTO " + target_table + "(" + column_list + ") VALUES " + values);
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO "+target_table+" ("+column_list+") VALUES "+values);
+			System.out.println("INSERT INTO "+target_table+" ("+column_list+") VALUES "+values);
 			ps.executeUpdate();
 			connection.close();
 			return true;
@@ -50,14 +51,16 @@ public class DBServiceImpl implements DBService{
 		}
 	}
 
+	@Override
 	public boolean createTable(String table_name, String variables, String column_list) {
-		String sql = "CREATE TABLE " + table_name + " (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,";
+		String sql = "CREATE TABLE " + table_name + " (";
 		String[] vari = variables.split(",");
 		String[] col = column_list.split(",");
 		for (int i = 0; i < vari.length; i++) {
 			sql += col[i] + " " + vari[i] + " NOT NULL,";
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
+		System.out.println(sql);
 		Connection connection;
 		try {
 			connection = DBConnection.getConnection(targetDBName);
@@ -69,6 +72,12 @@ public class DBServiceImpl implements DBService{
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public boolean deleteTable(String table_name) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
