@@ -1,0 +1,23 @@
+1|18120003  |Tạ Thị Ngọc    |An     |Female     |DH18KM             |Kinh tế tài nguyên môi trường
+2|12120043	|Trần Thị Tú	|Anh	|Female     |DH12KM				|Kinh tế tài nguyên môi trường
+3|17120014	|Nguyễn Thị Huệ	|Châu	|Female	    |DH17KM				|Kinh tế tài nguyên môi trường
+4|18120027	|Võ Thành	|Công		|Male		|DH18KM				|Kinh tế tài nguyên môi trường
+5|18120028	|Vũ Thị Kim	|Cương		|Female		|DH18KM				|Kinh tế tài nguyên môi trường
+6|17120021	|Dương Phương	|Di		|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+7|17120022	|Trần Thị	|Diễm		|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+8|17120024	|Nguyễn Thị	|Diệu		|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+9|18120042	|Nguyễn Thị Mỹ	|Duyên	|Female		|DH18KM				|Kinh tế tài nguyên môi trường
+10|16120052	|Đoàn Thị Thùy	|Dương	|Female		|DH16KM				|Kinh tế tài nguyên môi trường
+11|17120033	|Nguyễn Thị Kim	|Giang	|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+12|18120050	|Trần	Hải	|Hoàng		|Male		|DH18KM				|Kinh tế tài nguyên môi trường
+13|17120042	|Nguyễn Minh	|Hảo	|Male		|DH17KM				|Kinh tế tài nguyên môi trường
+14|16120079	|Nguyễn Thị	|Hảo		|Female		|DH16KM				|Kinh tế tài nguyên môi trường
+15|17120039	|Thời Thị Mỹ	|Hằng	|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+16|18120052	|Nguyễn Thị Ngọc|Hân    |Female		|DH18KM				|Kinh tế tài nguyên môi trường
+17|18120058	|Võ Phúc	|Hậu		|Male		|DH18KM				|Kinh tế tài nguyên môi trường
+18|17120047	|Phạm Thị	|Hiền		|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+19|16120087	|Hồ Thị Ái	|Hiếu		|Female		|DH16KM				|Kinh tế tài nguyên môi trường
+20|17120054	|Trần Thị	|Hoanh		|Female		|DH17KM				|Kinh tế tài nguyên môi trường
+
+
+ 

@@ -59,10 +59,8 @@ public class FileServiceImpl implements FileService {
 			while ((line = bReader.readLine()) != null) {
 				values += readLines(line, delim);
 			}
-			System.out.println(values);
 			bReader.close();
-			return values;
-
+			return values.substring(0, values.length()-1);
 		} catch (NoSuchElementException | IOException e) {
 			e.printStackTrace();
 			return null;
@@ -94,7 +92,6 @@ public class FileServiceImpl implements FileService {
 						} else {
 							value += (long) cell.getNumericCellValue() + "|";
 						}
-
 						break;
 					case STRING:
 						value += cell.getStringCellValue() + "|";
@@ -103,13 +100,12 @@ public class FileServiceImpl implements FileService {
 						break;
 					}
 				}
-				System.out.println(value);
-				values += readLines(value.substring(0, value.length() - 1), "|");
+				values += readLines(value.substring(0, value.length()), "|");
 				value = "";
 			}
 			workBooks.close();
 			fileIn.close();
-			return values.substring(0, values.length() - 1);
+			return values.substring(0, values.length()-1);
 		} catch (IOException e) {
 			return null;
 		}
@@ -136,5 +132,4 @@ public class FileServiceImpl implements FileService {
 			file.delete();
 		}
 	}
-
 }
