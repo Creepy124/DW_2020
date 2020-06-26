@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -50,86 +51,71 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public String readValuesTXT(String sourceFile, String delim) {
+	public String readValuesTXT(String sourceFile, String delim) throws IOException {
 		String values = "";
-		try {
-			File file = new File(sourceFile);
-			BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-			String line;
-			while ((line = bReader.readLine()) != null) {
-				values += readLines(line, delim);
-			}
-			bReader.close();
-			return values.substring(0, values.length()-1);
-		} catch (NoSuchElementException | IOException e) {
-			e.printStackTrace();
-			return null;
+		File file = new File(sourceFile);
+		BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		String line;
+		while ((line = bReader.readLine()) != null) {
+			values += readLines(line, delim);
 		}
+		bReader.close();
+		return values.substring(0, values.length() - 1);
 	}
 
 	@Override
-	public String readValuesXLSX(String sourceFile) {
+	public String readValuesXLSX(String sourceFile) throws IOException {
 		String values = "";
 		String value = "";
-		try {
-			File file = new File(sourceFile);
-			FileInputStream fileIn = new FileInputStream(file);
-			XSSFWorkbook workBooks = new XSSFWorkbook(fileIn);
-			XSSFSheet sheet = workBooks.getSheetAt(0);
-			Iterator<Row> rows = sheet.iterator();
-			rows.next();
-			while (rows.hasNext()) {
-				Row row = rows.next();
-				Iterator<Cell> cells = row.cellIterator();
-				while (cells.hasNext()) {
-					Cell cell = cells.next();
-					CellType cellType = cell.getCellType();
-					switch (cellType) {
-					case NUMERIC:
-						if (DateUtil.isCellDateFormatted(cell)) {
-							SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-							value += dateFormat.format(cell.getDateCellValue()) + "|";
-						} else {
-							value += (long) cell.getNumericCellValue() + "|";
-						}
-						break;
-					case STRING:
-						value += cell.getStringCellValue() + "|";
-						break;
-					default:
-						break;
+		File file = new File(sourceFile);
+		FileInputStream fileIn = new FileInputStream(file);
+		XSSFWorkbook workBooks = new XSSFWorkbook(fileIn);
+		XSSFSheet sheet = workBooks.getSheetAt(0);
+		Iterator<Row> rows = sheet.iterator();
+		rows.next();
+		while (rows.hasNext()) {
+			Row row = rows.next();
+			Iterator<Cell> cells = row.cellIterator();
+			while (cells.hasNext()) {
+				Cell cell = cells.next();
+				CellType cellType = cell.getCellType();
+				switch (cellType) {
+				case NUMERIC:
+					if (DateUtil.isCellDateFormatted(cell)) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						value += dateFormat.format(cell.getDateCellValue()) + "|";
+					} else {
+						value += (long) cell.getNumericCellValue() + "|";
 					}
+					break;
+				case STRING:
+					value += cell.getStringCellValue() + "|";
+					break;
+				default:
+					break;
 				}
-				values += readLines(value.substring(0, value.length()), "|");
-				value = "";
 			}
-			workBooks.close();
-			fileIn.close();
-			return values.substring(0, values.length()-1);
-		} catch (IOException e) {
-			return null;
+			values += readLines(value.substring(0, value.length()), "|");
+			value = "";
 		}
+		workBooks.close();
+		fileIn.close();
+		return values.substring(0, values.length() - 1);
 	}
 
 	@Override
-	public boolean moveFile(String target_dir, File file) {
-		try {
-			BufferedInputStream bReader = new BufferedInputStream(new FileInputStream(file));
-			BufferedOutputStream bWriter = new BufferedOutputStream(
-					new FileOutputStream(target_dir + File.separator + file.getName()));
-			byte[] buff = new byte[1024 * 10];
-			int data = 0;
-			while ((data = bReader.read(buff)) != -1) {
-				bWriter.write(buff, 0, data);
-			}
-			bReader.close();
-			bWriter.close();
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		} finally {
-			file.delete();
+	public boolean moveFile(String target_dir, File file) throws IOException {
+		BufferedInputStream bReader = new BufferedInputStream(new FileInputStream(file));
+		BufferedOutputStream bWriter = new BufferedOutputStream(
+				new FileOutputStream(target_dir + File.separator + file.getName()));
+		byte[] buff = new byte[1024 * 10];
+		int data = 0;
+		while ((data = bReader.read(buff)) != -1) {
+			bWriter.write(buff, 0, data);
 		}
+		bReader.close();
+		bWriter.close();
+		file.delete();
+		return true;
 	}
 }
