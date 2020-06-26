@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	
+	//testing
 	@SuppressWarnings("unused")
 	public static Connection getConnection(String dbName) {
 		Connection con = null;
