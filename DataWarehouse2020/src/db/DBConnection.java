@@ -9,7 +9,7 @@ public class DBConnection {
 	@SuppressWarnings("unused")
 	public static Connection getConnection(String dbName) {
 		Connection con = null;
-		String url = "jdbc:mysql://localhost:3306/" + dbName;
+		String url = "jdbc:mysql://localhost:3306/" + dbName +"?useSSL=false&charact erEncoding=utf8";
 		String user = "root";
 		String password = "";
 		try {
