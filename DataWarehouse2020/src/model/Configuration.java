@@ -97,6 +97,14 @@ public class Configuration {
 		return errorPath;
 	}
 
+	public int getSourcePort() {
+		return sourcePort;
+	}
+
+	public void setSourcePort(int sourcePort) {
+		this.sourcePort = sourcePort;
+	}
+
 	@Override
 	public String toString() {
 		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost

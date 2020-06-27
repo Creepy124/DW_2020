@@ -24,6 +24,7 @@ public class DataWarehouse {
 		return dtf.format(now);
 	}
 
+	//Step2
 	public void extractToStaging(String configName) {
 		config = new Configuration(configName);
 		fileService = new FileServiceImpl();
