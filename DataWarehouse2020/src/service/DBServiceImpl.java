@@ -28,8 +28,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int insertValues(String target_table, String column_list, String values) throws SQLException {
-		Connection connection;
-		connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName);
 		PreparedStatement ps = connection
 				.prepareStatement("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
 		System.out.println("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
@@ -46,24 +45,26 @@ public class DBServiceImpl implements DBService {
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
 		System.out.println(sql);
-		Connection connection;
-		connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName);
 		PreparedStatement ps = connection.prepareStatement(sql);
+		connection.close();
 		return ps.executeUpdate();
 	}
 
 	@Override
-	public int deleteTable(String table_name) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int truncateTable(String table_name) throws SQLException {
+		Connection connection = DBConnection.getConnection(targetDBName);
+		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE ?");
+		ps.setString(1, table_name);
+		connection.close();
+		return ps.executeUpdate();
 	}
 	
 	//LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
 	@Override
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
-		Connection connection;
-		connection = DBConnection.getConnection(targetDBName);
-		sourceFile = sourceFile.replace("\\", "\\\\");
+		Connection connection = DBConnection.getConnection(targetDBName);
+//		sourceFile = sourceFile.replace("\\", "\\\\");
 		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE "+tableName+"\r\n" + 
 															"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
 															"ENCLOSED BY '\"' \r\n" + 

@@ -34,6 +34,7 @@ public class DataWarehouse {
 
 		try {
 			if (logService.getFileWithStatus("ER") != null) {
+				dbService.truncateTable(config.getConfigName());
 				MyFile myFile = logService.getFileWithStatus("ER");
 				System.out.println(myFile.toString());
 				String sourceFile = config.getDownloadPath() + "\\" + myFile.getFileName();
