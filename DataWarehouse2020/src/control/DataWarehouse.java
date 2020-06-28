@@ -1,5 +1,7 @@
 package control;
 
+import java.io.File;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -34,27 +36,31 @@ public class DataWarehouse {
 			if (logService.getFileWithStatus("ER") != null) {
 				MyFile myFile = logService.getFileWithStatus("ER");
 				System.out.println(myFile.toString());
-				if (!dbService.existTable("temp")) {
-					System.out.println("Create database " + myFile.getFileName());
-					dbService.createTable("temp", config.getVariabless(), config.getFileColumnList());
-				}
 				String sourceFile = config.getDownloadPath() + "\\" + myFile.getFileName();
-				if (myFile.getFileType().equalsIgnoreCase("txt")) {
-					System.out.println("read txt file ...");
-					dbService.insertValues("temp", config.getFileColumnList(),
-							fileService.readValuesTXT(sourceFile, "|"));
-				} else if (myFile.getFileType().equalsIgnoreCase("xlsx")) {
-					System.out.println("read excel file ...");
-					System.out.println(fileService.readValuesXLSX(sourceFile));
-					dbService.insertValues("temp", config.getFileColumnList(), fileService.readValuesXLSX(sourceFile));
+				File file = new File(sourceFile);
+				if (file.exists()) {
+					try {
+						dbService.loadFile(sourceFile, config.getConfigName(), "|");
+					} catch (SQLException e) {
+						System.out.println("Can't load file!");
+						e.printStackTrace();
+					} finally {
+						try {
+							logService.insertLog(config.getConfigID(), myFile.getFileName(), myFile.getFileType(), "TR",
+									getNowTime());
+						} catch (SQLException e) {
+							System.out.println("Can't insert log!");
+							e.printStackTrace();
+						}
+					}
 				} else {
-					System.out.println("Can't read this file");
+					System.out.println("file does not exist!");
 				}
-//			logService.insertLog(config.getConfigID(), myFile.getFileName(), myFile.getFileType(), "TR", getNowTime());
 			} else {
-				System.out.println("Now no file status ER");
+				System.out.println("Now no file status ER!");
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			System.out.println("Get file action ER error!");
 			e.printStackTrace();
 		}
 	}
