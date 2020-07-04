@@ -11,14 +11,15 @@ import model.Configuration;
 
 public class DBServiceImpl implements DBService {
 	String targetDBName;
-
-	public DBServiceImpl(String targetDBName) {
+	String password;
+	public DBServiceImpl(String targetDBName,String password) {
 		this.targetDBName = targetDBName;
+		this.password = password;
 	}
 
 	@Override
 	public boolean existTable(String table_name) throws SQLException {
-		DatabaseMetaData dbm = DBConnection.getConnection(targetDBName).getMetaData();
+		DatabaseMetaData dbm = DBConnection.getConnection(targetDBName, password).getMetaData();
 		ResultSet tables = dbm.getTables(null, null, table_name, null);
 		if (tables.next()) {
 			return true;
@@ -28,7 +29,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int insertValues(String target_table, String column_list, String values) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName,password);
 		PreparedStatement ps = connection
 				.prepareStatement("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
 		System.out.println("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
@@ -45,7 +46,7 @@ public class DBServiceImpl implements DBService {
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
 		System.out.println(sql);
-		Connection connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName,password);
 		PreparedStatement ps = connection.prepareStatement(sql);
 		connection.close();
 		return ps.executeUpdate();
@@ -53,7 +54,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int truncateTable(String table_name) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName, password);
 		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE ?");
 		ps.setString(1, table_name);
 		connection.close();
@@ -63,7 +64,7 @@ public class DBServiceImpl implements DBService {
 	//LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
 	@Override
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName);
+		Connection connection = DBConnection.getConnection(targetDBName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
 		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE "+tableName+"\r\n" + 
 															"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
@@ -77,8 +78,8 @@ public class DBServiceImpl implements DBService {
 	}
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("sinhvien");
-		DBService test = new DBServiceImpl("staging");
+		Configuration config = new Configuration("sinhvien", "");
+		DBService test = new DBServiceImpl("staging", "");
 		try {
 //			System.out.println(test.createTable("sinhvien", config.getVariabless(), config.getFileColumnList()));
 			System.out.println(test.loadFile("local\\test\\data_1999-12-10_018.txt", "sinhvien","|"));

@@ -17,12 +17,13 @@ public class LogServiceImpl implements LogService {
 	public boolean insertLog(int configID, String fileName, String fileType, String status, String fileTimeStamp)
 			throws SQLException {
 		Connection connection;
-		connection = DBConnection.getConnection("control");
-		PreparedStatement ps1 = connection.prepareStatement("UPDATE log SET active=0 WHERE file_name=?");
-		ps1.setString(1, fileName);
-		ps1.executeUpdate();
+		connection = DBConnection.getConnection("control","");
+		//Remove "active" field
+//		PreparedStatement ps1 = connection.prepareStatement("UPDATE log SET active=0 WHERE file_name=?");
+//		ps1.setString(1, fileName);
+//		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
-				"INSERT INTO log (config_id, file_name, file_type, status, file_timestamp, active) value (?,?,?,?,?,1)");
+				"INSERT INTO log (config_id, file_name, file_type, status, file_timestamp) value (?,?,?,?,?)");
 		ps.setInt(1, configID);
 		ps.setString(2, fileName);
 		ps.setString(3, fileName.substring(fileName.indexOf('.') + 1));
@@ -34,10 +35,10 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public MyFile getFileWithStatus(String status) throws SQLException {
+	public MyFile getFileWithStatus(String status, String password) throws SQLException {
 		MyFile file = new MyFile();
 		Connection connection;
-		connection = DBConnection.getConnection("control");
+		connection = DBConnection.getConnection("control", password);
 		PreparedStatement ps = connection
 				.prepareStatement("SELECT file_name, file_type FROM log WHERE status=? AND active=1");
 		ps.setString(1, status);
@@ -55,11 +56,13 @@ public class LogServiceImpl implements LogService {
 
 	public static void main(String[] args) throws SQLException {
 		LogService log = new LogServiceImpl();
-		if (log.getFileWithStatus("ER") != null) {
-			System.out.println(log.getFileWithStatus("ER").toString());
+		if (log.getFileWithStatus("ER","") != null) {
+			System.out.println(log.getFileWithStatus("ER","").toString());
 		} else {
 			System.out.println("No file status like that");
 		}
 	}
+
+
 
 }

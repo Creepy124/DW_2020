@@ -6,20 +6,20 @@ import javax.swing.*;
 import java.io.*;
 
 public class Downloading{
-	  public void downloading(String[] arg){
-	    if(arg.length!=2){
-	      System.err.println("usage: java ScpFrom user@remotehost:file1 file2");
-	      System.exit(-1);
-	    }      
+	  public void downloading(String user, String password, String host, String rfile, String lfile, int port){
+//	    if(arg.length!=2){
+//	      System.err.println("usage: java ScpFrom user@remotehost:file1 file2");
+//	      System.exit(-1);
+//	    }      
 
 	    FileOutputStream fos=null;
 	    try{
 
-	      String user=arg[0].substring(0, arg[0].indexOf('@'));
-	      arg[0]=arg[0].substring(arg[0].indexOf('@')+1);
-	      String host=arg[0].substring(0, arg[0].indexOf(':'));
-	      String rfile=arg[0].substring(arg[0].indexOf(':')+1);
-	      String lfile=arg[1];
+//	      String user=arg[0].substring(0, arg[0].indexOf('@'));
+//	      arg[0]=arg[0].substring(arg[0].indexOf('@')+1);
+//	      String host=arg[0].substring(0, arg[0].indexOf(':'));
+//	      String rfile=arg[0].substring(arg[0].indexOf(':')+1);
+//	      String lfile=arg[1];
 
 	      String prefix=null;
 	      if(new File(lfile).isDirectory()){
@@ -28,9 +28,9 @@ public class Downloading{
 
 	      JSch jsch=new JSch();
 	      JSch.setConfig("StrictHostKeyChecking", "no");
-	      Session session=jsch.getSession(user, host, 2227);
+	      Session session=jsch.getSession(user, host, port);
 
-	      session.setPassword("123456");
+	      session.setPassword(password);
 	      session.connect();
 
 	      // exec 'scp -f rfile' remotely
@@ -152,6 +152,6 @@ public class Downloading{
   public static void main(String[] args) {
 	Downloading s = new Downloading();
 	  String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};
-	s.downloading(arg);
+//	s.downloading(arg);
 }
 }

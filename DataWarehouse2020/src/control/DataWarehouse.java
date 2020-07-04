@@ -26,16 +26,16 @@ public class DataWarehouse {
 		return dtf.format(now);
 	}
 
-	public void extractToStaging(String configName) {
-		config = new Configuration(configName);
+	public void extractToStaging(String configName,String password) {
+		config = new Configuration(configName,password);
 		fileService = new FileServiceImpl();
-		dbService = new DBServiceImpl("staging");
+		dbService = new DBServiceImpl("staging",password);
 		logService = new LogServiceImpl();
 
 		try {
-			if (logService.getFileWithStatus("ER") != null) {
+			if (logService.getFileWithStatus("ER",password) != null) {
 				dbService.truncateTable(config.getConfigName());
-				MyFile myFile = logService.getFileWithStatus("ER");
+				MyFile myFile = logService.getFileWithStatus("ER",password);
 				System.out.println(myFile.toString());
 				String sourceFile = config.getDownloadPath() + "\\" + myFile.getFileName();
 				File file = new File(sourceFile);
@@ -68,7 +68,7 @@ public class DataWarehouse {
 
 	public static void main(String[] args) {
 		DataWarehouse dw = new DataWarehouse();
-		dw.extractToStaging("sinhvien");
+		dw.extractToStaging("sinhvien","");
 	}
 
 }

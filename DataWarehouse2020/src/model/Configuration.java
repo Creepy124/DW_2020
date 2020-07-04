@@ -19,13 +19,13 @@ public class Configuration {
 	private String fileColumnList = "";
 	private String variabless = "";
 	private String downloadPath = "";
-	private String successPath = "";
-	private String errorPath = "";
+
 	
-	public Configuration(String configName) {
+	//password field
+	public Configuration(String configName,String password) {
 		Connection connection;
 		try {
-			connection = DBConnection.getConnection("control");
+			connection = DBConnection.getConnection("control", password);
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration WHERE config_name=?");
 			ps.setString(1, configName);
 			ResultSet rs = ps.executeQuery();
@@ -41,8 +41,7 @@ public class Configuration {
 				this.fileColumnList = rs.getString("file_column_list");
 				this.variabless = rs.getString("variabless");
 				this.downloadPath = rs.getString("download_path");
-				this.successPath = rs.getString("success_path");
-				this.errorPath = rs.getString("error_path");
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,12 +88,8 @@ public class Configuration {
 		return downloadPath;
 	}
 
-	public String getSuccessPath() {
-		return successPath;
-	}
-
-	public String getErrorPath() {
-		return errorPath;
+	public int getSourcePort() {
+		return sourcePort;
 	}
 
 	@Override
@@ -102,12 +97,11 @@ public class Configuration {
 		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost
 				+ ", sourceRemoteFile=" + sourceRemoteFile + ", sourceUsername=" + sourceUsername + ", sourcePassword="
 				+ sourcePassword + ", sourcePort=" + sourcePort + ", fileName=" + fileName + ", fileColumnList="
-				+ fileColumnList + ", variabless=" + variabless + ", downloadPath=" + downloadPath + ", successPath="
-				+ successPath + ", errorPath=" + errorPath + "]";
+				+ fileColumnList + ", variabless=" + variabless + ", downloadPath=" + downloadPath + "]";
 	}
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration("sinhvien");
+		Configuration configuration = new Configuration("sinhvien","");
 		System.out.println(configuration.toString());
 	}
 

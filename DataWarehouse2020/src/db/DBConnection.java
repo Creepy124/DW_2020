@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	//testing
+	//password field
 	@SuppressWarnings("unused")
-	public static Connection getConnection(String dbName) {
+	public static Connection getConnection(String dbName,String password) {
 		Connection con = null;
 		String url = "jdbc:mysql://localhost:3306/" + dbName +"?useSSL=false&charact erEncoding=utf8";
 		String user = "root";
-		String password = "";
+//		String password = "";
 		try {
 			if (con == null || con.isClosed()) {
 				Class.forName("com.mysql.jdbc.Driver");
