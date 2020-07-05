@@ -1,6 +1,5 @@
 package control;
 
-import com.mysql.jdbc.Connection;
 
 import db.DBConnection;
 import model.Configuration;
@@ -16,12 +15,12 @@ public class RepairDownload {
 	private int port;
 	
 	public RepairDownload() {
-	  String user=config.getSourceUsername();
-      String host=config.getSourceHost();
-      String rfile="/"+config.getSourceRemoteFile();
-      String lfile=config.getDownloadPath();
-      String pass = config.getSourcePassword();
-      int port  = config.getSourcePort();
+	   user=config.getSourceUsername();
+       host=config.getSourceHost();
+       rfile="/"+config.getSourceRemoteFile();
+       lfile=config.getDownloadPath();
+       password = config.getSourcePassword();
+       port  = config.getSourcePort();
 	}
 	
 	public void DownloadFile() {
