@@ -13,7 +13,7 @@ import service.FileService;
 import service.FileServiceImpl;
 import service.LogService;
 import service.LogServiceImpl;
-///test againaaa
+///test f
 public class DataWarehouse {
 	Configuration config;
 	FileService fileService;
@@ -47,8 +47,8 @@ public class DataWarehouse {
 						e.printStackTrace();
 					} finally {
 						try {
-							logService.insertLog(config.getConfigID(), myFile.getFileName(), myFile.getFileType(), "TR",
-									getNowTime());
+							logService.insertLog( myFile.getFileName(), myFile.getFileType(), "TR",
+									getNowTime(),password);
 						} catch (SQLException e) {
 							System.out.println("Can't insert log!");
 							e.printStackTrace();

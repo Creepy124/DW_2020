@@ -14,21 +14,21 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public boolean insertLog(int configID, String fileName, String fileType, String status, String fileTimeStamp)
+	public boolean insertLog(String fileName, String fileType, String status, String fileTimeStamp,String password)
 			throws SQLException {
 		Connection connection;
-		connection = DBConnection.getConnection("control","");
+		connection = DBConnection.getConnection("control", password);
 		//Remove "active" field
 //		PreparedStatement ps1 = connection.prepareStatement("UPDATE log SET active=0 WHERE file_name=?");
 //		ps1.setString(1, fileName);
 //		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
-				"INSERT INTO log (config_id, file_name, file_type, status, file_timestamp) value (?,?,?,?,?)");
-		ps.setInt(1, configID);
-		ps.setString(2, fileName);
-		ps.setString(3, fileName.substring(fileName.indexOf('.') + 1));
-		ps.setString(4, status);
-		ps.setString(5, fileTimeStamp);
+				"INSERT INTO log (file_name, file_type, status, file_timestamp) value (?,?,?,?)");
+//		ps.setInt(1, configID);
+		ps.setString(1, fileName);
+		ps.setString(2, fileName.substring(fileName.indexOf('.') + 1));
+		ps.setString(3, status);
+		ps.setString(4, fileTimeStamp);
 		ps.executeUpdate();
 		connection.close();
 		return true;
@@ -40,7 +40,7 @@ public class LogServiceImpl implements LogService {
 		Connection connection;
 		connection = DBConnection.getConnection("control", password);
 		PreparedStatement ps = connection
-				.prepareStatement("SELECT file_name, file_type FROM log WHERE status=? AND active=1");
+				.prepareStatement("SELECT file_name, file_type FROM log WHERE status=?");
 		ps.setString(1, status);
 		ResultSet rs = ps.executeQuery();
 		rs.last();
