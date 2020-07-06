@@ -9,8 +9,8 @@ import service.LogService;
 import service.LogServiceImpl;
 
 public class RepairDownload {
-	String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};
-	Configuration config = new Configuration("configuration", "");
+//	String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};
+	Configuration config = new Configuration("sinhvien", "langtutrunggio");
 	private String user;
 	private String password;
 	private String host;
@@ -44,5 +44,9 @@ public class RepairDownload {
 		result = false;
 		}
 		return result;
+	}
+	public static void main(String[] args) {
+		RepairDownload rp = new RepairDownload();
+		rp.DownloadFile();
 	}
 }

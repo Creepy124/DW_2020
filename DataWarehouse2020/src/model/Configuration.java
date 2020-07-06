@@ -26,8 +26,8 @@ public class Configuration {
 		Connection connection;
 		try {
 			connection = DBConnection.getConnection("control", password);
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration WHERE config_name=?");
-			ps.setString(1, configName);
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration");
+//			ps.setString(1, configName);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				this.configID = rs.getInt("config_id");
