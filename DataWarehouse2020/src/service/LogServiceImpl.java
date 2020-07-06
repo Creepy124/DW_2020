@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 
 import db.DBConnection;
 import model.MyFile;
@@ -24,9 +25,9 @@ public class LogServiceImpl implements LogService {
 //		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
 				"INSERT INTO log (file_name, file_type, status, file_timestamp) value (?,?,?,?)");
-//		ps.setInt(1, configID);
+//		ps.setInt(1, 1);
 		ps.setString(1, fileName);
-		ps.setString(2, fileName.substring(fileName.indexOf('.') + 1));
+		ps.setString(2, fileType);
 		ps.setString(3, status);
 		ps.setString(4, fileTimeStamp);
 		ps.executeUpdate();
@@ -56,11 +57,13 @@ public class LogServiceImpl implements LogService {
 
 	public static void main(String[] args) throws SQLException {
 		LogService log = new LogServiceImpl();
-		if (log.getFileWithStatus("ER","") != null) {
-			System.out.println(log.getFileWithStatus("ER","").toString());
-		} else {
-			System.out.println("No file status like that");
-		}
+		log.insertLog("abc", "tas", "ER", LocalTime.now().toString(), "langtutrunggio");
+//		
+//		if (log.getFileWithStatus("ER","langtutrunggio") != null) {
+//			System.out.println(log.getFileWithStatus("ER","").toString());
+//		} else {
+//			System.out.println("No file status like that");
+//		}
 	}
 
 

@@ -103,7 +103,8 @@ public class Downloading{
 	        fos=null;
 
 		if(checkAck(in)!=0){
-		  System.exit(0);
+//		  System.exit(0);
+			return;
 		}
 
 	        // send '\0'
@@ -112,7 +113,8 @@ public class Downloading{
 
 	      session.disconnect();
 
-	      System.exit(0);
+//	      System.exit(0);
+	      return;
 	    }
 	    catch(Exception e){
 	      System.out.println(e);

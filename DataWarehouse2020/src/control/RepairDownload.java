@@ -21,7 +21,7 @@ public class RepairDownload {
 	public RepairDownload() {
 	   user=config.getSourceUsername();
        host=config.getSourceHost();
-       rfile="/"+config.getSourceRemoteFile();
+       rfile="/"+config.getSourceRemoteFile()+config.getFileName();
        lfile=config.getDownloadPath();
        password = config.getSourcePassword();
        port  = config.getSourcePort();
@@ -30,23 +30,33 @@ public class RepairDownload {
 	public void DownloadFile() {
 		Downloading d = new Downloading();
 		d.downloading( this.user,  this.password,  this.host,  this.rfile,  this.lfile,  this.port);
+		System.out.println(this.toString());
 		writingLog();
 	}
 	
 	public boolean writingLog() {
 		boolean  result = true;
-		String[] part = rfile.split("/");
-		String fileName = part[part.length-1];
+		String fileName = config.getFileName();
+		System.out.println(fileName);
 		LogServiceImpl log = new  LogServiceImpl();
 		try {
-			log.insertLog(fileName, fileName.substring(fileName.indexOf('.') + 1) , "ER", LocalTime.now().toString(), password);
+			log.insertLog(fileName, fileName.substring(fileName.indexOf('.') + 1) , "ER", LocalTime.now().toString(), "langtutrunggio");
 		} catch (SQLException e) {
 		result = false;
 		}
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+		return "RepairDownload [config=" + config + ", user=" + user + ", password=" + password + ", host=" + host
+				+ ", rfile=" + rfile + ", lfile=" + lfile + ", port=" + port + "]";
+	}
+
 	public static void main(String[] args) {
 		RepairDownload rp = new RepairDownload();
 		rp.DownloadFile();
+//		rp.toString();
+//		rp.writingLog();
 	}
 }
