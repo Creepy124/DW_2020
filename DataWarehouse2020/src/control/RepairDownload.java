@@ -40,7 +40,7 @@ public class RepairDownload {
 		System.out.println(fileName);
 		LogServiceImpl log = new  LogServiceImpl();
 		try {
-			log.insertLog(fileName, fileName.substring(fileName.indexOf('.') + 1) , "ER", LocalTime.now().toString(), "langtutrunggio");
+			log.insertLog(1, fileName, fileName.substring(fileName.indexOf('.') + 1) , "ER", LocalTime.now().toString(), "langtutrunggio", fileName);
 		} catch (SQLException e) {
 		result = false;
 		}
