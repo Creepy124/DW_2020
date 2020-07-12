@@ -6,10 +6,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
+
+import service.WritingError;
 
 public class Downloading{
 	  public void downloading(String user, String password, String host, String rfile, String lfile, int port){
@@ -128,7 +133,7 @@ public class Downloading{
 	    }
 	  }
 
-	  static int checkAck(InputStream in) throws IOException{
+	  static int checkAck(InputStream in) throws IOException, AddressException, MessagingException{
 	    int b=in.read();
 	    // b may be 0 for success,
 	    //          1 for error,
@@ -146,9 +151,11 @@ public class Downloading{
 	      }
 	      while(c!='\n');
 	      if(b==1){ // error
+	    		WritingError.sendError("Cant download");
 		System.out.print(sb.toString());
 	      }
 	      if(b==2){ // fatal error
+	    	  WritingError.sendError("Cant download");
 		System.out.print(sb.toString());
 	      }
 	    }

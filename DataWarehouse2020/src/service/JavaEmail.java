@@ -12,9 +12,9 @@ import javax.mail.internet.MimeMessage;
  
 public class JavaEmail
 {
-    Session mailSession;
+    static Session mailSession;
  
-    private void setMailServerProperties() {
+    private static void setMailServerProperties() {
         Properties emailProperties = System.getProperties();
         emailProperties.put("mail.smtp.port", "587");
         emailProperties.put("mail.smtp.auth", "true");
@@ -22,7 +22,7 @@ public class JavaEmail
         mailSession = Session.getDefaultInstance(emailProperties, null);
     }
  
-    private MimeMessage draftEmailMessage(String error) throws AddressException, MessagingException
+    private static MimeMessage draftEmailMessage(String error) throws AddressException, MessagingException
     {
         String[] toEmails = { "thuyphuongnguyen0170@gmail.com",  "creepy120499@gmail.com"};
         String emailSubject = "Error";
@@ -47,7 +47,7 @@ public class JavaEmail
         return emailMessage;
     }
  
-    private void sendEmail(String error) throws AddressException, MessagingException
+    private static void sendEmail(String error) throws AddressException, MessagingException
     {
         /**
          * Sender's credentials
@@ -70,7 +70,7 @@ public class JavaEmail
         System.out.println("Email sent successfully.");
     }
     
-    public void prepareSending(String error) throws AddressException, MessagingException {
+    public static void prepareSending(String error) throws AddressException, MessagingException {
         setMailServerProperties();
      //  javaEmail.draftEmailMessage();
         sendEmail(error);
