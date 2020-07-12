@@ -10,5 +10,6 @@ public interface FileService {
 	public String readValuesTXT(String sourceFile, String delim)  throws IOException ;
 	public String readValuesXLSX(String sourceFile) throws IOException ;
 	public boolean moveFile(String target_dir, File file) throws IOException ;
-
+	public void writeLinesToFile(String fPath, String lines) throws IOException;
+	
 }

@@ -3,13 +3,19 @@ package service;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
@@ -118,5 +124,14 @@ public class FileServiceImpl implements FileService {
 		file.delete();
 		return true;
 	}
-	
+
+	@Override
+	public void writeLinesToFile(String fPath, String lines) throws IOException {
+		Path file = Paths.get(fPath);
+		DataOutputStream dos;
+		dos = new DataOutputStream(Files.newOutputStream(file, StandardOpenOption.APPEND));
+		dos.write(lines.getBytes());
+		dos.flush();
+	}
+
 }
