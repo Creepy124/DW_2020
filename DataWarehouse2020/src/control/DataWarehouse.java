@@ -13,7 +13,7 @@ import service.FileService;
 import service.FileServiceImpl;
 import service.LogService;
 import service.LogServiceImpl;
-///test f
+
 public class DataWarehouse {
 	Configuration config;
 	FileService fileService;
