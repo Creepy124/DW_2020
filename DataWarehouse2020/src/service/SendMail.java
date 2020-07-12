@@ -46,7 +46,8 @@ public class SendMail {
     
     public static void main(String[] args) {
 		try {
-			sendEmail("smtp.gmail.com", "587", "MomoiroNyanko2612@gmail.com", "peDIA2612", "thuyphuong261299@gmail.com", "test", "asd");
+//			sendEmail("smtp.gmail.com", "587", "minhtien124pmh@gmail.com", "antrom113", "MomoiroNyanko2612@gmail.com", "test", "asd");
+			sendEmail("smtp.gmail.com", "587", "MomoiroNyanko2612@gmail.com", "peDIA2612!", "minhtien124pmh@gmail.com", "test", "asd");
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
