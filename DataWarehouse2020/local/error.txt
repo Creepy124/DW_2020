@@ -1,3 +1,15 @@
-15:07:38.813
-rew
-------------------------------------- 
+2020-07-12T16:41:24.458
+Wrong Source Information such as: username, password, host, port
+ ---------------- 
+2020-07-12T16:41:28.454
+Cant write into Log
+ ---------------- 
+2020-07-12T16:43:49.348
+Wrong Source Information such as: username, password, host, port
+ ---------------- 
+2020-07-12T16:44:54.360
+Wrong Source Information such as: username, password, host, port
+ ---------------- 
+2020-07-12T16:45:14.950
+Wrong Source Information such as: username, password, host, port
+ ---------------- 
