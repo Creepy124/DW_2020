@@ -19,7 +19,7 @@ public class Configuration {
 	private String fileColumnList = "";
 	private String value = "";
 	private String downloadPath = "";
-	
+	//
 	//password field
 	public Configuration(String configName,String password) {
 		Connection connection;
