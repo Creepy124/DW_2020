@@ -23,8 +23,8 @@ public class RepairDownload {
 	private String lfile;
 	private int port;
 
-	public RepairDownload(String configName, String password) {
-		config = new Configuration(configName, password);
+	public RepairDownload(String configName, String DBpassword) {
+		config = new Configuration(configName, DBpassword);
 		user = config.getSourceUsername();
 		host = config.getSourceHost();
 		rfile = "/" + config.getSourceRemoteFile() + config.getFileName();
