@@ -3,13 +3,11 @@ package control;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import model.Configuration;
-import service.LogService;
 import service.LogServiceImpl;
 import service.WritingError;
 

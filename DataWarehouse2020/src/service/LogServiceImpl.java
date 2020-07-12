@@ -18,10 +18,6 @@ public class LogServiceImpl implements LogService {
 			throws SQLException {
 		Connection connection;
 		connection = DBConnection.getConnection("control", password);
-		//Remove "active" field
-//		PreparedStatement ps1 = connection.prepareStatement("UPDATE log SET active=0 WHERE file_name=?");
-//		ps1.setString(1, fileName);
-//		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
 				"INSERT INTO log (config_id, file_name, file_type, action, status, file_timestamp) value (?,?,?,?,?,?)");
 		ps.setInt(1, configID);

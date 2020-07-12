@@ -1,10 +1,7 @@
 package control;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import model.Configuration;
 import model.MyFile;
@@ -27,18 +24,22 @@ public class DataWarehouse {
 		
 	}
 
-	public void extractToStaging(String configName, String password) throws SQLException {
-		config = new Configuration(configName, password);
+	public void extractToStaging(String configName, String passwordDB) throws SQLException {
+		config = new Configuration(configName, passwordDB);
 		fileService = new FileServiceImpl();
-		dbService = new DBServiceImpl("staging",password);
+		dbService = new DBServiceImpl("staging",passwordDB);
 		logService = new LogServiceImpl();
 
-		if (logService.getFileWithStatus("ER",password) != null) {
+		if (logService.getFileWithStatus("ER",passwordDB) != null) {
 			dbService.truncateTable(config.getConfigName());
-			MyFile myFile = logService.getFileWithStatus("ER",password);
+			MyFile myFile = logService.getFileWithStatus("ER",passwordDB);
 			System.out.println(myFile.toString());
-			String sourceFile = config.getDownloadPath() + "\\" + myFile.getFileName();
-			File file = new File(sourceFile);
+			if (myFile.getFileType().equalsIgnoreCase("xlsx")) {
+				fileService.convertXLSXToCSV(config.getDownloadPath()+"\\"+myFile.getFileName(), config.getDownloadPath());
+				dbService.loadFile("", configName, "|");
+			} else {
+				dbService.loadFile(config.getDownloadPath()+"\\"+myFile.getFileName(), configName, "|");
+			}
 		}
 	}
 	
