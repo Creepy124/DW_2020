@@ -17,9 +17,8 @@ public class Configuration {
 	private int sourcePort;
 	private String fileName = "";
 	private String fileColumnList = "";
-	private String variabless = "";
+	private String value = "";
 	private String downloadPath = "";
-
 	
 	//password field
 	public Configuration(String configName,String password) {
@@ -39,7 +38,7 @@ public class Configuration {
 				this.sourcePort = rs.getInt("source_port");
 				this.fileName = rs.getString("file_name");
 				this.fileColumnList = rs.getString("file_column_list");
-				this.variabless = rs.getString("variabless");
+				this.value = rs.getString("value");
 				this.downloadPath = rs.getString("download_path");
 
 			}
@@ -80,8 +79,8 @@ public class Configuration {
 		return fileColumnList;
 	}
 
-	public String getVariabless() {
-		return variabless;
+	public String getValue() {
+		return value;
 	}
 
 	public String getDownloadPath() {
@@ -101,7 +100,7 @@ public class Configuration {
 		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost
 				+ ", sourceRemoteFile=" + sourceRemoteFile + ", sourceUsername=" + sourceUsername + ", sourcePassword="
 				+ sourcePassword + ", sourcePort=" + sourcePort + ", fileName=" + fileName + ", fileColumnList="
-				+ fileColumnList + ", variabless=" + variabless + ", downloadPath=" + downloadPath + "]";
+				+ fileColumnList + ", value=" + value + ", downloadPath=" + downloadPath + "]";
 	}
 
 	public static void main(String[] args) {
