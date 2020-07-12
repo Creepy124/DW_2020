@@ -16,7 +16,7 @@ public class WritingError {
 	JavaEmail javaEmail = new JavaEmail();
 	
 	public void writingError(String error) throws IOException{
-		Path file = Paths.get("C:\\Users\\Phuong\\git\\DM_2020\\DataWarehouse2020\\local\\error.txt");
+		Path file = Paths.get("local\\error.txt");
 		DataOutputStream dos;
 		try {
 			dos = new DataOutputStream(Files.newOutputStream(file, StandardOpenOption.APPEND));
@@ -34,7 +34,7 @@ public class WritingError {
 	public void sendError(String error) throws IOException, AddressException, MessagingException {
 		writingError(error);
 		javaEmail.prepareSending(error);
-	}
+	}//
 	
 	public static void main(String[] args) throws IOException {
 		WritingError t = new WritingError();
