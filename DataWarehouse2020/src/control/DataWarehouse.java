@@ -26,8 +26,8 @@ public class DataWarehouse {
 		return dtf.format(now);
 	}
 
-	public void extractToStaging(String configName,String password) {
-		config = new Configuration(configName,password);
+	public void extractToStaging(String configName, String password) {
+		config = new Configuration(configName, password);
 		fileService = new FileServiceImpl();
 		dbService = new DBServiceImpl("staging",password);
 		logService = new LogServiceImpl();
@@ -61,10 +61,12 @@ public class DataWarehouse {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public static void main(String[] args) {
 		DataWarehouse dw = new DataWarehouse();
 		dw.extractToStaging("sinhvien","");
 	}
+
 
 }

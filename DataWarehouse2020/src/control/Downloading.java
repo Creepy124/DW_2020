@@ -1,9 +1,15 @@
 package control;
 
-import com.jcraft.jsch.*;
-import java.awt.*;
-import javax.swing.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import com.jcraft.jsch.Channel;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 
 public class Downloading{
 	  public void downloading(String user, String password, String host, String rfile, String lfile, int port){
@@ -155,5 +161,5 @@ public class Downloading{
 	Downloading s = new Downloading();
 	  String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};
 //	s.downloading(arg);
-}
+  }
 }
