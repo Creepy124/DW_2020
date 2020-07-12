@@ -46,13 +46,9 @@ public class DataWarehouse {
 						System.out.println("Can't load file!");
 						e.printStackTrace();
 					} finally {
-						try {
-							logService.insertLog( myFile.getFileName(), myFile.getFileType(), "TR",
-									getNowTime(),password);
-						} catch (SQLException e) {
-							System.out.println("Can't insert log!");
-							e.printStackTrace();
-						}
+//							logService.insertLog( myFile.getFileName(), myFile.getFileType(), "TR",
+//									getNowTime(),password);
+						
 					}
 				} else {
 					System.out.println("file does not exist!");

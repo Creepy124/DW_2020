@@ -15,7 +15,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public boolean insertLog(String fileName, String fileType, String status, String fileTimeStamp,String password)
+	public boolean insertLog(int configID, String fileName, String fileType, String action, String status, String fileTimeStamp,String password)
 			throws SQLException {
 		Connection connection;
 		connection = DBConnection.getConnection("control", password);
@@ -24,12 +24,13 @@ public class LogServiceImpl implements LogService {
 //		ps1.setString(1, fileName);
 //		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
-				"INSERT INTO log (file_name, file_type, status, file_timestamp) value (?,?,?,?)");
-//		ps.setInt(1, 1);
-		ps.setString(1, fileName);
-		ps.setString(2, fileType);
-		ps.setString(3, status);
-		ps.setString(4, fileTimeStamp);
+				"INSERT INTO log (config_id, file_name, file_type, action, status, file_timestamp) value (?,?,?,?,?,?)");
+		ps.setInt(1, configID);
+		ps.setString(2, fileName);
+		ps.setString(3, fileName.substring(fileName.indexOf('.') + 1));
+		ps.setString(4, action);
+		ps.setString(5, status);
+		ps.setString(6, fileTimeStamp);
 		ps.executeUpdate();
 		connection.close();
 		return true;
@@ -57,7 +58,7 @@ public class LogServiceImpl implements LogService {
 
 	public static void main(String[] args) throws SQLException {
 		LogService log = new LogServiceImpl();
-		log.insertLog("abc", "tas", "ER", LocalTime.now().toString(), "langtutrunggio");
+		log.insertLog(1, "abc", "tas", "ER", null, LocalTime.now().toString(), "langtutrunggio");
 //		
 //		if (log.getFileWithStatus("ER","langtutrunggio") != null) {
 //			System.out.println(log.getFileWithStatus("ER","").toString());
