@@ -43,4 +43,16 @@ public class SendMail {
         // sends the e-mail
         Transport.send(msg);
     }
+    
+    public static void main(String[] args) {
+		try {
+			sendEmail("smtp.gmail.com", "587", "MomoiroNyanko2612@gmail.com", "peDIA2612", "thuyphuong261299@gmail.com", "test", "asd");
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
