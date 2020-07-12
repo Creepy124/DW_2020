@@ -14,8 +14,7 @@ public class JavaEmail
 {
     Session mailSession;
  
-    private void setMailServerProperties()
-    {
+    private void setMailServerProperties() {
         Properties emailProperties = System.getProperties();
         emailProperties.put("mail.smtp.port", "587");
         emailProperties.put("mail.smtp.auth", "true");
@@ -76,6 +75,7 @@ public class JavaEmail
      //  javaEmail.draftEmailMessage();
         sendEmail(error);
     }
+    
     public static void main(String[] args) {
 		JavaEmail j = new JavaEmail();
 		try {
