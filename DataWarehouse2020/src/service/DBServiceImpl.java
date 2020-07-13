@@ -48,7 +48,6 @@ public class DBServiceImpl implements DBService {
 		System.out.println(sql);
 		Connection connection = DBConnection.getConnection(targetDBName,password);
 		PreparedStatement ps = connection.prepareStatement(sql);
-		connection.close();
 		return ps.executeUpdate();
 	}
 
@@ -57,7 +56,7 @@ public class DBServiceImpl implements DBService {
 		Connection connection = DBConnection.getConnection(targetDBName, password);
 		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE ?");
 		ps.setString(1, table_name);
-		connection.close();
+		System.out.println("TRUNCATE TABLE "+table_name);
 		return ps.executeUpdate();
 	}
 	
@@ -66,10 +65,11 @@ public class DBServiceImpl implements DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE "+tableName+"\r\n" + 
-															"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
-															"ENCLOSED BY '\"' \r\n" + 
-															"LINES TERMINATED BY '\\r\\n'");
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE monhoc\r\n" + 
+				"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
+				"ENCLOSED BY '\"' \r\n" + 
+				"LINES TERMINATED BY '\\r\\n'\r\n" + 
+				"IGNORE 1 lines");
 		System.out.println("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE "+tableName+"\r\n" + 
 				"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
 				"ENCLOSED BY '\"' \r\n" + 
@@ -78,11 +78,12 @@ public class DBServiceImpl implements DBService {
 	}
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("sinhvien", "");
+		Configuration config = new Configuration("monhoc", "");
 		DBService test = new DBServiceImpl("staging", "");
 		try {
-//			System.out.println(test.createTable("sinhvien", config.getVariabless(), config.getFileColumnList()));
-			System.out.println(test.loadFile("local\\test\\data_1999-12-10_018.txt", "sinhvien","|"));
+//			System.out.println(test.createTable(config.getConfigName(), config.getValue(), config.getFileColumnList()));
+//			System.out.println(test.truncateTable(config.getConfigName()));
+			System.out.println(test.loadFile("local\\\\test\\\\Monhoc2013.csv", "monhoc",","));
 		} catch (SQLException e) {
 			System.out.println("error");
 			e.printStackTrace();

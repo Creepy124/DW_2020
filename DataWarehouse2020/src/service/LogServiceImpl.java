@@ -14,7 +14,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public boolean insertLog(int configID, String fileName, String fileType, String action, String status, String fileTimeStamp,String password)
+	public boolean insertLog(int configID, String fileName, String action, String status, String fileTimeStamp,String password)
 			throws SQLException {
 		Connection connection;
 		connection = DBConnection.getConnection("control", password);
@@ -32,13 +32,13 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public MyFile getFileWithStatus(String status, String password) throws SQLException {
+	public MyFile getFileWithStatus(String action, String password) throws SQLException {
 		MyFile file = new MyFile();
 		Connection connection;
 		connection = DBConnection.getConnection("control", password);
 		PreparedStatement ps = connection
-				.prepareStatement("SELECT file_name, file_type FROM log WHERE status=?");
-		ps.setString(1, status);
+				.prepareStatement("SELECT file_name, file_type FROM log WHERE action=?");
+		ps.setString(1, action);
 		ResultSet rs = ps.executeQuery();
 		rs.last();
 		if (rs.getRow() >= 1) {
