@@ -75,7 +75,7 @@ public class DBServiceImpl implements DBService {
 				"ENCLOSED BY '\"' \r\n" + 
 				"LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
-	}
+	}//
 	
 	public static void main(String[] args) {
 		Configuration config = new Configuration("monhoc", "");
