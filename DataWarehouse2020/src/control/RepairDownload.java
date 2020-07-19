@@ -46,10 +46,9 @@ public class RepairDownload {
 		boolean result = true;
 		String fileName = config.getFileName();
 		System.out.println(fileName);
-		LogServiceImpl log = new LogServiceImpl();
+		LogServiceImpl log = new LogServiceImpl("control","root","");
 		try {
-			log.insertLog(1, fileName, "ER",null, LocalDateTime.now().toString(),
-					"langtutrunggio");
+			log.insertLog(1, fileName, "ER",null, LocalDateTime.now().toString());
 		} catch (SQLException e) {
 			result = false;
 		}
