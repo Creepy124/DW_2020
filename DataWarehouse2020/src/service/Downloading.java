@@ -1,4 +1,4 @@
-package control;
+package service;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,8 +14,6 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-
-import service.WritingError;
 
 public class Downloading {
 	public void downloading(String user, String password, String host, String rfile, String lfile, int port) throws IOException {

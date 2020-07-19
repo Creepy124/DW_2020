@@ -5,29 +5,23 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-	//password field
-	@SuppressWarnings("unused")
-	public static Connection getConnection(String dbName, String password) {
+
+	public static Connection getConnection(String dbName, String userName, String password) {
 		Connection con = null;
-		String url = "jdbc:mysql://localhost:3306/" + dbName +"?useSSL=false&characterEncoding=utf8";
-		String user = "root";
-//		String password = "";
+		String url = "jdbc:mysql://localhost:3306/" + dbName
+				+ "?useSSL=false&characterEncoding=utf8&allowLoadLocalInfile=true";
 		try {
 			if (con == null || con.isClosed()) {
-//				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection(url, user, password);
-				return con;
-
-			} else {
-				return con;
+				con = DriverManager.getConnection(url, userName, password);
 			}
 		} catch (SQLException e) {
-//			System.out.println(e.getMessage() + " asddfsfd");
 			return null;
 		}
+		return con;
 	}
-public static void main(String[] args) {
-	DBConnection d = new DBConnection();
-	d.getConnection("control","langtutrunggio");
-}
+
+	public static void main(String[] args) {
+		DBConnection d = new DBConnection();
+		d.getConnection("control", "root", "");
+	}
 }

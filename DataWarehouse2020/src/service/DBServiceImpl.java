@@ -12,14 +12,17 @@ import model.Configuration;
 public class DBServiceImpl implements DBService {
 	String targetDBName;
 	String password;
-	public DBServiceImpl(String targetDBName,String password) {
+	String userName;
+	
+	public DBServiceImpl(String targetDBName, String userName, String password) {
 		this.targetDBName = targetDBName;
 		this.password = password;
+		this.userName = userName;
 	}
 
 	@Override
 	public boolean existTable(String table_name) throws SQLException {
-		DatabaseMetaData dbm = DBConnection.getConnection(targetDBName, password).getMetaData();
+		DatabaseMetaData dbm = DBConnection.getConnection(targetDBName, userName, password).getMetaData();
 		ResultSet tables = dbm.getTables(null, null, table_name, null);
 		if (tables.next()) {
 			return true;
@@ -29,7 +32,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int insertValues(String target_table, String column_list, String values) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName,password);
+		Connection connection = DBConnection.getConnection(targetDBName ,userName, password);
 		PreparedStatement ps = connection
 				.prepareStatement("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
 		System.out.println("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
@@ -46,16 +49,16 @@ public class DBServiceImpl implements DBService {
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
 		System.out.println(sql);
-		Connection connection = DBConnection.getConnection(targetDBName,password);
+		Connection connection = DBConnection.getConnection(targetDBName,userName,password);
 		PreparedStatement ps = connection.prepareStatement(sql);
 		return ps.executeUpdate();
 	}
 
 	@Override
 	public int truncateTable(String table_name) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName, password);
-		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE ?");
-		ps.setString(1, table_name);
+		Connection connection = DBConnection.getConnection(targetDBName,userName, password);
+		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE "+this.targetDBName+"."+table_name);
+//		ps.setString(1, table_name);
 		System.out.println("TRUNCATE TABLE "+table_name);
 		return ps.executeUpdate();
 	}
@@ -63,7 +66,7 @@ public class DBServiceImpl implements DBService {
 	//LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
 	@Override
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName, password);
+		Connection connection = DBConnection.getConnection(targetDBName,userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
 		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE monhoc\r\n" + 
 				"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
@@ -78,11 +81,11 @@ public class DBServiceImpl implements DBService {
 	}//
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("monhoc", "");
-		DBService test = new DBServiceImpl("staging", "");
+		Configuration config = new Configuration("monhoc","root", "");
+		DBService test = new DBServiceImpl("staging","root" ,"");
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getValue(), config.getFileColumnList()));
-//			System.out.println(test.truncateTable(config.getConfigName()));
+			System.out.println(test.truncateTable(config.getConfigName()));
 			System.out.println(test.loadFile("local\\\\test\\\\Monhoc2013.csv", "monhoc",","));
 		} catch (SQLException e) {
 			System.out.println("error");
