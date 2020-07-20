@@ -55,9 +55,10 @@ public class DBServiceImpl implements DBService {
 	@Override
 	public int truncateTable(String table_name) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, password);
-		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE ?");
-		ps.setString(1, table_name);
-		connection.close();
+		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE "+this.targetDBName+"."+table_name);
+//		ps.setString(1, table_name);
+//		connection.close();
+		System.out.println("TRUNCATE TABLE "+this.targetDBName+"."+table_name);
 		return ps.executeUpdate();
 	}
 	
@@ -78,11 +79,12 @@ public class DBServiceImpl implements DBService {
 	}
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("sinhvien", "");
-		DBService test = new DBServiceImpl("staging", "");
+		Configuration config = new Configuration("sinhvien", "langtutrunggio");
+		DBService test = new DBServiceImpl("control", "langtutrunggio");
 		try {
 //			System.out.println(test.createTable("sinhvien", config.getVariabless(), config.getFileColumnList()));
-			System.out.println(test.loadFile("local\\test\\data_1999-12-10_018.txt", "sinhvien","|"));
+//			System.out.println(test.loadFile("local\\test\\data_1999-12-10_018.txt", "sinhvien","|"));
+			test.truncateTable("a");
 		} catch (SQLException e) {
 			System.out.println("error");
 			e.printStackTrace();

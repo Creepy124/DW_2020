@@ -104,7 +104,7 @@ public class Configuration {
 	}
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration("sinhvien","");
+		Configuration configuration = new Configuration("sinhvien","langtutrunggio");
 		System.out.println(configuration.toString());
 	}
 

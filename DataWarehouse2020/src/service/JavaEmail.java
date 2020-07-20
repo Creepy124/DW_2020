@@ -69,7 +69,7 @@ public class JavaEmail
         transport.close();
         System.out.println("Email sent successfully.");
     }
-    
+    ////
     public static void prepareSending(String error) throws AddressException, MessagingException {
         setMailServerProperties();
      //  javaEmail.draftEmailMessage();
