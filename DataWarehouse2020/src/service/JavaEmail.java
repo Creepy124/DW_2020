@@ -45,8 +45,8 @@ public class JavaEmail
          * */
         //emailMessage.setText(emailBody);// for a text email
         return emailMessage;
-    }
- 
+    } 
+ //
     private static void sendEmail(String error) throws AddressException, MessagingException
     {
         /**
@@ -60,7 +60,7 @@ public class JavaEmail
         transport.connect(emailHost, fromUser, fromUserEmailPassword);
         /**
          * Draft the message
-         * */
+         * */58/
         MimeMessage emailMessage = draftEmailMessage(error);
         /**
          * Send the mail
