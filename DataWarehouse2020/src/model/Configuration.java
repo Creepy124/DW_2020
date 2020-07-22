@@ -17,14 +17,15 @@ public class Configuration {
 	private int sourcePort;
 	private String fileName = "";
 	private String fileColumnList = "";
-	private String value = "";
+	private String fileVariables = "";
 	private String downloadPath = "";
-	//////
-	//password field
-	public Configuration(String configName,String password) {
+	private String fileDilimiter = "|";
+	private String toEmails = "thuyphuongnguyen0170@gmail.com,creepy120499@gmail.com";
+	
+	public Configuration(String configName, String userName, String password) {
 		Connection connection;
 		try {
-			connection = DBConnection.getConnection("control", password);
+			connection = DBConnection.getConnection("control", userName, password);
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration WHERE config_name=?");
 			ps.setString(1, configName);
 			ResultSet rs = ps.executeQuery();
@@ -38,9 +39,10 @@ public class Configuration {
 				this.sourcePort = rs.getInt("source_port");
 				this.fileName = rs.getString("file_name");
 				this.fileColumnList = rs.getString("file_column_list");
-				this.value = rs.getString("value");
+				this.fileVariables = rs.getString("file_variables");
 				this.downloadPath = rs.getString("download_path");
-
+				this.fileDilimiter = rs.getString("file_dilimiter");
+				this.toEmails = rs.getString("email");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,8 +81,8 @@ public class Configuration {
 		return fileColumnList;
 	}
 
-	public String getValue() {
-		return value;
+	public String getFileVariables() {
+		return fileVariables;
 	}
 
 	public String getDownloadPath() {
@@ -95,17 +97,25 @@ public class Configuration {
 		this.sourcePort = sourcePort;
 	}
 
+	public String getFileDilimiter() {
+		return fileDilimiter;
+	}
+
+	public String getToEmails() {
+		return toEmails;
+	}
+
 	@Override
 	public String toString() {
 		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost
 				+ ", sourceRemoteFile=" + sourceRemoteFile + ", sourceUsername=" + sourceUsername + ", sourcePassword="
 				+ sourcePassword + ", sourcePort=" + sourcePort + ", fileName=" + fileName + ", fileColumnList="
-				+ fileColumnList + ", value=" + value + ", downloadPath=" + downloadPath + "]";
+				+ fileColumnList + ", fileVariables=" + fileVariables + ", downloadPath=" + downloadPath
+				+ ", fileDilimiter=" + fileDilimiter + ", toEmails=" + toEmails + "]";
 	}
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration("sinhvien","langtutrunggio");
+		Configuration configuration = new Configuration("sinhvien","","");
 		System.out.println(configuration.toString());
 	}
-
 }

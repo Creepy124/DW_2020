@@ -10,8 +10,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
-public class JavaEmail
-{
+public class JavaEmail {
     static Session mailSession;
  
     private static void setMailServerProperties() {
@@ -60,7 +59,7 @@ public class JavaEmail
         transport.connect(emailHost, fromUser, fromUserEmailPassword);
         /**
          * Draft the message
-         * */58/
+         * */
         MimeMessage emailMessage = draftEmailMessage(error);
         /**
          * Send the mail

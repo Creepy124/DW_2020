@@ -23,8 +23,7 @@ public class RepairDownload {
 	private String lfile;
 	private int port;
 
-	public RepairDownload(String configName, String DBpassword) {
-		config = new Configuration(configName, DBpassword);
+	public RepairDownload(Configuration config) {
 		user = config.getSourceUsername();
 		host = config.getSourceHost();
 		rfile = "/" + config.getSourceRemoteFile() + config.getFileName();
@@ -38,6 +37,7 @@ public class RepairDownload {
 		d.downloading(this.user, this.password, this.host, this.rfile, this.lfile, this.port);
 		System.out.println(this.toString());
 		boolean wrote = writingLog();
+		
 		if(!wrote) {
 			WritingError.sendError("Cant write into Log");
 		}
@@ -47,10 +47,9 @@ public class RepairDownload {
 		boolean result = true;
 		String fileName = config.getFileName();
 		System.out.println(fileName);
-		LogServiceImpl log = new LogServiceImpl();
+		LogServiceImpl log = new LogServiceImpl("control","root","");
 		try {
-			log.insertLog(1, fileName, fileName.substring(fileName.indexOf('.') + 1), "ER",null, LocalDateTime.now().toString(),
-					"langtutrunggio");
+			log.insertLog(1, fileName, "ER",null, LocalDateTime.now().toString());
 		} catch (SQLException e) {
 			result = false;
 		}
@@ -64,7 +63,8 @@ public class RepairDownload {
 	}
 
 	public static void main(String[] args) throws AddressException, IOException, MessagingException {
-		RepairDownload rp = new RepairDownload("sinhvien", "langtutrunggio");
+		Configuration configuration = new Configuration("sinhvien", "root", "");
+		RepairDownload rp = new RepairDownload(configuration);
 		rp.DownloadFile();
 //		rp.toString();
 //		rp.writingLog();

@@ -10,18 +10,15 @@ import model.MyFile;
 
 public class LogServiceImpl implements LogService {
 
-	public LogServiceImpl() {
+	Connection connection;
+
+	public LogServiceImpl(String targetDBName, String userName, String password) {
+		connection = DBConnection.getConnection(targetDBName, userName, password);
 	}
 
 	@Override
-	public boolean insertLog(int configID, String fileName, String fileType, String action, String status, String fileTimeStamp,String password)
+	public boolean insertLog(int configID, String fileName, String action, String status, String fileTimeStamp)
 			throws SQLException {
-		Connection connection;
-		connection = DBConnection.getConnection("control", password);
-		//Remove "active" field
-//		PreparedStatement ps1 = connection.prepareStatement("UPDATE log SET active=0 WHERE file_name=?");
-//		ps1.setString(1, fileName);
-//		ps1.executeUpdate();
 		PreparedStatement ps = connection.prepareStatement(
 				"INSERT INTO log (config_id, file_name, file_type, action, status, file_timestamp) value (?,?,?,?,?,?)");
 		ps.setInt(1, configID);
@@ -36,13 +33,12 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public MyFile getFileWithStatus(String status, String password) throws SQLException {
+	public MyFile getFileWithStatus(int configID, String action) throws SQLException {
 		MyFile file = new MyFile();
-		Connection connection;
-		connection = DBConnection.getConnection("control", password);
 		PreparedStatement ps = connection
-				.prepareStatement("SELECT file_name, file_type FROM log WHERE status=?");
-		ps.setString(1, status);
+				.prepareStatement("SELECT file_name, file_type FROM log WHERE config_id=? and action=? and status is null");
+		ps.setInt(1, configID);
+		ps.setString(2, action);
 		ResultSet rs = ps.executeQuery();
 		rs.last();
 		if (rs.getRow() >= 1) {
@@ -56,9 +52,9 @@ public class LogServiceImpl implements LogService {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		LogService log = new LogServiceImpl();
-		if (log.getFileWithStatus("ER","") != null) {
-			System.out.println(log.getFileWithStatus("ER","").toString());
+		LogService log = new LogServiceImpl("control","root","");
+		if (log.getFileWithStatus(2,"ER") != null) {
+			System.out.println(log.getFileWithStatus(2,"ER").toString());
 		} else {
 			System.out.println("No file status like that");
 		}
