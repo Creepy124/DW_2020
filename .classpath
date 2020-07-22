@@ -25,6 +25,7 @@
 	<classpathentry kind="lib" path="DataWarehouse2020/libs/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="lib" path="DataWarehouse2020/libs/SparseBitSet-1.2.jar"/>
 	<classpathentry kind="lib" path="DataWarehouse2020/libs/xmlbeans-3.1.0.jar"/>
-	<classpathentry kind="lib" path="DataWarehouse2020/mysql-connector-java-5.1.47-bin.jar"/>
+	<classpathentry kind="lib" path="DataWarehouse2020/libs/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49.jar"/>
+	<classpathentry kind="lib" path="DataWarehouse2020/libs/chilkat-9.5.0-jdk8-win32 (1)/chilkat-9.5.0-jdk8-win32/chilkat.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
