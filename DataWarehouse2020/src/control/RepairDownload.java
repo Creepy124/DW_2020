@@ -39,7 +39,7 @@ public class RepairDownload {
 		boolean wrote = writingLog();
 		
 		if(!wrote) {
-			WritingError.sendError("Cant write into Log");
+			WritingError.sendError("Cant write into Log", config.getToEmails());
 		}
 	}
 

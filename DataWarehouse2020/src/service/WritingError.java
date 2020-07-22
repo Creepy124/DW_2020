@@ -14,9 +14,9 @@ public class WritingError {
 		fileService.writeLinesToFile("DataWareHouse2020\\local\\error.txt", message);
 	}
 	
-	public static void sendError(String error) throws IOException, AddressException, MessagingException {
+	public static void sendError(String error, String toEmails) throws IOException, AddressException, MessagingException {
 		writingError(error);
-		JavaEmail.prepareSending(error);
+		JavaEmail.prepareSending(error, toEmails);
 	}//
 	
 	public static void main(String[] args) throws IOException {

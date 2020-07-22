@@ -141,7 +141,7 @@ public class Downloading {
 		}
 	}
 
-	static int checkAck(InputStream in) throws IOException, AddressException, MessagingException {
+	static int checkAck(InputStream in) throws IOException {
 		int b = in.read();
 		// b may be 0 for success,
 		// 1 for error,
@@ -160,11 +160,9 @@ public class Downloading {
 				sb.append((char) c);
 			} while (c != '\n');
 			if (b == 1) { // error
-				WritingError.sendError("Cant Download");
 				System.out.print(sb.toString());
 			}
 			if (b == 2) { // fatal error
-				WritingError.sendError("Cant Download");
 				System.out.print(sb.toString());
 			}
 		}

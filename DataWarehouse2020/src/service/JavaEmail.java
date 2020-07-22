@@ -21,18 +21,17 @@ public class JavaEmail {
         mailSession = Session.getDefaultInstance(emailProperties, null);
     }
  
-    private static MimeMessage draftEmailMessage(String error) throws AddressException, MessagingException
-    {
-        String[] toEmails = { "thuyphuongnguyen0170@gmail.com",  "creepy120499@gmail.com"};
+    private static MimeMessage draftEmailMessage(String error, String toEmails) throws AddressException, MessagingException {
+        String[] emails = toEmails.split(",");
         String emailSubject = "Error";
         String emailBody = error;
         MimeMessage emailMessage = new MimeMessage(mailSession);
         /**
          * Set the mail recipients
          * */
-        for (int i = 0; i < toEmails.length; i++)
+        for (int i = 0; i < emails.length; i++)
         {
-            emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+            emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(emails[i]));
         }
         emailMessage.setSubject(emailSubject);
         /**
@@ -44,9 +43,9 @@ public class JavaEmail {
          * */
         //emailMessage.setText(emailBody);// for a text email
         return emailMessage;
-    } 
- //
-    private static void sendEmail(String error) throws AddressException, MessagingException
+    }
+ 
+    private static void sendEmail(String error, String toEmails) throws AddressException, MessagingException
     {
         /**
          * Sender's credentials
@@ -60,7 +59,7 @@ public class JavaEmail {
         /**
          * Draft the message
          * */
-        MimeMessage emailMessage = draftEmailMessage(error);
+        MimeMessage emailMessage = draftEmailMessage(error, toEmails);
         /**
          * Send the mail
          * */
@@ -68,17 +67,17 @@ public class JavaEmail {
         transport.close();
         System.out.println("Email sent successfully.");
     }
-    ////
-    public static void prepareSending(String error) throws AddressException, MessagingException {
+    
+    public static void prepareSending(String error, String toEmails) throws AddressException, MessagingException {
         setMailServerProperties();
      //  javaEmail.draftEmailMessage();
-        sendEmail(error);
+        sendEmail(error, toEmails);
     }
     
     public static void main(String[] args) {
 		JavaEmail j = new JavaEmail();
 		try {
-			j.prepareSending("error");
+			j.prepareSending("error","thuyphuongnguyen0170@gmail.com,creepy120499@gmail.com");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
