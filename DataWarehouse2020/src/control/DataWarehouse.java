@@ -20,12 +20,6 @@ public class DataWarehouse {
 	FileService fileService;
 	DBService dbService;
 	LogService logService;
-	
-	public void downloadFromSourceToLocal() throws IOException {
-		Downloading download = new Downloading();
-		download.downloading(config.getConfigName(), config.getSourcePassword(), config.getSourceHost(), config.getSourceRemoteFile(), config.getDownloadPath(), config.getSourcePort());
-		
-	}
 
 	public void extractToStaging(String configName, String password) throws SQLException {
 		config = new Configuration(configName, password);
