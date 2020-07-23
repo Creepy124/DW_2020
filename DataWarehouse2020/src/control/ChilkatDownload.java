@@ -94,7 +94,7 @@ public class ChilkatDownload {
 		for (String str : correspondingToPattern) {
 			String remoteDir =rDir+"/"+str;
 			System.out.println(remoteDir);
-			String localDir = lDir;
+			String localDir = lDir+"/"+str;
 			success = scp.DownloadFile(remoteDir,localDir);
 
 			if (success != true) {
