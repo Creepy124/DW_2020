@@ -80,20 +80,21 @@ public class ChilkatDownload {
 		// Set the SyncMustMatch property to "*.pem" to download only .pem files
 //				scp.put_SyncMustMatch("sinhvien*.txt");
 		for (String filename : correspondingToPattern) {
-			boolean sendMail = false;
+			boolean ok = false;//check if send mail or not
+			
 			String remoteDir = rDir + "/" + filename;
-			System.out.println(remoteDir);
 			String localDir = lDir + "/" + filename;
+			
 			success = scp.DownloadFile(remoteDir, localDir);
-
+			
 			if (success != true) {
 //					System.out.println(scp.lastErrorText());
 				WritingError.sendError("Cannot download. ChilkatDownload.java", emails);
 				return;
 			} else
-				sendMail = writingLog(configID, filename);
+				ok = writingLog(configID, filename);
 
-			if (sendMail) {
+			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
 			}
 		}
@@ -148,10 +149,10 @@ public class ChilkatDownload {
 		ChilkatDownload c = new ChilkatDownload();
 		String username = "guest_access";
 		String pass = "123456";
-		String host = "drive.ecepvn.or";
+		String host = "drive.ecepvn.org";
 		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
-		c.prepareAndDownload(1, username, pass, host, rDir, "local\\test", 2227,
-				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).*",
+		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/test", 2227,
+				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
 				"thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 
 	}
