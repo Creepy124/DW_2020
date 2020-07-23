@@ -77,7 +77,7 @@ public class JavaEmail {
     public static void main(String[] args) {
 		JavaEmail j = new JavaEmail();
 		try {
-			j.prepareSending("error","thuyphuongnguyen0170@gmail.com,creepy120499@gmail.com");
+			j.prepareSending("error","thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
