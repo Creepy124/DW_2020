@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import com.chilkatsoft.*;
-
+/////////
 public class ChilkatDownload {
 	static {
 		try {
@@ -116,7 +116,7 @@ public class ChilkatDownload {
 		String pass = "123456";
 		String host = "drive.ecepvn.org";
 		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
-		c.prepareAndDownload(username, pass, host, rDir, "E:/Warehouse", 2227,
+		c.prepareAndDownload(username, pass, host, rDir, "local\\test", 2227,
 				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt");
 
 	}
