@@ -40,6 +40,7 @@ public class ExtractToStaging {
 		LogService logService = new LogServiceImpl("control", "root", "1234");
 		ExtractToStaging test = new ExtractToStaging(config, fileService, dbService, logService);
 		test.extractToStaging();
+		
 	}
 
 

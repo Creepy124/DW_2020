@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -136,34 +137,42 @@ public class FileServiceImpl implements FileService {
 		dos.write(lines.getBytes());
 		dos.flush();
 	}
-	
+
 	public String convertToCsv(String path) throws EncryptedDocumentException, IOException {
 		File file = new File(path);
+		DataFormatter datafomatter = new DataFormatter();
 		InputStream is = new FileInputStream(file);
 		Workbook wb = WorkbookFactory.create(is);
 
-        Sheet sheet = wb.getSheetAt(0);
-        Iterator<Row> rowIterator = sheet.iterator();
-        String str = "";
-        while(rowIterator.hasNext()) {
-        	Row fRow = rowIterator.next();
-        	Iterator<Cell> cellIterator = fRow.iterator();
-        	while(cellIterator.hasNext()) {
-        		Cell cell = cellIterator.next();
-        		str += cell+",";
-        	}
-        	str += "\n";
-        }
-        File fileout = new File(file.getParent()+file.separator+file.getName().substring(0,file.getName().length()-5)+".csv");
-        FileOutputStream fos = new FileOutputStream(fileout);
-        fos.write(str.getBytes(StandardCharsets.UTF_8));
+		Sheet sheet = wb.getSheetAt(0);
+		Iterator<Row> rowIterator = sheet.iterator();
+		String str = "";
+		String tmp = "";
+		while (rowIterator.hasNext()) {
+			Row fRow = rowIterator.next();
+			Iterator<Cell> cellIterator = fRow.iterator();
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				String value= datafomatter.formatCellValue(cell);
+				if (value!=null && !value.isEmpty()) {
+					tmp += cell + ",";
+				}
+			}
+			str += tmp + "\n";
+			tmp = "";
+		}
+		File fileout = new File(
+				file.getParent() + file.separator + file.getName().substring(0, file.getName().length() - 5) + ".csv");
+		FileOutputStream fos = new FileOutputStream(fileout);
+		fos.write(str.getBytes(StandardCharsets.UTF_8));
 		return fileout.getAbsolutePath();
 	}
-	
+
 	public static void main(String[] args) {
 		FileServiceImpl fileServiceImpl = new FileServiceImpl();
 		try {
-			fileServiceImpl.convertToCsv("C:\\Users\\Phuong\\git\\DW_2020\\DataWarehouse2020\\local\\test\\17130208_sang_nhom13.xlsx");
+			fileServiceImpl.convertToCsv(
+					"C:\\Users\\Phuong\\git\\DW_2020\\DataWarehouse2020\\local\\test\\17130208_sang_nhom13.xlsx");
 		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
