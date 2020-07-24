@@ -34,10 +34,10 @@ public class ExtractToStaging {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		Configuration config = new Configuration("monhoc", "root", "");
+		Configuration config = new Configuration("monhoc", "root", "1234");
 		FileService fileService = new FileServiceImpl();
-		DBService dbService = new DBServiceImpl("staging", "root", "");
-		LogService logService = new LogServiceImpl("control", "root", "");
+		DBService dbService = new DBServiceImpl("staging", "root", "1234");
+		LogService logService = new LogServiceImpl("control", "root", "1234");
 		ExtractToStaging test = new ExtractToStaging(config, fileService, dbService, logService);
 		test.extractToStaging();
 	}

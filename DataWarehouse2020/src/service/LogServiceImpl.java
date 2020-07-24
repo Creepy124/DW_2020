@@ -52,7 +52,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		LogService log = new LogServiceImpl("control","root","");
+		LogService log = new LogServiceImpl("control","root","1234");
 		if (log.getFileWithStatus(2,"ER") != null) {
 			System.out.println(log.getFileWithStatus(2,"ER").toString());
 		} else {

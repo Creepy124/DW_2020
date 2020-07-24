@@ -81,13 +81,13 @@ public class DBServiceImpl implements DBService {
 	}//
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("monhoc","root", "");
-		DBService test = new DBServiceImpl("staging","root" ,"");
+		Configuration config = new Configuration("monhoc","root", "1234");
+		DBService test = new DBServiceImpl("staging","root" ,"1234");
 		try {
-//			System.out.println(test.createTable(config.getConfigName(), config.getValue(), config.getFileColumnList()));
+//			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 			System.out.println(test.truncateTable(config.getConfigName()));
-			System.out.println(test.loadFile("local\\\\test\\\\Monhoc2013.csv", "monhoc",","));
-		} catch (SQLException e) {
+			System.out.println(test.loadFile("Datawarehouse\\\\local\\\\test\\\\Monhoc2013.csv", "monhoc",","));
+		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
 		}
