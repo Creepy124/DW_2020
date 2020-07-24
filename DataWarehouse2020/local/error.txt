@@ -55,3 +55,9 @@ Cannot download. ChilkatDownload.java
 2020-07-23T19:24:24.693
 Cannot download. ChilkatDownload.java
  ---------------- 
+2020-07-24T12:33:08.041
+Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom10.osheet
+ ---------------- 
+2020-07-24T12:33:14.273
+Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom12.xls.xlsx
+ ---------------- 

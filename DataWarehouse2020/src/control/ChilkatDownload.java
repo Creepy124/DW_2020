@@ -11,11 +11,13 @@ import javax.mail.internet.AddressException;
 
 import com.chilkatsoft.*;
 
+import model.Configuration;
 import service.LogServiceImpl;
 import service.WritingError;
 
 /////////
 public class ChilkatDownload {
+	Configuration config;
 	static {
 		try {
 			System.loadLibrary("chilkat");
@@ -29,7 +31,6 @@ public class ChilkatDownload {
 			System.exit(1);
 		}
 	}
-
 	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
 			throws IOException, AddressException, MessagingException {
@@ -89,7 +90,7 @@ public class ChilkatDownload {
 			
 			if (success != true) {
 //					System.out.println(scp.lastErrorText());
-				WritingError.sendError("Cannot download. ChilkatDownload.java", emails);
+				WritingError.sendError("Cannot download. ChilkatDownload.java "+filename, emails);
 				return;
 			} else
 				ok = writingLog(configID, filename);
@@ -151,8 +152,8 @@ public class ChilkatDownload {
 		String pass = "123456";
 		String host = "drive.ecepvn.org";
 		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
-		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/test", 2227,
-				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
+		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
+				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).*",
 				"thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 
 	}

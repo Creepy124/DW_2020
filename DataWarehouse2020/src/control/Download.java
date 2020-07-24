@@ -24,7 +24,9 @@ public class Download {
 	private int port;
 	private String pattern;
 	private String emails;
+	
 	public Download(Configuration config) {
+		this.config = config;
 		repareDownload();
 	}
 
@@ -43,21 +45,7 @@ public class Download {
 		ChilkatDownload d = new ChilkatDownload();
 		d.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
 		System.out.println(this.toString());
-		
 	}
-
-//	public boolean writingLog() {
-//		boolean result = true;
-//		String fileName = config.getFileName();
-//		System.out.println(fileName);
-//		LogServiceImpl log = new LogServiceImpl("control","root","");
-//		try {
-//			log.insertLog(1, fileName, "ER",null, LocalDateTime.now().toString());
-//		} catch (SQLException e) {
-//			result = false;
-//		}
-//		return result;
-//	}
 
 	@Override
 	public String toString() {
