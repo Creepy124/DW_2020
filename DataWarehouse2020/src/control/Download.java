@@ -9,6 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import model.Configuration;
+import service.ChilkatDownload;
 import service.LogService;
 import service.LogServiceImpl;
 import service.WritingError;
@@ -54,7 +55,7 @@ public class Download {
 	}
 
 	public static void main(String[] args) throws AddressException, IOException, MessagingException {
-		Configuration configuration = new Configuration("sinhvien", "root", "");
+		Configuration configuration = new Configuration("sinhvien", "root", "1234");
 		Download rp = new Download(configuration);
 		rp.DownloadFile();
 //		rp.toString();

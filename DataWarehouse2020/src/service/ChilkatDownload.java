@@ -1,4 +1,4 @@
-package control;
+package service;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,12 +12,11 @@ import javax.mail.internet.AddressException;
 import com.chilkatsoft.*;
 
 import model.Configuration;
-import service.LogServiceImpl;
-import service.WritingError;
 
 /////////
 public class ChilkatDownload {
 	Configuration config;
+	
 	static {
 		try {
 			System.loadLibrary("chilkat");
@@ -31,6 +30,7 @@ public class ChilkatDownload {
 			System.exit(1);
 		}
 	}
+	
 	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
 			throws IOException, AddressException, MessagingException {
@@ -60,6 +60,7 @@ public class ChilkatDownload {
 
 		List<String> correspondingToPattern = checkPattern(list, pattern);
 		System.out.println("correct: " + correspondingToPattern);
+		
 		download(configID, correspondingToPattern, ssh, rDir, lDir, emails);
 
 	}
@@ -136,7 +137,7 @@ public class ChilkatDownload {
 
 	private boolean writingLog(int configID, String filename) {
 		boolean result = true;
-		LogServiceImpl log = new LogServiceImpl("control", "root", "langtutrunggio");
+		LogServiceImpl log = new LogServiceImpl("control", "root", "1234");
 		try {
 			log.insertLog(configID, filename, "ER", null, LocalDateTime.now().toString());
 		} catch (SQLException e) {
