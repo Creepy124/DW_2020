@@ -61,3 +61,9 @@ Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom10.osheet
 2020-07-24T12:33:14.273
 Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom12.xls.xlsx
  ---------------- 
+2020-07-25T20:30:11.513617500
+Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom10.osheet
+ ---------------- 
+2020-07-25T20:30:17.810601
+Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom12.xls.xlsx
+ ---------------- 

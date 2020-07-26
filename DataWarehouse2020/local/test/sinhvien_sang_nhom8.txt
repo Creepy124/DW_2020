@@ -1,0 +1,43 @@
+STT|Mã sinh viên|Họ lót|Tên|Ngay Sinh|Mã lớp|Tên lớp|ĐT liên lạc|Email|Quê Quán|Ghi chú
+1|17130005|Đào Thị Kim|Anh|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|17130005st@hcmuaf.edu.vn|Bến Tre|abc
+2|17130006|Lê Thị Lan|Anh|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|17130006st@hcmuaf.edu.vn|Bến Tre|
+3|17130008|Vũ Huỳnh Như|Anh|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|17130008st@hcmuaf.edu.vn|Bến Tre|
+4|17130016|Nguyễn Việt|Chương|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+5|17130033|Phạm Phương|Dung|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+6|17130037|Huỳnh Khương|Duy|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+7|17130041|Lăng Thị Mỹ|Duyên|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+8|17130044|Lăng Thị Mỹ|Duyên|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+9|17130045|Trần Thị Mỹ|Duyên|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+10|17130021|Phạm Thanh Ngọc|Đào|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+11|17130024|Phạm Tấn|Đạt|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+12|17130032|Trương Quý|Đức|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+13|17130047|Nguyễn Thị|Giang|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+14|17130048|Nguyễn Hoàng Nhật|Hà|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+15|17130049|Đào Ngọc|Hải|15-08-1999|DH17DT|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+16|17130051|Nguyễn Hữu|Hải|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+17|17130052|Phạm Ngọc|Hải|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+18|17130061|Nguyễn Thanh|Hiền|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+19|17130066|Đỗ Kim|Hiếu|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+20|17130068|Nguyễn Minh|Hiếu|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+21|17130120|Lý Đức|Mạnh|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+22|17130275|Trần Kiến|Vinh|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+21|17130072|Hồ Ngọc|Hoan|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+22|17130078|Đặng Quốc|Hùng|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+23|17130089|Võ Anh|Huy|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+24|17130099|Trần Minh|Khánh|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+25|17130106|Võ Văn|Kiệt|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+26|17130120|Lý Đức|Mạnh|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+27|17130133|Nguyễn Tấn|Nghĩa|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+28|17130135|Nguyễn Trọng|Nghĩa|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+29|17130171|Đặng Thị|Phượng|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+30|17130185|Lê Lâm Phương|Quyên|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+31|17130195|Tô Huy|Sơn|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+32|17130197|Đào Tiến|SỸ|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+33|17130198|Bùi Văn|Tài|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+34|17130208|Nguyễn Văn|Tánh|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+35|17130217|Phan Trần Công|Thành|15-08-1999|H17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+36|17130215|Vũ Đại|Thánh|15-08-1999|DH17DTB|Công nghệ thông tin b|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+37|17130221|Nguyễn Chí|Thiện|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+38|17130225|Hoàng Trường|Thịnh|15-08-1999|DH17DTC|Công nghệ thông tin C|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+39|17130247|Trần Văn|Tình|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|
+40|17130246|Nguyễn Thanh|Tính|15-08-1999|DH17DTA|Công nghệ thông tin A|0123456789|mssvst@hcmuaf.edu.vn|Bến Tre|

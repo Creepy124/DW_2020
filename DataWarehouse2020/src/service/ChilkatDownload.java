@@ -22,15 +22,16 @@ public class ChilkatDownload {
 			System.loadLibrary("chilkat");
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("Native code library failed to load.\n" + e);
-			try {
-				WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
-			} catch (IOException | MessagingException e1) {
-				e1.printStackTrace();
-			}
+				try {
+					WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
+				} catch (IOException | MessagingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			System.exit(1);
 		}
 	}
-	
+//	
 	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
 			throws IOException, AddressException, MessagingException {

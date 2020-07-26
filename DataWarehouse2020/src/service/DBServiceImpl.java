@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.Statement;
+
 import db.DBConnection;
 import model.Configuration;
 
@@ -13,7 +15,7 @@ public class DBServiceImpl implements DBService {
 	String targetDBName;
 	String password;
 	String userName;
-	
+
 	public DBServiceImpl(String targetDBName, String userName, String password) {
 		this.targetDBName = targetDBName;
 		this.password = password;
@@ -32,7 +34,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int insertValues(String target_table, String column_list, String values) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName ,userName, password);
+		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 		PreparedStatement ps = connection
 				.prepareStatement("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
 		System.out.println("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
@@ -49,44 +51,48 @@ public class DBServiceImpl implements DBService {
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
 		System.out.println(sql);
-		Connection connection = DBConnection.getConnection(targetDBName,userName,password);
+		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 		PreparedStatement ps = connection.prepareStatement(sql);
 		return ps.executeUpdate();
 	}
 
 	@Override
 	public int truncateTable(String table_name) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName,userName, password);
-		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE "+this.targetDBName+"."+table_name);
+		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
+		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE " + this.targetDBName + "." + table_name);
 //		ps.setString(1, table_name);
-		System.out.println("TRUNCATE TABLE "+table_name);
+		System.out.println("TRUNCATE TABLE " + table_name);
+		return ps.executeUpdate();
+	}
+
+	// LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
+	@Override
+	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
+		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
+//		sourceFile = sourceFile.replace("\\", "\\\\");
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '" + sourceFile
+				+ "' INTO TABLE monhoc\r\n" + "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
+				+ "LINES TERMINATED BY '\\r\\n'\r\n" + "IGNORE 1 lines");
+		System.out.println("LOAD DATA LOCAL INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n"
+				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
+				+ "LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
 	}
 	
-	//LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
-	@Override
-	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName,userName, password);
-//		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE monhoc\r\n" + 
-				"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
-				"ENCLOSED BY '\"' \r\n" + 
-				"LINES TERMINATED BY '\\r\\n'\r\n" + 
-				"IGNORE 1 lines");
-		System.out.println("LOAD DATA LOCAL INFILE '"+sourceFile+"' INTO TABLE "+tableName+"\r\n" + 
-				"FIELDS TERMINATED BY '"+dilimiter+"' \r\n" + 
-				"ENCLOSED BY '\"' \r\n" + 
-				"LINES TERMINATED BY '\\r\\n'");
-		return ps.executeUpdate();
-	}//
+	public void tranform(String stagingName, String col, String defaut) throws SQLException {
+		Connection con = DBConnection.getConnection("staging", userName, password);
+		String sql = "Update "+stagingName +"set "+col +" = defaut where "+ col + " isNull";
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.executeQuery();
+	}
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration("monhoc","root", "1234");
-		DBService test = new DBServiceImpl("staging","root" ,"1234");
+		Configuration config = new Configuration("monhoc", "root", "1234");
+		DBService test = new DBServiceImpl("staging", "root", "1234");
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 			System.out.println(test.truncateTable(config.getConfigName()));
-			System.out.println(test.loadFile("Datawarehouse\\\\local\\\\test\\\\Monhoc2013.csv", "monhoc",","));
+			System.out.println(test.loadFile("Datawarehouse\\\\local\\\\test\\\\Monhoc2013.csv", "monhoc", ","));
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();

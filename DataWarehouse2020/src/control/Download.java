@@ -1,18 +1,12 @@
 package control;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import model.Configuration;
 import service.ChilkatDownload;
-import service.LogService;
-import service.LogServiceImpl;
-import service.WritingError;
 
 public class Download {
 //	String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};

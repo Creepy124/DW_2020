@@ -153,13 +153,16 @@ public class FileServiceImpl implements FileService {
 			Iterator<Cell> cellIterator = fRow.iterator();
 			while (cellIterator.hasNext()) {
 				Cell cell = cellIterator.next();
-				String value= datafomatter.formatCellValue(cell);
-				if (value!=null && !value.isEmpty()) {
-					tmp += cell + ",";
-				}
+				String value = datafomatter.formatCellValue(cell);
+//				if (value!=null && !value.isEmpty()) {
+				tmp += value + ",";
+//				}
 			}
-			str += tmp + "\n";
-			tmp = "";
+			String test = tmp;
+			if (!test.replace(",", "").trim().isEmpty()) {
+				str += tmp + "\n";
+				tmp = "";
+			}
 		}
 		File fileout = new File(
 				file.getParent() + file.separator + file.getName().substring(0, file.getName().length() - 5) + ".csv");
