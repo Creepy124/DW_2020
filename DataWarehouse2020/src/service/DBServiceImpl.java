@@ -70,10 +70,10 @@ public class DBServiceImpl implements DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA LOCAL INFILE '" + sourceFile
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile
 				+ "' INTO TABLE monhoc\r\n" + "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
 				+ "LINES TERMINATED BY '\\r\\n'\r\n" + "IGNORE 1 lines");
-		System.out.println("LOAD DATA LOCAL INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n"
+		System.out.println("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n"
 				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
 				+ "LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
@@ -92,7 +92,7 @@ public class DBServiceImpl implements DBService {
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 			System.out.println(test.truncateTable(config.getConfigName()));
-			System.out.println(test.loadFile("Datawarehouse\\\\local\\\\test\\\\Monhoc2013.csv", "monhoc", ","));
+			System.out.println(test.loadFile("E:\\\\Warehouse\\\\sinhvien_chieu_nhom4.txt", "sinhvien", "|"));
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();

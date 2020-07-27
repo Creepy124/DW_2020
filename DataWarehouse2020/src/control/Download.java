@@ -1,12 +1,19 @@
 package control;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import model.Configuration;
 import service.ChilkatDownload;
+import service.DBService;
+import service.DBServiceImpl;
+import service.FileService;
+import service.FileServiceImpl;
+import service.LogService;
+import service.LogServiceImpl;
 
 public class Download {
 //	String[] arg = {"guest_access@drive.ecepvn.org:/volume1/ECEP/song.nguyen/DW_2020/data/17130044_sang_nhom8.txt", "E:/Warehouse"};
@@ -49,10 +56,29 @@ public class Download {
 	}
 
 	public static void main(String[] args) throws AddressException, IOException, MessagingException {
-		Configuration configuration = new Configuration("sinhvien", "root", "1234");
+		Scanner sc = new Scanner(System.in);
+		Configuration configuration;
+		FileService fileService = new FileServiceImpl();
+		DBService dbService = new DBServiceImpl("staging", "root", "1234");
+		LogService logService = new LogServiceImpl("control", "root", "1234");
+		while (true) {
+			System.out.print("Ten config: ");
+		String cm = sc.nextLine();
+		if(cm.equals("end"))
+			break;
+//		System.out.println(cm);
+		
+		try {
+		configuration = new Configuration(cm, "root", "1234");
 		Download rp = new Download(configuration);
 		rp.DownloadFile();
-//		rp.toString();
-//		rp.writingLog();
+		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);
+		ex.extractToStaging();
+		}catch(Exception e) {
+			System.out.println("Wrong config name");
+			continue;
+		}
+		
+		}
 	}
 }

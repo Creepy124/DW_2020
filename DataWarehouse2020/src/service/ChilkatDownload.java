@@ -153,7 +153,7 @@ public class ChilkatDownload {
 		String host = "drive.ecepvn.org";
 		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
 		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
-				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).*",
+				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
 				"thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 
 	}

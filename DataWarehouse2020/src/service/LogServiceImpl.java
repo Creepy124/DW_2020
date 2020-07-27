@@ -74,7 +74,7 @@ public class LogServiceImpl implements LogService {
 //			System.out.println("No file status like that");
 //		}
 //		log.insertLog(1, "a.txt", "ER", null);
-		log.updateStatus(1, "", "TR")
+		log.updateStatus(1, "", "TR");
 		
 	}
 

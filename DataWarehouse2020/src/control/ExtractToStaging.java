@@ -86,10 +86,13 @@ public class ExtractToStaging {
 	}
 
 	public void extractToStaging() {
-		if (getFile()) {
-			truncateTable();
-			loadToTable();
-			updateLog();
+		while (true) {
+			if (getFile()) {
+				truncateTable();
+				loadToTable();
+				updateLog();
+			} else
+				break;
 		}
 	}
 
