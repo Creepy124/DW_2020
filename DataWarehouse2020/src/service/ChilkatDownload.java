@@ -19,7 +19,7 @@ public class ChilkatDownload {
 	
 	static {
 		try {
-			System.loadLibrary("chilkat");
+			System.load("E:\\Warehouse\\chilkat\\chilkat\\chilkat.dll");
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("Native code library failed to load.\n" + e);
 				try {
