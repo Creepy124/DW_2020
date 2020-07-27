@@ -34,8 +34,11 @@ public class ExtractToStaging {
 	// 2. Get file status ER
 	public boolean getFile() {
 		try {
-			file = logService.getFileWithStatus(config.getConfigID(), "ER");
-			return true;
+			file = logService.getFileWithAction(config.getConfigID(), "ER");
+			if (file != null) {
+				return true;
+			} else
+				return false;
 		} catch (SQLException e) {
 			WritingError.sendError(e.toString(), config.getToEmails());
 			return false;
@@ -58,22 +61,27 @@ public class ExtractToStaging {
 			if (file.getFileType().equalsIgnoreCase("xlsx") || file.getFileType().equalsIgnoreCase("xls")) {
 				fileService.convertToCsv(config.getDownloadPath() + "\\" + file.getFileName());
 			}
-			dbService.loadFile(config.getDownloadPath() + "\\\\" + file.getFileName(), config.getConfigName(), config.getFileDilimiter());
+			dbService.loadFile(config.getDownloadPath() + "\\\\" + file.getFileName(), config.getConfigName(),
+					config.getFileDilimiter());
 		} catch (EncryptedDocumentException | IOException e) {
-			status+="convert error, ";
+			status += "convert error, ";
 			WritingError.sendError(e.toString(), config.getToEmails());
 		} catch (SQLException e) {
-			status+="load infile error, ";
+			status += "load infile error, ";
 			WritingError.sendError(e.toString(), config.getToEmails());
 		}
 	}
-	
+
 	// 5. update log
 	public void updateLog() {
-		if (status=="") {
-			
-		} else {
-			
+		try {
+			if (status == "") {
+				logService.updateAction(config.getConfigID(), file.getFileName(), "TR");
+			} else {
+				logService.updateStatus(config.getConfigID(), file.getFileName(), status);
+			}
+		} catch (SQLException e) {
+			WritingError.sendError(e.toString(), config.getToEmails());
 		}
 	}
 
@@ -84,7 +92,7 @@ public class ExtractToStaging {
 			updateLog();
 		}
 	}
-	
+
 	public static void main(String[] args) throws SQLException {
 		Configuration config = new Configuration("monhoc", "root", "1234");
 		FileService fileService = new FileServiceImpl();
@@ -92,8 +100,7 @@ public class ExtractToStaging {
 		LogService logService = new LogServiceImpl("control", "root", "1234");
 		ExtractToStaging test = new ExtractToStaging(config, fileService, dbService, logService);
 		test.extractToStaging();
-		
-	}
 
+	}
 
 }

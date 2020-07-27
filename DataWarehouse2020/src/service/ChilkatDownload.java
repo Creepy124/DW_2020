@@ -138,7 +138,7 @@ public class ChilkatDownload {
 		boolean result = true;
 		LogServiceImpl log = new LogServiceImpl("control", "root", "1234");
 		try {
-			log.insertLog(configID, filename, "ER", null, LocalDateTime.now().toString());
+			log.insertLog(configID, filename, "ER", null);
 		} catch (SQLException e) {
 			result = false;
 		}
