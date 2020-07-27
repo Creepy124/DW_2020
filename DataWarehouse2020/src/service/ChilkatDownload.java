@@ -3,13 +3,16 @@ package service;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
-import com.chilkatsoft.*;
+import com.chilkatsoft.CkScp;
+import com.chilkatsoft.CkSsh;
 
 import model.Configuration;
 
@@ -22,12 +25,7 @@ public class ChilkatDownload {
 			System.loadLibrary("chilkat");
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("Native code library failed to load.\n" + e);
-				try {
-					WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
-				} catch (IOException | MessagingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 			System.exit(1);
 		}
 	}

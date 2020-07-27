@@ -1,6 +1,9 @@
 package control;
 
+import java.io.IOException;
 import java.sql.SQLException;
+
+import org.apache.poi.EncryptedDocumentException;
 
 import model.Configuration;
 import model.MyFile;
@@ -10,27 +13,76 @@ import service.FileService;
 import service.FileServiceImpl;
 import service.LogService;
 import service.LogServiceImpl;
+import service.WritingError;
 
 public class ExtractToStaging {
-	Configuration config;
-	FileService fileService;
-	DBService dbService;
-	LogService logService;
-	
-	public ExtractToStaging(Configuration configuration, FileService fileService, DBService dbService, LogService logService) {
+	private Configuration config;
+	private FileService fileService;
+	private DBService dbService;
+	private LogService logService;
+	private MyFile file;
+	private String status = "";
+
+	public ExtractToStaging(Configuration configuration, FileService fileService, DBService dbService,
+			LogService logService) {
 		this.config = configuration;
 		this.fileService = fileService;
 		this.dbService = dbService;
 		this.logService = logService;
 	}
-	
-	public void extractToStaging() throws SQLException {
-		if (!dbService.existTable(config.getConfigName())) {
-			dbService.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList());
+
+	// 2. Get file status ER
+	public boolean getFile() {
+		try {
+			file = logService.getFileWithStatus(config.getConfigID(), "ER");
+			return true;
+		} catch (SQLException e) {
+			WritingError.sendError(e.toString(), config.getToEmails());
+			return false;
 		}
-		dbService.truncateTable(config.getConfigName());
-		MyFile file = logService.getFileWithStatus(config.getConfigID(),"ER");
-		dbService.loadFile(config.getDownloadPath()+"\\\\"+file.getFileName(), config.getConfigName(), ",");
+	}
+
+	// 3. truncateTable
+	public void truncateTable() {
+		try {
+			dbService.truncateTable(config.getConfigName());
+		} catch (SQLException e) {
+			WritingError.sendError(e.toString(), config.getToEmails());
+			e.printStackTrace();
+		}
+	}
+
+	// 4. loadToTable
+	public void loadToTable() {
+		try {
+			if (file.getFileType().equalsIgnoreCase("xlsx") || file.getFileType().equalsIgnoreCase("xls")) {
+				fileService.convertToCsv(config.getDownloadPath() + "\\" + file.getFileName());
+			}
+			dbService.loadFile(config.getDownloadPath() + "\\\\" + file.getFileName(), config.getConfigName(), config.getFileDilimiter());
+		} catch (EncryptedDocumentException | IOException e) {
+			status+="convert error, ";
+			WritingError.sendError(e.toString(), config.getToEmails());
+		} catch (SQLException e) {
+			status+="load infile error, ";
+			WritingError.sendError(e.toString(), config.getToEmails());
+		}
+	}
+	
+	// 5. update log
+	public void updateLog() {
+		if (status=="") {
+			
+		} else {
+			
+		}
+	}
+
+	public void extractToStaging() {
+		if (getFile()) {
+			truncateTable();
+			loadToTable();
+			updateLog();
+		}
 	}
 	
 	public static void main(String[] args) throws SQLException {
