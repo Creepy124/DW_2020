@@ -3,13 +3,16 @@ package service;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
-import com.chilkatsoft.*;
+import com.chilkatsoft.CkScp;
+import com.chilkatsoft.CkSsh;
 
 import model.Configuration;
 
@@ -22,12 +25,7 @@ public class ChilkatDownload {
 			System.load("E:\\Warehouse\\chilkat\\chilkat\\chilkat.dll");
 		} catch (UnsatisfiedLinkError e) {
 			System.err.println("Native code library failed to load.\n" + e);
-				try {
-					WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
-				} catch (IOException | MessagingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			WritingError.sendError("Check chilkat library again. ChilkatDownload.java", "thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 			System.exit(1);
 		}
 	}
@@ -140,7 +138,7 @@ public class ChilkatDownload {
 		boolean result = true;
 		LogServiceImpl log = new LogServiceImpl("control", "root", "1234");
 		try {
-			log.insertLog(configID, filename, "ER", null, LocalDateTime.now().toString());
+			log.insertLog(configID, filename, "ER", null);
 		} catch (SQLException e) {
 			result = false;
 		}
