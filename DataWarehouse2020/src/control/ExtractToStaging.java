@@ -16,6 +16,8 @@ import service.LogServiceImpl;
 import service.WritingError;
 
 public class ExtractToStaging {
+	static final String DEFAUT = "null";
+
 	private Configuration config;
 	private FileService fileService;
 	private DBService dbService;
@@ -78,7 +80,7 @@ public class ExtractToStaging {
 			if (status == "") {
 				logService.updateAction(config.getConfigID(), file.getFileName(), "TR");
 			} else {
-				logService.updateStatus(config.getConfigID(), file.getFileName(), status);
+//				logService.updateStatus(config.getConfigID(), file.getFileName(), status);
 			}
 		} catch (SQLException e) {
 			WritingError.sendError(e.toString(), config.getToEmails());
@@ -86,18 +88,32 @@ public class ExtractToStaging {
 	}
 
 	public void extractToStaging() {
-		while (true) {
-			if (getFile()) {
-				truncateTable();
-				loadToTable();
-				updateLog();
-			} else
-				break;
+		if (getFile()) {
+			truncateTable();
+			loadToTable();
+			updateLog();
+			tranform();
+		}
+	}
+
+	private void tranform() {
+		String[] columns = config.getFileColumnList().split(",");
+		
+		for (int i = 1; i < columns.length;i++) {
+			try {
+				if(i == 1) {
+					dbService.DeleteNullID(config.getConfigName(), columns[i]);
+				}
+				else dbService.tranformNullValue(config.getConfigName(), columns[i], DEFAUT);
+				
+			} catch (SQLException e) {
+			WritingError.sendError("Cant't Tranform. ExtractToStaging. Column= "+i, config.getToEmails());
+			}
 		}
 	}
 
 	public static void main(String[] args) throws SQLException {
-		Configuration config = new Configuration("monhoc", "root", "1234");
+		Configuration config = new Configuration("sinhvien", "root", "1234");
 		FileService fileService = new FileServiceImpl();
 		DBService dbService = new DBServiceImpl("staging", "root", "1234");
 		LogService logService = new LogServiceImpl("control", "root", "1234");

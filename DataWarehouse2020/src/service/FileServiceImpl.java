@@ -89,6 +89,7 @@ public class FileServiceImpl implements FileService {
 				file.getParent() + file.separator + file.getName().substring(0, file.getName().length() - 5) + ".csv");
 		FileOutputStream fos = new FileOutputStream(fileout);
 		fos.write(str.getBytes(StandardCharsets.UTF_8));
+		fos.close();
 		return fileout.getAbsolutePath();
 	}
 

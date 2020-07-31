@@ -70,22 +70,27 @@ public class DBServiceImpl implements DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile
-				+ "' INTO TABLE monhoc\r\n" + "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
-				+ "LINES TERMINATED BY '\\r\\n'\r\n" + "IGNORE 1 lines");
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + " Charset Latin1\r\n"
+				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
+				+ "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
 		System.out.println("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n"
 				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
 				+ "LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
 	}
 	
-	public void tranform(String stagingName, String col, String defaut) throws SQLException {
+	public void tranformNullValue(String stagingName, String col, String defaut) throws SQLException {
 		Connection con = DBConnection.getConnection("staging", userName, password);
-		String sql = "Update "+stagingName +"set "+col +" = defaut where "+ col + " isNull";
+		String sql = "Update "+stagingName +"set "+col +" = "+ defaut +"where "+ col + " isNull";
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.executeQuery();
 	}
 	
+	public void DeleteNullID(String stagingName, String col) throws SQLException {
+		Connection con = DBConnection.getConnection("staging", userName, password);
+		String sql = "Delete from " + stagingName + "where " + col + "isNull";
+		
+	}
 	public static void main(String[] args) {
 		Configuration config = new Configuration("monhoc", "root", "1234");
 		DBService test = new DBServiceImpl("staging", "root", "1234");

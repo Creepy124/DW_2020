@@ -10,5 +10,6 @@ public interface DBService {
 	public int createTable(String table_name, String variables, String column_list) throws SQLException;
 	public int truncateTable(String table_name) throws SQLException;
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException;
-	public void tranform(String stagingName, String col, String defaut) throws SQLException;
+	public void tranformNullValue(String stagingName, String col, String defaut) throws SQLException;
+	public void DeleteNullID(String stagingName, String col) throws SQLException;
 }

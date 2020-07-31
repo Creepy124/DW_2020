@@ -12,9 +12,7 @@ import service.DBServiceImpl;
 import service.FileService;
 import service.LogService;
 
-
 public class Warehouse {
-	static final String DEFAUT = "null";
 	Date expired = new Date(new GregorianCalendar(9999, 12, 31).getTimeInMillis());
 
 	Configuration config;
@@ -29,12 +27,19 @@ public class Warehouse {
 		this.logService = logService;
 	}
 
-	public void tranform() throws SQLException {
-		String[] columns = config.getFileColumnList().split(",");
-		for (String col: columns) {
-			dbService.tranform(config.getConfigName(), col, DEFAUT);
-		}
+	public void loadDimStudent() {
+
 	}
-	
-	
+
+	public void loadDimSubject() {
+
+	}
+
+	public void loadDimClass() {
+
+	}
+
+	public void loadFact() {
+
+	}
 }

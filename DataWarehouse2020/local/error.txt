@@ -67,3 +67,354 @@ Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom10.osheet
 2020-07-25T20:30:17.810601
 Cannot write log. ChilkatDownload.java sinhvien_chieu_nhom12.xls.xlsx
  ---------------- 
+2020-07-27T10:41:36.976080
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-07-27T10:45:11.544922200
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-07-27T10:46:29.579458900
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-07-27T10:46:37.211542200
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-07-27T10:53:40.302281500
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-07-27T10:56:46.233121600
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T10:56:51.513257800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:07:41.405867700
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:07:46.515351300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:07:50.465014800
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:07:54.436116600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:07:58.458272800
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:08:02.781397800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:08:06.693050700
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:08:10.687512700
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:08:14.449884100
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:08:18.441459400
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:08:22.423384200
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Loading local data is disabled; this must be enabled on both the client and server sides
+ ---------------- 
+2020-07-27T11:09:02.061451800
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T11:09:06.656498800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:09:11.488356500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T11:09:15.538358300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T11:09:19.568935
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:14.441986700
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:18.652221
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:23.247125700
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:25.861168900
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:29.044206900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:31.317568500
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:33.650436800
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:35.861480800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:38.355054900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:40.654856800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:42.934090900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:45.270778
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:47.668118800
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:49.769031600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:51.995331200
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:54.532864800
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:05:57.315477700
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:05:59.891158200
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:02.610951100
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:05.228765500
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:08.149263200
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:10.529679100
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:13.730192900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:16.102451600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:18.364204400
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:20.897601300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:23.341483900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:25.710418700
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:28.299789500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:30.825402400
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:33.891683500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:36.434098600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:39.554616600
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:42.169081700
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:44.879923300
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:48.665867600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:51.108350600
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:53.469855300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:06:55.842874600
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:06:58.051980300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:00.580525
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:03.304987300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:05.721645500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:08.494816900
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:10.998039600
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:13.154800600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:15.463827900
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:17.909278400
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:20.298465
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:22.638438300
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:25.231213500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:27.738979100
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:30.246888500
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:32.579833
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:07:35.631843600
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:07:54.290782300
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:08:01.759772600
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:08:06.935989100
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:08:11.900068500
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 1
+ ---------------- 
+2020-07-27T13:10:11.306030700
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:10:17.080375200
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:13:45.705291400
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:13:52.260609500
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:13:57.991734500
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'STT' at row 1
+ ---------------- 
+2020-07-27T13:14:02.569625300
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:14:40.869591400
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:14:47.183304900
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:14:52.464756700
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:14:57.176926100
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:15:02.355534600
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 
+2020-07-27T13:15:08.043571500
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Data too long for column 'status' at row 21
+ ---------------- 
+2020-07-27T13:17:12.712437700
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:18:38.056092900
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:18:44.449189900
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:18:49.861897400
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:18:54.673792300
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:19:00.459259500
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:19:06.301220400
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:19:11.693104600
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:21:06.104393100
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:21:11.930582
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:21:31.769161
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:21:42.255923200
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:23:43.896416100
+java.sql.SQLException: Row 1 was truncated; it contained more data than there were input columns
+ ---------------- 
+2020-07-27T13:29:24.889835700
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:29:31.463983900
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:14.057181
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:20.208337100
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:25.548437100
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:31.244898800
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:37.140377900
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:30:42.296161500
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:31:17.539259
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ---------------- 
+2020-07-27T13:40:07.700069800
+java.sql.SQLException: Row 42 doesn't contain data for all columns
+ ---------------- 

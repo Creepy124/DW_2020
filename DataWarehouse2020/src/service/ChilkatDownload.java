@@ -18,8 +18,6 @@ import model.Configuration;
 
 /////////
 public class ChilkatDownload {
-	Configuration config;
-	
 	static {
 		try {
 			System.load("E:\\Warehouse\\chilkat\\chilkat\\chilkat.dll");
@@ -43,8 +41,6 @@ public class ChilkatDownload {
 			WritingError.sendError("Wrong host or port. ChilkatDownload.java", emails);
 			return;
 		}
-		// Wait a max of 5 seconds when reading responses..
-//		ssh.put_IdleTimeoutMs(5000);
 
 		// Authenticate using login/password:
 		success = ssh.AuthenticatePw(username, password);
@@ -154,7 +150,7 @@ public class ChilkatDownload {
 		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
 		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
 				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
-				"thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
+				"thuyphuongnguyen0170@gmail.com");
 
 	}
 
