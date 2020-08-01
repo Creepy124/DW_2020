@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.formula.udf.UDFFinder;
 
 import model.Configuration;
 import model.MyFile;
@@ -23,7 +24,6 @@ public class ExtractToStaging {
 	private DBService dbService;
 	private LogService logService;
 	private MyFile file;
-	private String status = "";
 
 	public ExtractToStaging(Configuration configuration, FileService fileService, DBService dbService,
 			LogService logService) {
@@ -65,58 +65,52 @@ public class ExtractToStaging {
 			}
 			dbService.loadFile(config.getDownloadPath() + "\\\\" + file.getFileName(), config.getConfigName(),
 					config.getFileDilimiter());
+			updateLog("TR");
 		} catch (EncryptedDocumentException | IOException e) {
-			status += "convert error, ";
 			WritingError.sendError(e.toString(), config.getToEmails());
+			updateLog("ERR");
 		} catch (SQLException e) {
-			status += "load infile error, ";
 			WritingError.sendError(e.toString(), config.getToEmails());
+			updateLog("ERR");
 		}
 	}
 
 	// 5. update log
-	public void updateLog() {
+	public void updateLog(String message) {
 		try {
-			if (status == "") {
-				logService.updateAction(config.getConfigID(), file.getFileName(), "TR");
-			} else {
-//				logService.updateStatus(config.getConfigID(), file.getFileName(), status);
-			}
+			logService.updateAction(config.getConfigID(), message);
 		} catch (SQLException e) {
 			WritingError.sendError(e.toString(), config.getToEmails());
-		}
-	}
-
-	public void extractToStaging() {
-		if (getFile()) {
-			truncateTable();
-			loadToTable();
-			updateLog();
-			tranform();
 		}
 	}
 
 	private void tranform() {
 		String[] columns = config.getFileColumnList().split(",");
-		
-		for (int i = 1; i < columns.length;i++) {
+		for (int i = 1; i < columns.length; i++) {
 			try {
-				if(i == 1) {
-					dbService.DeleteNullID(config.getConfigName(), columns[i]);
-				}
-				else dbService.tranformNullValue(config.getConfigName(), columns[i], DEFAUT);
-				
+				if (i == 1) {
+					dbService.deleteNullID(config.getConfigName(), columns[i]);
+				} else
+					dbService.tranformNullValue(config.getConfigName(), columns[i], DEFAUT);
+			updateLog("WH");
 			} catch (SQLException e) {
-			WritingError.sendError("Cant't Tranform. ExtractToStaging. Column= "+i, config.getToEmails());
+				WritingError.sendError("Cant't Tranform. ExtractToStaging. Column= " + i, config.getToEmails());
 			}
 		}
 	}
 
+	public void extractToStaging() {
+		while (getFile()) {
+			loadToTable();
+		}
+		tranform();
+	}
+
 	public static void main(String[] args) throws SQLException {
-		Configuration config = new Configuration("sinhvien", "root", "1234");
+		Configuration config = new Configuration("sinhvien", "root", "");
 		FileService fileService = new FileServiceImpl();
-		DBService dbService = new DBServiceImpl("staging", "root", "1234");
-		LogService logService = new LogServiceImpl("control", "root", "1234");
+		DBService dbService = new DBServiceImpl("staging", "root", "");
+		LogService logService = new LogServiceImpl("control", "root", "");
 		ExtractToStaging test = new ExtractToStaging(config, fileService, dbService, logService);
 		test.extractToStaging();
 

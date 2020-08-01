@@ -23,9 +23,9 @@ public class DBServiceImpl implements DBService {
 	}
 
 	@Override
-	public boolean existTable(String table_name) throws SQLException {
+	public boolean existTable(String tableName) throws SQLException {
 		DatabaseMetaData dbm = DBConnection.getConnection(targetDBName, userName, password).getMetaData();
-		ResultSet tables = dbm.getTables(null, null, table_name, null);
+		ResultSet tables = dbm.getTables(null, null, tableName, null);
 		if (tables.next()) {
 			return true;
 		}
@@ -33,17 +33,8 @@ public class DBServiceImpl implements DBService {
 	}
 
 	@Override
-	public int insertValues(String target_table, String column_list, String values) throws SQLException {
-		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
-		PreparedStatement ps = connection
-				.prepareStatement("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
-		System.out.println("INSERT INTO " + target_table + " (" + column_list + ") VALUES " + values);
-		return ps.executeUpdate();
-	}
-
-	@Override
-	public int createTable(String table_name, String variables, String column_list) throws SQLException {
-		String sql = "CREATE TABLE " + table_name + " (";
+	public int createTable(String tableName, String variables, String column_list) throws SQLException {
+		String sql = "CREATE TABLE " + tableName + " (";
 		String[] vari = variables.split(",");
 		String[] col = column_list.split(",");
 		for (int i = 0; i < vari.length; i++) {
@@ -57,11 +48,11 @@ public class DBServiceImpl implements DBService {
 	}
 
 	@Override
-	public int truncateTable(String table_name) throws SQLException {
+	public int truncateTable(String tableName) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
-		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE " + this.targetDBName + "." + table_name);
+		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE " + this.targetDBName + "." + tableName);
 //		ps.setString(1, table_name);
-		System.out.println("TRUNCATE TABLE " + table_name);
+		System.out.println("TRUNCATE TABLE " + tableName);
 		return ps.executeUpdate();
 	}
 
@@ -70,34 +61,41 @@ public class DBServiceImpl implements DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + " Charset Latin1\r\n"
-				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
-				+ "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
-		System.out.println("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n"
-				+ "FIELDS TERMINATED BY '" + dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n"
-				+ "LINES TERMINATED BY '\\r\\n'");
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE "
+				+ tableName + " Charset Latin1\r\n" + "FIELDS TERMINATED BY '" + dilimiter + "' \r\n"
+				+ "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
+		System.out.println(
+				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n" + "FIELDS TERMINATED BY '"
+						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
 	}
-	
-	public void tranformNullValue(String stagingName, String col, String defaut) throws SQLException {
+
+	public int tranformNullValue(String tableName, String col, String defaut) throws SQLException {
 		Connection con = DBConnection.getConnection("staging", userName, password);
-		String sql = "Update "+stagingName +"set "+col +" = "+ defaut +"where "+ col + " isNull";
+		String sql = "Update " + tableName + " set " + col + " = '" + defaut + "' where " + col + " is Null";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.executeQuery();
+		System.out.println(sql);
+		return pre.executeUpdate();
 	}
-	
-	public void DeleteNullID(String stagingName, String col) throws SQLException {
+
+	public int deleteNullID(String tableName, String col) throws SQLException {
 		Connection con = DBConnection.getConnection("staging", userName, password);
-		String sql = "Delete from " + stagingName + "where " + col + "isNull";
-		
+		String sql = "Delete from " + tableName + " where " + col + " is Null";
+		System.out.println(sql);
+		PreparedStatement pre = con.prepareStatement(sql);
+		return pre.executeUpdate();
 	}
+
 	public static void main(String[] args) {
-		Configuration config = new Configuration("monhoc", "root", "1234");
-		DBService test = new DBServiceImpl("staging", "root", "1234");
+		Configuration config = new Configuration("monhoc", "root", "");
+		DBService test = new DBServiceImpl("staging", "root", "");
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
-			System.out.println(test.truncateTable(config.getConfigName()));
-			System.out.println(test.loadFile("E:\\\\Warehouse\\\\sinhvien_chieu_nhom4.txt", "sinhvien", "|"));
+//			System.out.println(test.truncateTable(config.getConfigName()));
+//			System.out.println(test.loadFile("E:\\\\Warehouse\\\\sinhvien_chieu_nhom4.txt", "sinhvien", "|"));
+			test.deleteNullID("sinhvien", "mssv");
+			test.tranformNullValue("sinhvien", "sdt", "null");
+
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();

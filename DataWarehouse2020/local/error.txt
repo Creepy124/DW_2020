@@ -418,3 +418,33 @@ java.sql.SQLException: Invalid utf8mb4 character string: ''
 2020-07-27T13:40:07.700069800
 java.sql.SQLException: Row 42 doesn't contain data for all columns
  ---------------- 
+2020-08-01T11:48:46.604
+java.io.FileNotFoundException: Datawarehouse2020\local\test\sinhvien_chieu_nhom16.xlsx (The system cannot find the file specified)
+ ---------------- 
+2020-08-01T11:52:33.774
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\sinhvien_sang_nhom1.txt' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T11:55:12.763
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T11:56:20.304
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T12:01:06.139
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T12:03:01.662
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T12:28:16.610
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T12:30:23.299
+java.sql.SQLException: File 'C:\xampp\mysql\data\Datawarehouse2020\local\test\Monhoc2013.csv' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-01T13:49:44.792
+java.sql.SQLException: Data truncated for column 'stt' at row 1
+ ---------------- 
+2020-08-01T13:52:01.575
+java.sql.SQLException: Row 1 doesn't contain data for all columns
+ ---------------- 

@@ -21,7 +21,7 @@ public class LogServiceImpl implements LogService {
 	@Override
 	public MyFile getFileWithAction(int configID, String action) throws SQLException {
 		PreparedStatement ps = connection
-				.prepareStatement("SELECT file_name, file_type FROM log WHERE config_id=? and action=? and status is null");
+				.prepareStatement("SELECT file_name, file_type FROM log WHERE config_id=? and action=?");
 		ps.setInt(1, configID);
 		ps.setString(2, action);
 		ResultSet rs = ps.executeQuery();
@@ -49,20 +49,10 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int updateAction(int configID, String fileName, String newAction) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement("UPDATE log SET action=? where config_ID=? and file_name=?");
+	public int updateAction(int configID, String newAction) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement("UPDATE log SET action=? where config_ID=? and action<>'ERR'");
 		ps.setString(1, newAction);
 		ps.setInt(2, configID);
-		ps.setString(3, fileName);
-		return ps.executeUpdate();
-	}
-
-	@Override
-	public int updateStatus(int configID, String fileName, String status) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement("Update log Set status=? where config_ID=? and file_name=?");
-		ps.setString(1, status);
-		ps.setInt(2, configID);
-		ps.setString(3, fileName);
 		return ps.executeUpdate();
 	}
 	
