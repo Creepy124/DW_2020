@@ -9,7 +9,9 @@ import java.time.LocalTime;
 
 import db.DBConnection;
 import model.MyFile;
-
+/*
+ * This class contain all methods that relative to LOG such as: get file with ER action, insert row, update action
+ */
 public class LogServiceImpl implements LogService {
 
 	Connection connection;

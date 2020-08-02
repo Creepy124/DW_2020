@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
-
+/*
+ * This class contain all methods that relative to Error such as: send error
+ */
 public class WritingError {
 	
 

@@ -10,7 +10,9 @@ import com.mysql.jdbc.Statement;
 
 import db.DBConnection;
 import model.Configuration;
-
+/*
+ * This class contain all methods that relative to database such as: create table, truncate, transformed , load file
+ */
 public class DBServiceImpl implements DBService {
 	String targetDBName;
 	String password;

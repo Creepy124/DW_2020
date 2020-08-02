@@ -62,7 +62,7 @@ public class Download {
 		DBService dbService = new DBServiceImpl("staging", "root", "1234");
 		LogService logService = new LogServiceImpl("control", "root", "1234");
 		while (true) {
-			System.out.print("Ten config: ");
+			System.out.print("ID: ");
 		String cm = sc.nextLine();
 		if(cm.equals("end"))
 			break;

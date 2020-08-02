@@ -31,7 +31,12 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+/*
+ * This class contain all methods that relative to files that were downloaded from remote such as: 
+ * move file to another place,
+ * convert xlsx to csv
+ * write to a file (error file)
+ */
 public class FileServiceImpl implements FileService {
 
 	@Override

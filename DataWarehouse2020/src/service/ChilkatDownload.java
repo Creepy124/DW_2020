@@ -52,10 +52,12 @@ public class ChilkatDownload {
 
 		// Get all files from the remote
 		List<String> list = getListFileName(rDir, ssh);
-
+		
+		//Find all files that equal user's pattern
 		List<String> correspondingToPattern = checkPattern(list, pattern);
 		System.out.println("correct: " + correspondingToPattern);
 		
+		// Start downloading
 		download(configID, correspondingToPattern, ssh, rDir, lDir, emails);
 
 	}
@@ -104,6 +106,7 @@ public class ChilkatDownload {
 
 	public List<String> getListFileName(String rDir, CkSsh ssh) {
 		List<String> result = null;
+		
 		int channel = ssh.OpenSessionChannel();
 
 		String cmd = "cd " + rDir + "; ls;";
