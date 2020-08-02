@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface DBService {
@@ -10,4 +11,7 @@ public interface DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException;
 	public int tranformNullValue(String tableName, String col, String defaut) throws SQLException;
 	public int deleteNullID(String tableName, String col) throws SQLException;
+	public ResultSet loadFromStaging(String tableName) throws SQLException;
+	public void addToWareHouse(ResultSet staging, String[] columns) throws SQLException;
+	
 }

@@ -70,6 +70,7 @@ public class DBServiceImpl implements DBService {
 		return ps.executeUpdate();
 	}
 
+	@Override
 	public int tranformNullValue(String tableName, String col, String defaut) throws SQLException {
 		Connection con = DBConnection.getConnection("staging", userName, password);
 		String sql = "Update " + tableName + " set " + col + " = '" + defaut + "' where " + col + " is Null";
@@ -78,12 +79,35 @@ public class DBServiceImpl implements DBService {
 		return pre.executeUpdate();
 	}
 
+	@Override
 	public int deleteNullID(String tableName, String col) throws SQLException {
 		Connection con = DBConnection.getConnection("staging", userName, password);
 		String sql = "Delete from " + tableName + " where " + col + " is Null";
 		System.out.println(sql);
 		PreparedStatement pre = con.prepareStatement(sql);
 		return pre.executeUpdate();
+	}
+
+	@Override
+	public ResultSet loadFromStaging(String tableName) throws SQLException {
+		Connection con = DBConnection.getConnection("staging", userName, password);
+		String sql = "Select * from " + tableName;
+		PreparedStatement pre = con.prepareStatement(sql);
+		return pre.executeQuery();
+	}
+
+	@Override
+	public void addToWareHouse(ResultSet staging, String[] coulumns) throws SQLException {
+		Connection con = DBConnection.getConnection("warehouse", userName, password);
+		String sql = "Select * from warehouse.sinhvien where MSSV =" + staging.getString("MSSV");
+		PreparedStatement pre = con.prepareStatement(sql);
+		ResultSet res = pre.executeQuery();
+		if(res==null) {
+			for(int i =2; i< coulumns.length; i ++) {
+				 sql = "Select * from warehouse.sinhvien where " + coulumns[i] + "=" + staging.getString("MSSV");
+			}
+		}
+		
 	}
 
 	public static void main(String[] args) {
