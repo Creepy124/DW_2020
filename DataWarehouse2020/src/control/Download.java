@@ -63,13 +63,13 @@ public class Download {
 		LogService logService = new LogServiceImpl("control", "root", "1234");
 		while (true) {
 			System.out.print("ID: ");
-		String cm = sc.nextLine();
-		if(cm.equals("end"))
+		String command = sc.nextLine();
+		if(command.equals("end"))
 			break;
 //		System.out.println(cm);
 		
 		try {
-		configuration = new Configuration(cm, "root", "1234");
+		configuration = new Configuration(Integer.parseInt(command), "root", "1234");
 		Download rp = new Download(configuration);
 		rp.DownloadFile();
 		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);

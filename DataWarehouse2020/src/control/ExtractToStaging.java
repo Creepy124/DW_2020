@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.formula.udf.UDFFinder;
 
 import model.Configuration;
 import model.MyFile;
@@ -52,7 +51,7 @@ public class ExtractToStaging {
 		try {
 			dbService.truncateTable(config.getConfigName());
 		} catch (SQLException e) {
-			WritingError.sendError(e.toString(), config.getToEmails());
+			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
 			e.printStackTrace();
 		}
 	}
@@ -67,16 +66,17 @@ public class ExtractToStaging {
 					config.getFileDilimiter());
 			updateLog("TR");
 		} catch (EncryptedDocumentException | IOException e) {
-			WritingError.sendError(e.toString(), config.getToEmails());
+			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
 			updateLog("ERR");
 		} catch (SQLException e) {
-			WritingError.sendError(e.toString(), config.getToEmails());
+			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
 			updateLog("ERR");
 		}
 	}
 
 	// 5. update log
 	public void updateLog(String message) {
+		
 		try {
 			logService.updateAction(config.getConfigID(), message);
 		} catch (SQLException e) {
@@ -107,7 +107,7 @@ public class ExtractToStaging {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		Configuration config = new Configuration("sinhvien", "root", "");
+		Configuration config = new Configuration(1, "root", "");
 		FileService fileService = new FileServiceImpl();
 		DBService dbService = new DBServiceImpl("staging", "root", "");
 		LogService logService = new LogServiceImpl("control", "root", "");

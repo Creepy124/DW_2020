@@ -1,0 +1,29 @@
+STT|MSSV|Họ| Tên| Ngày Sinh| Mã lớp| Tên lớp| ĐT liên lạc| Email| Quê Quán| Ghi chú
+1| 17130001| Nguyễn Văn| A| 1/4/1999| DH17DTA| Công nghệ thông tin A| 0123456700| 17130001@st.hcmuaf.edu.vn| TPHCM| 
+2| 17130032| Nguyễn Văn| B| 2/4/1999| DH17DTA| Công nghệ thông tin A| 0123456701| 17130002@st.hcmuaf.edu.vn| Bình Dương| 
+3| 17130003| Nguyễn Văn| C| 3/4/1999| DH17DTA| Công nghệ thông tin A| 0123456702| 17130003@st.hcmuaf.edu.vn| Bình Dương| 
+4| 17130034| Nguyễn Văn| D| 4/4/1999| DH17DTA| Công nghệ thông tin A| 0123456703| 17130004@st.hcmuaf.edu.vn| TPHCM| 
+5| 17130005| Nguyễn Văn| E| 5/4/1999| DH17DTA| Công nghệ thông tin A| 0123456704| 17130005@st.hcmuaf.edu.vn| Lâm Đồng| 
+6| 17130036| Nguyễn Văn| F| 6/4/1999| DH17DTA| Công nghệ thông tin B| 0123456705| 17130006@st.hcmuaf.edu.vn| Lâm Đồng| 
+7| 17130107| Trần Văn| G| 7/4/1999| DH17DTB| Công nghệ thông tin B| 0123456706| 17130007@st.hcmuaf.edu.vn| Đồng Nai| 
+8| 17130008| Trần Văn| H| 8/4/1999| DH17DTB| Công nghệ thông tin B| 0123456707| 17130008@st.hcmuaf.edu.vn| Đồng Nai| 
+9| 17130029| Trần Văn| I| 9/4/1999| DH17DTB| Công nghệ thông tin B| 0123456708| 17130009@st.hcmuaf.edu.vn| Tây Ninh| 
+10| 17130010| Trần Văn| J| 10/4/1999| DH17DTB| Công nghệ thông tin B| 0123456709| 17130010@st.hcmuaf.edu.vn| Tây Ninh| 
+11| 17130011| Trần Văn| K| 11/4/1999| DH17DTC| Công nghệ thông tin C| 0123456710| 17130011@st.hcmuaf.edu.vn| Quãng Ngãi| 
+12| 17130012| Nguyễn Thị| L| 12/4/1999| DH17DTC| Công nghệ thông tin C| 0123456711| 17130012@st.hcmuaf.edu.vn| Quãng Ngãi| 
+13| 17130013| Nguyễn Thị| M| 13/4/1999| DH17DTC| Công nghệ thông tin C| 0123456712| 17130013@st.hcmuaf.edu.vn| Đà Nẵng| 
+14| 17130014| Nguyễn Thị| N| 14/4/1999| DH17DTC| Công nghệ thông tin C| 0123456713| 17130014@st.hcmuaf.edu.vn| Đà Nẵng| 
+15| 17130015| Nguyễn Thị| O| 15/4/1999| DH17DTC| Công nghệ thông tin C| 0123456714| 17130015@st.hcmuaf.edu.vn| Nha Trang| 
+16| 17130016| Trần Thị| P| 16/4/1999| DH17DTD| Công nghệ thông tin D| 0123456715| 17130016@st.hcmuaf.edu.vn| Nha Trang| 
+17| 17130017| Trần Văn| Q| 17/4/1999| DH17DTD| Công nghệ thông tin D| 0123456716| 17130017@st.hcmuaf.edu.vn| Đắk Lắk| 
+18| 17130018| Trần Văn| R| 18/4/1999| DH17DTD| Công nghệ thông tin D| 0123456717| 17130018@st.hcmuaf.edu.vn| Đắk Lắk| 
+19| 17130019| Trần Văn| S| 19/4/1999| DH17DTD| Công nghệ thông tin D| 0123456718| 17130019@st.hcmuaf.edu.vn| Kon Tum| 
+20| 17130020| Trần Văn| T| 20/4/1999| DH17DTD| Công nghệ thông tin D| 0123456719| 17130020@st.hcmuaf.edu.vn| Kon Tum| 
+21| 17130021| Cục Súc| U| 21/4/1999| DH17DTE| Công nghệ thông tin E| 0123456720| 17130021@st.hcmuaf.edu.vn| Plei Ku| 
+22| 17130022| Cục Súc| V| 22/4/1999| DH17DTE| Công nghệ thông tin E| 0123456721| 17130022@st.hcmuaf.edu.vn| Plei Ku| 
+23| 17130023| Cục Súc| W| 23/4/1999| DH17DTE| Công nghệ thông tin E| 0123456722| 17130023@st.hcmuaf.edu.vn| Tiền Giang| 
+24| 17130024| Hết Tên| X| 24/4/1999| DH17DTF| Công nghệ thông tin F| 0123456723| 17130024@st.hcmuaf.edu.vn| Tiền Giang| 
+25| 17130025| Hết Tên| Y| 25/4/1999| DH17DTF| Công nghệ thông tin F| 0123456724| 17130025@st.hcmuaf.edu.vn| Hậu Giang| 
+26| 17130026| Hết Tên| Z| 26/4/1999| DH17DTF| Công nghệ thông tin F| 0123456725| 17130026@st.hcmuaf.edu.vn| Hậu Giang|
+
+

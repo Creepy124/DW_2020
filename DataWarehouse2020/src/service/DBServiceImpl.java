@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.CallableStatement;
 
 import db.DBConnection;
 import model.Configuration;
@@ -63,11 +63,10 @@ public class DBServiceImpl implements DBService {
 	public int loadFile(String sourceFile, String tableName, String dilimiter) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
-		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE "
-				+ tableName + " Charset Latin1\r\n" + "FIELDS TERMINATED BY '" + dilimiter + "' \r\n"
-				+ "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
+		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
+				+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
 		System.out.println(
-				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + tableName + "\r\n" + "FIELDS TERMINATED BY '"
+				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
 						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'");
 		return ps.executeUpdate();
 	}
@@ -97,31 +96,25 @@ public class DBServiceImpl implements DBService {
 		PreparedStatement pre = con.prepareStatement(sql);
 		return pre.executeQuery();
 	}
-
+	
 	@Override
-	public void addToWareHouse(ResultSet staging, String[] coulumns) throws SQLException {
-		Connection con = DBConnection.getConnection("warehouse", userName, password);
-		String sql = "Select * from warehouse.sinhvien where MSSV =" + staging.getString("MSSV");
-		PreparedStatement pre = con.prepareStatement(sql);
-		ResultSet res = pre.executeQuery();
-		if(res==null) {
-			for(int i =2; i< coulumns.length; i ++) {
-				 sql = "Select * from warehouse.sinhvien where " + coulumns[i] + "=" + staging.getString("MSSV");
-			}
-		}
-		
+	public void callProcedure(String procName) throws SQLException {
+		Connection con = DBConnection.getConnection("datawarehouse", userName, password);
+		String query = "{CALL "+procName+"()}";
+		CallableStatement stmt = (CallableStatement) con.prepareCall(query);
+		stmt.execute();
 	}
 
 	public static void main(String[] args) {
-		Configuration config = new Configuration("monhoc", "root", "");
+		Configuration config = new Configuration(1, "root", "");
 		DBService test = new DBServiceImpl("staging", "root", "");
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 //			System.out.println(test.truncateTable(config.getConfigName()));
-//			System.out.println(test.loadFile("E:\\\\Warehouse\\\\sinhvien_chieu_nhom4.txt", "sinhvien", "|"));
-			test.deleteNullID("sinhvien", "mssv");
-			test.tranformNullValue("sinhvien", "sdt", "null");
-
+//			System.out.println(test.loadFile("C:\\\\Users\\\\Phuong\\\\git\\\\DW_2020\\\\Datawarehouse2020\\\\local\\\\test\\\\sinhvien_chieu_nhom9.txt", "sinhvien", "|"));
+//			test.deleteNullID("sinhvien", "mssv");
+//			test.tranformNullValue("sinhvien", "sdt", "null");
+			test.callProcedure("loadStudent");
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();

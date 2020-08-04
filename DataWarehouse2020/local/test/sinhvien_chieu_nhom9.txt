@@ -1,0 +1,27 @@
+STT|MSSV|Há»�| TÃªn| NgÃ y Sinh| MÃ£ lá»›p| TÃªn lá»›p| Ä�T liÃªn láº¡c| Email| QuÃª QuÃ¡n| Ghi chÃº
+1| 17130001| Nguyá»…n VÄƒn| A| 1/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin A| 0123456700| 17130001@st.hcmuaf.edu.vn| BÃ¬nh DÆ°Æ¡ng| 
+2| 17130002| Nguyá»…n VÄƒn| B| 2/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin A| 0123456701| 17130002@st.hcmuaf.edu.vn| BÃ¬nh DÆ°Æ¡ng| 
+3| 17130003| Nguyá»…n VÄƒn| C| 3/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin A| 0123456702| 17130003@st.hcmuaf.edu.vn| TPHCM| 
+4| 17130004| Nguyá»…n VÄƒn| D| 4/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin A| 0123456703| 17130004@st.hcmuaf.edu.vn| TPHCM| 
+5| 17130005| Nguyá»…n VÄƒn| E| 5/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin A| 0123456704| 17130005@st.hcmuaf.edu.vn| LÃ¢m Ä�á»“ng| 
+6| 17130006| Nguyá»…n VÄƒn| F| 6/4/1999| DH17DTA| CÃ´ng nghá»‡ thÃ´ng tin B| 0123456705| 17130006@st.hcmuaf.edu.vn| LÃ¢m Ä�á»“ng| 
+7| 17130007| Tráº§n VÄƒn| G| 7/4/1999| DH17DTB| CÃ´ng nghá»‡ thÃ´ng tin B| 0123456706| 17130007@st.hcmuaf.edu.vn| Ä�á»“ng Nai| 
+8| 17130008| Tráº§n VÄƒn| H| 8/4/1999| DH17DTB| CÃ´ng nghá»‡ thÃ´ng tin B| 0123456707| 17130008@st.hcmuaf.edu.vn| Ä�á»“ng Nai| 
+9| 17130009| Tráº§n VÄƒn| I| 9/4/1999| DH17DTB| CÃ´ng nghá»‡ thÃ´ng tin B| 0123456708| 17130009@st.hcmuaf.edu.vn| TÃ¢y Ninh| 
+10| 17130010| Tráº§n VÄƒn| J| 10/4/1999| DH17DTB| CÃ´ng nghá»‡ thÃ´ng tin B| 0123456709| 17130010@st.hcmuaf.edu.vn| TÃ¢y Ninh| 
+11| 17130011| Tráº§n VÄƒn| K| 11/4/1999| DH17DTC| CÃ´ng nghá»‡ thÃ´ng tin C| 0123456710| 17130011@st.hcmuaf.edu.vn| QuÃ£ng NgÃ£i| 
+12| 17130012| Nguyá»…n Thá»‹| L| 12/4/1999| DH17DTC| CÃ´ng nghá»‡ thÃ´ng tin C| 0123456711| 17130012@st.hcmuaf.edu.vn| QuÃ£ng NgÃ£i| 
+13| 17130013| Nguyá»…n Thá»‹| M| 13/4/1999| DH17DTC| CÃ´ng nghá»‡ thÃ´ng tin C| 0123456712| 17130013@st.hcmuaf.edu.vn| Ä�Ã  Náºµng| 
+14| 17130014| Nguyá»…n Thá»‹| N| 14/4/1999| DH17DTC| CÃ´ng nghá»‡ thÃ´ng tin C| 0123456713| 17130014@st.hcmuaf.edu.vn| Ä�Ã  Náºµng| 
+15| 17130015| Nguyá»…n Thá»‹| O| 15/4/1999| DH17DTC| CÃ´ng nghá»‡ thÃ´ng tin C| 0123456714| 17130015@st.hcmuaf.edu.vn| Nha Trang| 
+16| 17130016| Tráº§n Thá»‹| P| 16/4/1999| DH17DTD| CÃ´ng nghá»‡ thÃ´ng tin D| 0123456715| 17130016@st.hcmuaf.edu.vn| Nha Trang| 
+17| 17130017| Tráº§n VÄƒn| Q| 17/4/1999| DH17DTD| CÃ´ng nghá»‡ thÃ´ng tin D| 0123456716| 17130017@st.hcmuaf.edu.vn| Ä�áº¯k Láº¯k| 
+18| 17130018| Tráº§n VÄƒn| R| 18/4/1999| DH17DTD| CÃ´ng nghá»‡ thÃ´ng tin D| 0123456717| 17130018@st.hcmuaf.edu.vn| Ä�áº¯k Láº¯k| 
+19| 17130019| Tráº§n VÄƒn| S| 19/4/1999| DH17DTD| CÃ´ng nghá»‡ thÃ´ng tin D| 0123456718| 17130019@st.hcmuaf.edu.vn| Kon Tum| 
+20| 17130020| Tráº§n VÄƒn| T| 20/4/1999| DH17DTD| CÃ´ng nghá»‡ thÃ´ng tin D| 0123456719| 17130020@st.hcmuaf.edu.vn| Kon Tum| 
+21| 17130021| Cá»¥c SÃºc| U| 21/4/1999| DH17DTE| CÃ´ng nghá»‡ thÃ´ng tin E| 0123456720| 17130021@st.hcmuaf.edu.vn| Plei Ku| 
+22| 17130022| Cá»¥c SÃºc| V| 22/4/1999| DH17DTE| CÃ´ng nghá»‡ thÃ´ng tin E| 0123456721| 17130022@st.hcmuaf.edu.vn| Plei Ku| 
+23| 17130023| Cá»¥c SÃºc| W| 23/4/1999| DH17DTE| CÃ´ng nghá»‡ thÃ´ng tin E| 0123456722| 17130023@st.hcmuaf.edu.vn| Tiá»�n Giang| 
+24| 17130024| Háº¿t TÃªn| X| 24/4/1999| DH17DTF| CÃ´ng nghá»‡ thÃ´ng tin F| 0123456723| 17130024@st.hcmuaf.edu.vn| Tiá»�n Giang| 
+25| 17130025| Háº¿t TÃªn| Y| 25/4/1999| DH17DTF| CÃ´ng nghá»‡ thÃ´ng tin F| 0123456724| 17130025@st.hcmuaf.edu.vn| Háº­u Giang| 
+26| 17130026| Háº¿t TÃªn| Z| 26/4/1999| DH17DTF| CÃ´ng nghá»‡ thÃ´ng tin F| 0123456725| 17130026@st.hcmuaf.edu.vn| Háº­u Giang| 

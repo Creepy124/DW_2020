@@ -12,6 +12,6 @@ public interface DBService {
 	public int tranformNullValue(String tableName, String col, String defaut) throws SQLException;
 	public int deleteNullID(String tableName, String col) throws SQLException;
 	public ResultSet loadFromStaging(String tableName) throws SQLException;
-	public void addToWareHouse(ResultSet staging, String[] columns) throws SQLException;
+	public void callProcedure(String procName) throws SQLException;	
 	
 }

@@ -448,3 +448,30 @@ java.sql.SQLException: Data truncated for column 'stt' at row 1
 2020-08-01T13:52:01.575
 java.sql.SQLException: Row 1 doesn't contain data for all columns
  ---------------- 
+2020-08-03T12:29:03.212
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Incorrect integer value: '' for column `staging`.`sinhvien`.`stt` at row 27
+ ---------------- 
+2020-08-03T12:34:13.729
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Incorrect integer value: '' for column `staging`.`sinhvien`.`stt` at row 27
+ ---------------- 
+2020-08-03T12:35:26.351
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Incorrect integer value: '' for column `staging`.`sinhvien`.`stt` at row 27
+ ---------------- 
+2020-08-03T12:37:04.065
+com.mysql.jdbc.MysqlDataTruncation: Data truncation: Incorrect integer value: '' for column `staging`.`sinhvien`.`stt` at row 27
+ ---------------- 
+2020-08-03T12:38:15.966
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ---------------- 
+2020-08-03T12:40:52.158
+java.sql.SQLException: Row 28 doesn't contain data for all columns
+ ---------------- 
+2020-08-03T12:42:20.507
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ---------------- 
+2020-08-03T13:01:23.618
+java.sql.SQLException: File 'C:\Users\Phuong\git\sinhvien_sang_nhom9.txt' not found (Errcode: 2 "No such file or directory")
+ ---------------- 
+2020-08-03T13:02:10.956
+java.sql.SQLException: Row 26 doesn't contain data for all columns
+ ---------------- 

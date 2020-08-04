@@ -22,16 +22,16 @@ public class Configuration {
 	private String fileDilimiter;
 	private String toEmails;
 	
-	public Configuration(String configName, String userName, String password) {
+	public Configuration(int configID, String userName, String password) {
 		Connection connection;
 		try {
 			connection = DBConnection.getConnection("control", userName, password);
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration WHERE config_name=?");
-			ps.setString(1, configName);
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM configuration WHERE config_id=?");
+			ps.setInt(1, configID);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				this.configID = rs.getInt("config_id");
-				this.configName = configName;
+				this.configID = configID;
+				this.configName = rs.getString("config_name");
 				this.sourceHost = rs.getString("source_host");
 				this.sourceRemoteFile = rs.getString("source_remote_path");
 				this.sourceUsername = rs.getString("source_username");
@@ -115,7 +115,7 @@ public class Configuration {
 	}
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration("sinhvien","root","1234");
+		Configuration configuration = new Configuration(1,"root","");
 		System.out.println(configuration.toString());
 	}
 }
