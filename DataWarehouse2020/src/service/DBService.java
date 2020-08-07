@@ -13,5 +13,6 @@ public interface DBService {
 	public int deleteNullID(String tableName, String col) throws SQLException;
 	public ResultSet loadFromStaging(String tableName) throws SQLException;
 	public void callProcedure(String procName) throws SQLException;	
-	
+	public int getFlag(String state) throws SQLException;
+	public void updateFlag(int config_id, String state) throws SQLException;
 }

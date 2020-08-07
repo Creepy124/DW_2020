@@ -16,8 +16,8 @@ public class LogServiceImpl implements LogService {
 
 	Connection connection;
 
-	public LogServiceImpl(String targetDBName, String userName, String password) {
-		connection = DBConnection.getConnection(targetDBName, userName, password);
+	public LogServiceImpl() {
+		connection = DBConnection.getConnection("control", "root", "1234");
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class LogServiceImpl implements LogService {
 	}
 	
 	public static void main(String[] args) throws SQLException {
-		LogService log = new LogServiceImpl("control","root","1234");
+		LogService log = new LogServiceImpl();
 //		if (log.getFileWithStatus(2,"ER") != null) {
 //			System.out.println(log.getFileWithStatus(2,"ER").toString());
 //		} else {

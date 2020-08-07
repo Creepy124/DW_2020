@@ -60,7 +60,7 @@ public class Download {
 		Configuration configuration;
 		FileService fileService = new FileServiceImpl();
 		DBService dbService = new DBServiceImpl("staging", "root", "1234");
-		LogService logService = new LogServiceImpl("control", "root", "1234");
+		LogService logService = new LogServiceImpl();
 		while (true) {
 			System.out.print("ID: ");
 		String command = sc.nextLine();

@@ -85,6 +85,7 @@ public class ExtractToStaging {
 	}
 
 	private void tranform() {
+		
 		String[] columns = config.getFileColumnList().split(",");
 		for (int i = 1; i < columns.length; i++) {
 			try {
@@ -92,7 +93,9 @@ public class ExtractToStaging {
 					dbService.deleteNullID(config.getConfigName(), columns[i]);
 				} else
 					dbService.tranformNullValue(config.getConfigName(), columns[i], DEFAUT);
+				
 			updateLog("WH");
+			
 			} catch (SQLException e) {
 				WritingError.sendError("Cant't Tranform. ExtractToStaging. Column= " + i, config.getToEmails());
 			}
@@ -110,7 +113,7 @@ public class ExtractToStaging {
 		Configuration config = new Configuration(1, "root", "");
 		FileService fileService = new FileServiceImpl();
 		DBService dbService = new DBServiceImpl("staging", "root", "");
-		LogService logService = new LogServiceImpl("control", "root", "");
+		LogService logService = new LogServiceImpl();
 		ExtractToStaging test = new ExtractToStaging(config, fileService, dbService, logService);
 		test.extractToStaging();
 

@@ -73,7 +73,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int tranformNullValue(String tableName, String col, String defaut) throws SQLException {
-		Connection con = DBConnection.getConnection("staging", userName, password);
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
 		String sql = "Update " + tableName + " set " + col + " = '" + defaut + "' where " + col + " is Null";
 		PreparedStatement pre = con.prepareStatement(sql);
 		System.out.println(sql);
@@ -82,7 +82,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public int deleteNullID(String tableName, String col) throws SQLException {
-		Connection con = DBConnection.getConnection("staging", userName, password);
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
 		String sql = "Delete from " + tableName + " where " + col + " is Null";
 		System.out.println(sql);
 		PreparedStatement pre = con.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class DBServiceImpl implements DBService {
 
 	@Override
 	public ResultSet loadFromStaging(String tableName) throws SQLException {
-		Connection con = DBConnection.getConnection("staging", userName, password);
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
 		String sql = "Select * from " + tableName;
 		PreparedStatement pre = con.prepareStatement(sql);
 		return pre.executeQuery();
@@ -99,12 +99,40 @@ public class DBServiceImpl implements DBService {
 	
 	@Override
 	public void callProcedure(String procName) throws SQLException {
-		Connection con = DBConnection.getConnection("datawarehouse", userName, password);
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
 		String query = "{CALL "+procName+"()}";
 		CallableStatement stmt = (CallableStatement) con.prepareCall(query);
 		stmt.execute();
 	}
 
+	@Override
+	public int getFlag(String state) throws SQLException{
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
+		String sql = "Select config_id from configuration where flag = " + state;
+		PreparedStatement pre = con.prepareStatement(sql);
+		ResultSet rs = pre.executeQuery();
+		if(rs.next()) {
+			 return rs.getInt("config_id");
+		}
+		return 0;
+	}
+	
+	@Override
+	public void updateFlag(int config_id, String state){
+		Connection con = DBConnection.getConnection(targetDBName, userName, password);
+		String sql = "Update configuration set flag = " +state +"where config_id = " +config_id;
+		PreparedStatement pre;
+		try {
+			pre = con.prepareStatement(sql);
+			pre.executeUpdate();
+			
+		} catch (SQLException e) {
+		
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		Configuration config = new Configuration(1, "root", "");
 		DBService test = new DBServiceImpl("staging", "root", "");
