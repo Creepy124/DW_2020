@@ -31,10 +31,11 @@ public class Download {
 	
 	public Download(Configuration config) {
 		this.config = config;
-		repareDownload();
+//1.Load các thuộc tính tại dòng config có flag = prepare vào các biến
+		prepareDownload();
 	}
 
-	private void repareDownload() {
+	private void prepareDownload() {
 		username = config.getSourceUsername();
 		host = config.getSourceHost();
 		rDir = "/" + config.getSourceRemoteFile() ;
@@ -48,14 +49,14 @@ public class Download {
 
 	public void DownloadFile() throws AddressException, IOException, MessagingException {
 
-		//Download from local
+//3.1.1 Download from local
 		if(local.equals("y")) {
 			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
 			localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
 			System.out.println(this.toString());
 		}
 		
-		//Download from ecepvn
+//3.2.1 Download from ecepvn
 		if(local.equals("n")) {
 		ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
 		download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);

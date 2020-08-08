@@ -35,7 +35,6 @@ public class Warehouse {
 			int configID = dbControl.getFlag("prepare");
 			System.out.println(configID);
 			if (configID != 0) {
-				dbControl.updateFlag(configID, "Step1");
 				config = new Configuration(configID, "root", "1234");
 				
 				Download step1  = new Download(config);

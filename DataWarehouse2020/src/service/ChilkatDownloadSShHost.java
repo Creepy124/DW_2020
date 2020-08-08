@@ -44,6 +44,7 @@ public class ChilkatDownloadSShHost {
 
 		CkSsh ssh = new CkSsh();
 
+// 3.2.1 Kết nối đến server ssh
 		// Connect to an SSH server:
 		boolean success = ssh.Connect(host, port);
 		if (success != true) {
@@ -61,13 +62,21 @@ public class ChilkatDownloadSShHost {
 			return;
 		}
 
+//4. Lấy ra các file có trong remote directory (3.2.2 Mở 1 ssh session chanel)
 		// Get all files from the remote
 		List<String> list = getListFileName(rDir, ssh);
 
+//5 Lọc ra các file tương ứng với pattern có trong config 
 		// Find all files that equal user's pattern
 		List<String> correspondingToPattern = checkPattern(list, pattern);
 		System.out.println("correct: " + correspondingToPattern);
 
+//5.1 Có tồn tại file nào không?
+		if(correspondingToPattern.size() == 0) {
+			
+		}
+
+//6. Tiến hành tải file tất cả các file tương ứng với pattern
 		// Start downloading
 		download(configID, correspondingToPattern, ssh, rDir, lDir, emails);
 
@@ -98,8 +107,10 @@ public class ChilkatDownloadSShHost {
 				WritingError.sendError("Cannot download. ChilkatDownload.java " + filename, emails);
 				return;
 			} else
+//7.1. Ghi thông tin file vừa tải vào table Log với trạng thái "ER"
 				ok = writingLog(configID, filename);
 
+//8. Gửi mail báo lỗi và ghi lỗi vào file error.txt
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
@@ -114,13 +125,14 @@ public class ChilkatDownloadSShHost {
 
 	public List<String> getListFileName(String rDir, CkSsh ssh) {
 		List<String> result = null;
+		
+//3.2.2 Mở 1 ssh session chanel
 		// open channel
 		int channel = ssh.OpenSessionChannel();
 
 		// command
 		String cmd = "cd " + rDir + "; ls;";
-		ssh.SendReqExec(channel, cmd);
-
+		 boolean success = ssh.SendReqExec(channel, cmd);
 		//Receive channel
 		ssh.ChannelReceiveToClose(channel);
 		
@@ -128,6 +140,7 @@ public class ChilkatDownloadSShHost {
 		// 127), plus an extended character set (values 128 to 255).
 		//Note: includes Latin charset
 		
+//4. Lấy ra các file có trong remote directory 
 		//receive result
 		String list = ssh.getReceivedText(channel, "ansi");
 

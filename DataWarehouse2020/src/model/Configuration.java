@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBConnection;
+import service.WritingError;
 
 public class Configuration {
 	private int configID;
@@ -47,7 +48,7 @@ public class Configuration {
 				this.local = rs.getString("local");
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			WritingError.sendError("Can't connect to control database. Configuration.java", "thuyphuongnguyen0170@gmail.com,creepy120499@gmail.com");;
 		}
 	}
 

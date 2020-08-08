@@ -31,19 +31,20 @@ public class ChilkatDownloadLocalHost {
 	 * Prepare: connect to server, get all file which matched with the input pattern
 	 * from remote directory
 	 */
-	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
+	public boolean prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
 			throws IOException, AddressException, MessagingException {
 		// This example requires the Chilkat API to have been previously unlocked.
 		// See Global Unlock Sample for sample code.
 		CkSFtp sftp = new CkSFtp();
 
-		// Connect to an SSH server:
+// 3.1.1 Kết nối đến server tại sftp tại local
+		// Connect to an SFTP server:
 		boolean success = sftp.Connect(host, port);
 		if (success != true) {
-//			System.out.println(ssh.lastErrorText());
+			// System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong host or port. ChilkatDownloadLocalHost.java", emails);
-			return;
+			return false;
 		}
 
 		// Authenticate using login/password:
@@ -51,30 +52,37 @@ public class ChilkatDownloadLocalHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong username or password. ChilkatDownloadLocalHost.java", emails);
-			return;
+			return false;
 
 		}
+// 3.1.2 Khởi tạo channel sftp
 		// Initial channel
 		success = sftp.InitializeSftp();
 		if (success != true) {
-//			System.out.println(sftp.lastErrorText());
+			// System.out.println(sftp.lastErrorText());
 			WritingError.sendError("Can't initial sftp channel. ChilkatDownloadLocalHost.java", emails);
-			return;
+			return false;
 
 		}
+//4. Lấy ra các file có trong remote directory 
 		// Get all files from the remote
 		List<String> list = getListFileName(rDir, sftp);
 
+//5 Lọc ra các file tương ứng với pattern có trong config 
 		// Find all files that compatible with user's pattern
 		List<String> correspondingToPattern = checkPattern(list, pattern);
 		System.out.println("correct: " + correspondingToPattern);
 
+//5.1 Có tồn tại file nào không?l
+		if (correspondingToPattern.size() == 0)
+			return false;
 		// Start downloading
-		download(configID, correspondingToPattern, sftp, rDir, lDir, emails);
+//6. Tiến hành tải file tất cả các file tương ứng với pattern
+		return download(configID, correspondingToPattern, sftp, rDir, lDir, emails);
 
 	}
 
-	private void download(int configID, List<String> correspondingToPattern, CkSFtp sftp, String rDir, String lDir,
+	private boolean download(int configID, List<String> correspondingToPattern, CkSFtp sftp, String rDir, String lDir,
 			String emails) throws AddressException, IOException, MessagingException {
 
 		// Iteration
@@ -85,16 +93,18 @@ public class ChilkatDownloadLocalHost {
 			String localFile = lDir + "/" + filename;
 
 			// Download
-			String handleRemoteFile = sftp.openFile(remoteFile,"readOnly","openExisting");
+			String handleRemoteFile = sftp.openFile(remoteFile, "readOnly", "openExisting");
 			boolean success = sftp.DownloadFile(handleRemoteFile, localFile);
-
+//Download fail
 			if (success != true) {
-//					System.out.println(scp.lastErrorText());
+				// System.out.println(scp.lastErrorText());
 				WritingError.sendError("Cannot download. ChilkatDownload.java " + filename, emails);
-				return;
+				return false;
 			} else
+//7.1. Ghi thông tin file vừa tải vào table Log với trạng thái "ER"
 				ok = writingLog(configID, filename);
 
+//7.2. Gửi mail báo lỗi và ghi lỗi vào file error.txt
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
@@ -104,7 +114,7 @@ public class ChilkatDownloadLocalHost {
 
 		// Disconnect
 		sftp.Disconnect();
-
+		return true;
 	}
 
 	public List<String> getListFileName(String rDir, CkSFtp sftp) {
