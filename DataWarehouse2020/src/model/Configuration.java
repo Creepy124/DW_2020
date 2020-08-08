@@ -21,6 +21,7 @@ public class Configuration {
 	private String downloadPath;
 	private String fileDilimiter;
 	private String toEmails;
+	private String local;
 	
 	public Configuration(int configID, String userName, String password) {
 		Connection connection;
@@ -43,6 +44,7 @@ public class Configuration {
 				this.downloadPath = rs.getString("download_path");
 				this.fileDilimiter = rs.getString("file_dilimiter");
 				this.toEmails = rs.getString("error_to_emails");
+				this.local = rs.getString("local");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,17 +107,20 @@ public class Configuration {
 		return fileNamePattern;
 	}
 	
+	public String getLocal() {
+		return local;
+	}
 	@Override
 	public String toString() {
 		return "Configuration [configID=" + configID + ", configName=" + configName + ", sourceHost=" + sourceHost
 				+ ", sourceRemoteFile=" + sourceRemoteFile + ", sourceUsername=" + sourceUsername + ", sourcePassword="
 				+ sourcePassword + ", sourcePort=" + sourcePort + ", fileNamePattern=" + fileNamePattern
 				+ ", fileColumnList=" + fileColumnList + ", fileVariables=" + fileVariables + ", downloadPath="
-				+ downloadPath + ", fileDilimiter=" + fileDilimiter + ", toEmails=" + toEmails + "]";
+				+ downloadPath + ", fileDilimiter=" + fileDilimiter + ", toEmails=" + toEmails + " , local=" +local +"]";
 	}
 
 	public static void main(String[] args) {
-		Configuration configuration = new Configuration(1,"root","");
+		Configuration configuration = new Configuration(1,"root","1234");
 		System.out.println(configuration.toString());
 	}
 }

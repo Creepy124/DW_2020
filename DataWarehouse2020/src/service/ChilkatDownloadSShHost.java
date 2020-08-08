@@ -11,13 +11,14 @@ import java.util.regex.Pattern;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import com.chilkatsoft.CkSFtp;
 import com.chilkatsoft.CkScp;
 import com.chilkatsoft.CkSsh;
 
 import model.Configuration;
 
 /////////
-public class ChilkatDownload {
+public class ChilkatDownloadSShHost {
 	static {
 		try {
 			System.load("E:\\Warehouse\\chilkat\\chilkat\\chilkat.dll");
@@ -51,7 +52,7 @@ public class ChilkatDownload {
 		}
 
 		// Get all files from the remote
-		List<String> list = getListFileName(rDir, ssh);
+		List<String> list =  getListFileName(rDir, ssh);
 		
 		//Find all files that equal user's pattern
 		List<String> correspondingToPattern = checkPattern(list, pattern);
@@ -74,10 +75,8 @@ public class ChilkatDownload {
 			return;
 		}
 
-		scp.put_HeartbeatMs(200);
+//		scp.put_HeartbeatMs(200);
 
-		// Set the SyncMustMatch property to "*.pem" to download only .pem files
-//				scp.put_SyncMustMatch("sinhvien*.txt");
 		for (String filename : correspondingToPattern) {
 			boolean ok = false;//check if send mail or not
 			
@@ -114,7 +113,8 @@ public class ChilkatDownload {
 
 		ssh.ChannelReceiveToClose(channel);
 		String list = ssh.getReceivedText(channel, "ansi");
-
+		
+//		String list = ssh.openDir(rDir);
 		String[] temp = list.split("\n");
 		if (temp.length != 0)
 			result = new LinkedList<String>(Arrays.asList(temp));
@@ -135,7 +135,7 @@ public class ChilkatDownload {
 
 	private boolean writingLog(int configID, String filename) {
 		boolean result = true;
-		LogServiceImpl log = new LogServiceImpl("control", "root", "1234");
+		LogServiceImpl log = new LogServiceImpl();
 		try {
 			log.insertLog(configID, filename, "ER", null);
 		} catch (SQLException e) {
@@ -146,15 +146,22 @@ public class ChilkatDownload {
 	}
 
 	public static void main(String[] args) throws IOException, AddressException, MessagingException {
-		ChilkatDownload c = new ChilkatDownload();
-		String username = "guest_access";
-		String pass = "123456";
-		String host = "drive.ecepvn.org";
-		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
-		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
-				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
+//		ChilkatDownload c = new ChilkatDownload();
+//		String username = "guest_access";
+//		String pass = "123456";
+//		String host = "drive.ecepvn.org";
+//		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
+//		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
+//				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
+//				"thuyphuongnguyen0170@gmail.com");
+		ChilkatDownloadSShHost c = new ChilkatDownloadSShHost();
+		String username = "asus";
+		String pass = "Langtutrunggio";
+		String host = "DESKTOP-P7RFKBN";
+		String rDir ="E:/Warehouse";
+		c.prepareAndDownload(1, username, pass, host, rDir, "E:\\Warehouse\\DW_2020\\DataWarehouse2020\\local\\test\\New folder", 22,
+				"sinhvien*.*",
 				"thuyphuongnguyen0170@gmail.com");
-
 	}
 
 }

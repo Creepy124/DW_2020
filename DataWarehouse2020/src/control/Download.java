@@ -7,7 +7,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import model.Configuration;
-import service.ChilkatDownload;
+import service.ChilkatDownloadLocalHost;
+import service.ChilkatDownloadSShHost;
 import service.DBService;
 import service.DBServiceImpl;
 import service.FileService;
@@ -26,6 +27,7 @@ public class Download {
 	private int port;
 	private String pattern;
 	private String emails;
+	private String local;
 	
 	public Download(Configuration config) {
 		this.config = config;
@@ -41,12 +43,25 @@ public class Download {
 		port = config.getSourcePort();
 		pattern = config.getFileNamePattern();
 		emails = config.getToEmails();
+		local = config.getLocal();
 	}
 
 	public void DownloadFile() throws AddressException, IOException, MessagingException {
-		ChilkatDownload d = new ChilkatDownload();
-		d.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
+		
+		//Download from ecepvn
+		if(local.equals("n")) {
+		ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
+		download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
 		System.out.println(this.toString());
+		}
+		
+		//Download from local
+		if(local.equals("y")) {
+			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
+			localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
+			System.out.println(this.toString());
+		}
+		
 	}
 
 	@Override
@@ -64,16 +79,18 @@ public class Download {
 		while (true) {
 			System.out.print("ID: ");
 		String command = sc.nextLine();
-		if(command.equals("end"))
+		System.out.println("command");
+		if(command.equals("end")) {
 			break;
+			}
 //		System.out.println(cm);
 		
 		try {
 		configuration = new Configuration(Integer.parseInt(command), "root", "1234");
 		Download rp = new Download(configuration);
 		rp.DownloadFile();
-		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);
-		ex.extractToStaging();
+//		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);
+//		ex.extractToStaging();
 		}catch(Exception e) {
 			System.out.println("Wrong config name");
 			continue;

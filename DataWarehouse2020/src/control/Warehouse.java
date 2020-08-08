@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -60,8 +59,9 @@ public class Warehouse {
 
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws SQLException, AddressException, IOException, MessagingException {
+		Warehouse wh = new Warehouse();
+		wh.run();
 	}
 
 }
