@@ -85,7 +85,8 @@ public class ChilkatDownloadLocalHost {
 			String localFile = lDir + "/" + filename;
 
 			// Download
-			boolean success = sftp.DownloadFile(remoteFile, localFile);
+			String handleRemoteFile = sftp.openFile(remoteFile,"readOnly","openExisting");
+			boolean success = sftp.DownloadFile(handleRemoteFile, localFile);
 
 			if (success != true) {
 //					System.out.println(scp.lastErrorText());

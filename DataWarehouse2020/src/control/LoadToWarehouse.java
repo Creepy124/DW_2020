@@ -25,10 +25,10 @@ public class LoadToWarehouse {
 	public void loadToWarehouse() {
 		String tableName = config.getConfigName();
 		try {
-			dbService.callProcedure(tableName);
+			dbService.callProcedure("load"+tableName);
 			
 		} catch (SQLException e) {
-			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
+			WritingError.sendError(e.getMessage().toString(), config.getToEmails());
 		}
 	}
 }

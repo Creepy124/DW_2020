@@ -31,6 +31,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /*
  * This class contain all methods that relative to files that were downloaded from remote such as: 
  * move file to another place,
@@ -66,43 +67,64 @@ public class FileServiceImpl implements FileService {
 
 	public String convertToCsv(String path) throws EncryptedDocumentException, IOException {
 		File file = new File(path);
-		DataFormatter datafomatter = new DataFormatter();
 		InputStream is = new FileInputStream(file);
 		Workbook wb = WorkbookFactory.create(is);
-
 		Sheet sheet = wb.getSheetAt(0);
 		Iterator<Row> rowIterator = sheet.iterator();
 		String str = "";
-		String tmp = "";
+		int line = 0;
+		int colNum = 0;
 		while (rowIterator.hasNext()) {
+			line++;
 			Row fRow = rowIterator.next();
-			Iterator<Cell> cellIterator = fRow.iterator();
-			while (cellIterator.hasNext()) {
-				Cell cell = cellIterator.next();
-				String value = datafomatter.formatCellValue(cell);
-//				if (value!=null && !value.isEmpty()) {
-				tmp += value + ",";
-//				}
+			if (line == 1) {
+				colNum = fRow.getLastCellNum();
 			}
-			String test = tmp;
-			if (!test.replace(",", "").trim().isEmpty()) {
-				str += tmp + "\n";
-				tmp = "";
+			for (int i = 0; i < colNum; i++) {
+				DataFormatter df = new DataFormatter();
+				Cell cell = fRow.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+				String s = "";
+				if (cell.getCellType() == CellType.FORMULA) {
+					if (cell.getCachedFormulaResultType() == CellType.NUMERIC) {
+						str += "" + cell.getNumericCellValue() + " ";
+						if(i != colNum - 1) {
+							str += "| ";
+						}
+					}
+
+					else if (cell.getCachedFormulaResultType() == CellType.STRING) {
+						str += cell.getStringCellValue() + " ";
+						
+					}
+				}
+
+				else if (cell.getCellType() == CellType.BLANK || cell == null) {
+					if(i != colNum - 1) {
+						str += "| ";
+					}
+				}
+
+				else if (cell.getCellType() != CellType.BLANK) {
+					str += df.formatCellValue(cell) + " ";
+					if(i != colNum - 1) {
+						str += "| ";
+					}
+				}
 			}
+			str += "\n";
 		}
+		str = str.trim() + " ";
 		File fileout = new File(
 				file.getParent() + file.separator + file.getName().substring(0, file.getName().length() - 5) + ".csv");
 		FileOutputStream fos = new FileOutputStream(fileout);
 		fos.write(str.getBytes(StandardCharsets.UTF_8));
-		fos.close();
-		return fileout.getAbsolutePath();
+		return fileout.getName();
 	}
 
 	public static void main(String[] args) {
 		FileServiceImpl fileServiceImpl = new FileServiceImpl();
 		try {
-			fileServiceImpl.convertToCsv(
-					"C:\\Users\\Phuong\\git\\DW_2020\\DataWarehouse2020\\local\\test\\17130208_sang_nhom13.xlsx");
+			fileServiceImpl.convertToCsv("E:\\Warehouse2\\monhoc2013.xlsx");
 		} catch (EncryptedDocumentException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

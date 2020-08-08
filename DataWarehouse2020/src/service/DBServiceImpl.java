@@ -64,10 +64,10 @@ public class DBServiceImpl implements DBService {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 //		sourceFile = sourceFile.replace("\\", "\\\\");
 		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
-				+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'" + "IGNORE 1 lines");
+				+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\n'" + "IGNORE 1 lines");
 		System.out.println(
 				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
-						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\r\\n'");
+						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\n'");
 		return ps.executeUpdate();
 	}
 

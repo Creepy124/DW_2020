@@ -27,13 +27,16 @@ public class LogServiceImpl implements LogService {
 		ps.setInt(1, configID);
 		ps.setString(2, action);
 		ResultSet rs = ps.executeQuery();
-		rs.last();
-		if (rs.getRow() >= 1) {
-			rs.first();
+//		rs.last();
+//		if (rs.getRow() >= 1) {
+//			rs.first();
+		if(rs.next()) {
+			System.out.println(rs.getString("file_name"));
 			return new MyFile(rs.getString("file_name"), rs.getString("file_type"));
 		} else {
 			return null;
 		}
+		
 	}
 
 	@Override
@@ -51,13 +54,19 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
+	public int updateAction(String fileName, String newAction) throws SQLException {
+		PreparedStatement ps = connection.prepareStatement("UPDATE log SET action=? where file_name=? and action<>'ERR'");
+		ps.setString(1, newAction);
+		ps.setString(2, fileName);
+		return ps.executeUpdate();
+	}
+	@Override
 	public int updateAction(int configID, String newAction) throws SQLException {
-		PreparedStatement ps = connection.prepareStatement("UPDATE log SET action=? where config_ID=? and action<>'ERR'");
+		PreparedStatement ps = connection.prepareStatement("UPDATE log SET action=? where config_id=? and action<>'ERR'");
 		ps.setString(1, newAction);
 		ps.setInt(2, configID);
 		return ps.executeUpdate();
 	}
-	
 	public static void main(String[] args) throws SQLException {
 		LogService log = new LogServiceImpl();
 //		if (log.getFileWithStatus(2,"ER") != null) {

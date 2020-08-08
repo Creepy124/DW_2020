@@ -17,9 +17,14 @@ public class MyFile {
 		return fileType;
 	}
 
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	@Override
 	public String toString() {
 		return "MyFile [fileName=" + fileName + ", fileType=" + fileType + "]";
 	}
+
 
 }
