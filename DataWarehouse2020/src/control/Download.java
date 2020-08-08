@@ -47,19 +47,19 @@ public class Download {
 	}
 
 	public void DownloadFile() throws AddressException, IOException, MessagingException {
+
+		//Download from local
+		if(local.equals("y")) {
+			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
+			localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
+			System.out.println(this.toString());
+		}
 		
 		//Download from ecepvn
 		if(local.equals("n")) {
 		ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
 		download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
 		System.out.println(this.toString());
-		}
-		
-		//Download from local
-		if(local.equals("y")) {
-			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
-			localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
-			System.out.println(this.toString());
 		}
 		
 	}

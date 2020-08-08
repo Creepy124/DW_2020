@@ -88,14 +88,6 @@ public class DBServiceImpl implements DBService {
 		PreparedStatement pre = con.prepareStatement(sql);
 		return pre.executeUpdate();
 	}
-
-	@Override
-	public ResultSet loadFromStaging(String tableName) throws SQLException {
-		Connection con = DBConnection.getConnection(targetDBName, userName, password);
-		String sql = "Select * from " + tableName;
-		PreparedStatement pre = con.prepareStatement(sql);
-		return pre.executeQuery();
-	}
 	
 	@Override
 	public void callProcedure(String procName) throws SQLException {
@@ -108,7 +100,7 @@ public class DBServiceImpl implements DBService {
 	@Override
 	public int getFlag(String state) throws SQLException{
 		Connection con = DBConnection.getConnection(targetDBName, userName, password);
-		String sql = "Select config_id from configuration where flag = " + state;
+		String sql = "Select config_id from configuration where flag = '" + state+"'";
 		PreparedStatement pre = con.prepareStatement(sql);
 		ResultSet rs = pre.executeQuery();
 		if(rs.next()) {
@@ -119,8 +111,10 @@ public class DBServiceImpl implements DBService {
 	
 	@Override
 	public void updateFlag(int config_id, String state){
+		System.out.println("ASdfdsfas + " + targetDBName);
 		Connection con = DBConnection.getConnection(targetDBName, userName, password);
-		String sql = "Update configuration set flag = " +state +"where config_id = " +config_id;
+		String sql = "Update configuration set flag = '" +state +"' where config_id = " +config_id;
+		System.out.println(sql);
 		PreparedStatement pre;
 		try {
 			pre = con.prepareStatement(sql);
@@ -134,15 +128,17 @@ public class DBServiceImpl implements DBService {
 	
 	
 	public static void main(String[] args) {
-		Configuration config = new Configuration(1, "root", "");
-		DBService test = new DBServiceImpl("staging", "root", "");
+		Configuration config = new Configuration(1, "root", "1234");
+		DBService test = new DBServiceImpl("control", "root", "1234");
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 //			System.out.println(test.truncateTable(config.getConfigName()));
 //			System.out.println(test.loadFile("C:\\\\Users\\\\Phuong\\\\git\\\\DW_2020\\\\Datawarehouse2020\\\\local\\\\test\\\\sinhvien_chieu_nhom9.txt", "sinhvien", "|"));
 //			test.deleteNullID("sinhvien", "mssv");
 //			test.tranformNullValue("sinhvien", "sdt", "null");
-			test.callProcedure("loadStudent");
+//			test.callProcedure("loadStudent");
+			test.updateFlag(5, "ee");
+			
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();

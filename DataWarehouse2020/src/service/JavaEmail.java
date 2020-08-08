@@ -21,6 +21,7 @@ public class JavaEmail {
         mailSession = Session.getDefaultInstance(emailProperties, null);
     }
  
+    //prepare: receivingPerson, mail subject, mail body
     private static MimeMessage draftEmailMessage(String error, String toEmails) throws AddressException, MessagingException {
         String[] emails = toEmails.split(",");
         
@@ -39,14 +40,15 @@ public class JavaEmail {
         /**
          * If sending HTML mail
          * */
-        emailMessage.setContent(emailBody, "text/html");
+//        emailMessage.setContent(emailBody, "text/html");
         /**
          * If sending only text mail
          * */
-        //emailMessage.setText(emailBody);// for a text email
+        emailMessage.setText(emailBody);// for a text email
         return emailMessage;
     }
  
+    //send mail through smtp
     private static void sendEmail(String error, String toEmails) throws AddressException, MessagingException
     {
         /**
@@ -72,9 +74,9 @@ public class JavaEmail {
         System.out.println("Email sent successfully.");
     }
     
+    
     public static void prepareSending(String error, String toEmails) throws AddressException, MessagingException {
         setMailServerProperties();
-     //  javaEmail.draftEmailMessage();
         sendEmail(error, toEmails);
     }
     

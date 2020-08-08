@@ -14,7 +14,7 @@ import javax.mail.internet.AddressException;
 import com.chilkatsoft.*;
 
 public class ChilkatDownloadLocalHost {
-	//unlock chilkat & load libraby
+	// unlock chilkat & load libraby
 	static {
 		try {
 			System.load("E:\\Warehouse\\chilkat\\chilkat\\chilkat.dll");
@@ -23,11 +23,13 @@ public class ChilkatDownloadLocalHost {
 			WritingError.sendError("Check chilkat library again. ChilkatDownload.java",
 					"thuyphuongnguyen0170@gmail.com, creepy120499@gmail.com");
 			System.exit(1);
+
 		}
 	}
 
 	/*
-	 * Prepare: connect to server, get all file which matched with the input pattern from remote directory
+	 * Prepare: connect to server, get all file which matched with the input pattern
+	 * from remote directory
 	 */
 	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
@@ -56,14 +58,14 @@ public class ChilkatDownloadLocalHost {
 		success = sftp.InitializeSftp();
 		if (success != true) {
 //			System.out.println(sftp.lastErrorText());
-			WritingError.sendError("Can't initial sftl channel. ChilkatDownloadLocalHost.java", emails);
+			WritingError.sendError("Can't initial sftp channel. ChilkatDownloadLocalHost.java", emails);
 			return;
 
 		}
 		// Get all files from the remote
 		List<String> list = getListFileName(rDir, sftp);
 
-		// Find all files that equal user's pattern
+		// Find all files that compatible with user's pattern
 		List<String> correspondingToPattern = checkPattern(list, pattern);
 		System.out.println("correct: " + correspondingToPattern);
 
@@ -74,15 +76,15 @@ public class ChilkatDownloadLocalHost {
 
 	private void download(int configID, List<String> correspondingToPattern, CkSFtp sftp, String rDir, String lDir,
 			String emails) throws AddressException, IOException, MessagingException {
-		
-		//Iteration
+
+		// Iteration
 		for (String filename : correspondingToPattern) {
 			boolean ok = false;// check if send mail or not
 
 			String remoteFile = rDir + "/" + filename;
 			String localFile = lDir + "/" + filename;
-			
-			//Download
+
+			// Download
 			boolean success = sftp.DownloadFile(remoteFile, localFile);
 
 			if (success != true) {
@@ -91,8 +93,8 @@ public class ChilkatDownloadLocalHost {
 				return;
 			} else
 				ok = writingLog(configID, filename);
-			
-			//cant write log then send error
+
+			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
 			}
@@ -105,7 +107,7 @@ public class ChilkatDownloadLocalHost {
 	}
 
 	public List<String> getListFileName(String rDir, CkSFtp sftp) {
-		
+
 		List<String> result = new LinkedList<String>();
 
 		// cd remote directory
@@ -124,7 +126,7 @@ public class ChilkatDownloadLocalHost {
 			if (tmp == null) {
 				break;
 			}
-			//is file or not
+			// is file or not
 			if (new File(rDir + "\\" + tmp).isFile()) {
 				result.add(tmp);
 			}
@@ -137,8 +139,8 @@ public class ChilkatDownloadLocalHost {
 		return result;
 
 	}
-	
-	//is file's name matched to pattern
+
+	// is file's name matched to pattern
 	private List<String> checkPattern(List<String> list, String pattern) {
 
 		List<String> result = new LinkedList<String>();
@@ -149,18 +151,18 @@ public class ChilkatDownloadLocalHost {
 		return result;
 	}
 
-	//Write log if download success
+	// Write log if download success
 	private boolean writingLog(int configID, String filename) {
 		boolean result = true;
-		//Class exec everything relative to log
+		// Class exec everything relative to log
 		LogServiceImpl log = new LogServiceImpl();
-		
+
 		try {
 			log.insertLog(configID, filename, "ER", null);
 		} catch (SQLException e) {
 			result = false;
 		}
-		
+
 		return result;
 
 	}

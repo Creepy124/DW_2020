@@ -36,12 +36,14 @@ public class ExtractToStaging {
 	public boolean getFile() {
 		try {
 			file = logService.getFileWithAction(config.getConfigID(), "ER");
+			
 			if (file != null) {
 				return true;
 			} else
 				return false;
+			
 		} catch (SQLException e) {
-			WritingError.sendError(e.toString(), config.getToEmails());
+			WritingError.sendError(e.toString()+"\n ExtractToStaging.java", config.getToEmails());
 			return false;
 		}
 	}
@@ -51,8 +53,7 @@ public class ExtractToStaging {
 		try {
 			dbService.truncateTable(config.getConfigName());
 		} catch (SQLException e) {
-			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
-			e.printStackTrace();
+			WritingError.sendError(e.getStackTrace().toString() +"\n ExtractToStaging.java Step 3", config.getToEmails());
 		}
 	}
 
@@ -65,13 +66,10 @@ public class ExtractToStaging {
 			dbService.loadFile(config.getDownloadPath() + "\\\\" + file.getFileName(), config.getConfigName(),
 					config.getFileDilimiter());
 			updateLog("TR");
-		} catch (EncryptedDocumentException | IOException e) {
-			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
+		} catch (EncryptedDocumentException | IOException|SQLException e) {
+			WritingError.sendError(e.getStackTrace().toString() +"\n ExtractToStaging.java Step 4", config.getToEmails());
 			updateLog("ERR");
-		} catch (SQLException e) {
-			WritingError.sendError(e.getStackTrace().toString(), config.getToEmails());
-			updateLog("ERR");
-		}
+			}
 	}
 
 	// 5. update log
@@ -80,7 +78,7 @@ public class ExtractToStaging {
 		try {
 			logService.updateAction(config.getConfigID(), message);
 		} catch (SQLException e) {
-			WritingError.sendError(e.toString(), config.getToEmails());
+			WritingError.sendError(e.toString()+"\n ExtractToStaging.java Step 5", config.getToEmails());
 		}
 	}
 
@@ -97,7 +95,7 @@ public class ExtractToStaging {
 			updateLog("WH");
 			
 			} catch (SQLException e) {
-				WritingError.sendError("Cant't Tranform. ExtractToStaging. Column= " + i, config.getToEmails());
+				WritingError.sendError("Cant't Tranform. ExtractToStaging.java Column= " + i, config.getToEmails());
 			}
 		}
 	}

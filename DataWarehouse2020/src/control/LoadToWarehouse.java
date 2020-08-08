@@ -21,6 +21,7 @@ public class LoadToWarehouse {
 		this.logService = logService;
 	}
 
+	//call procedure that compatible to config name
 	public void loadToWarehouse() {
 		String tableName = config.getConfigName();
 		try {

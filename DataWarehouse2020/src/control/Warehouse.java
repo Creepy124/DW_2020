@@ -24,7 +24,7 @@ public class Warehouse {
 	public Warehouse() throws SQLException {
 		dbControl = new DBServiceImpl("control", "root", "1234");
 		dbStaging = new DBServiceImpl("staging", "root", "1234");
-		dbWarehouse = new DBServiceImpl("warehouse", "root", "1234");
+//		dbWarehouse = new DBServiceImpl("warehouse", "root", "1234");
 		logService = new LogServiceImpl();
 		fileService = new FileServiceImpl();
 	}
@@ -32,8 +32,9 @@ public class Warehouse {
 	public void run() throws AddressException, IOException, MessagingException {
 		Configuration config;
 		try {
-			int configID = dbControl.getFlag("prepare");
 			
+			int configID = dbControl.getFlag("prepare");
+			System.out.println(configID);
 			if (configID != 0) {
 				dbControl.updateFlag(configID, "Step1");
 				config = new Configuration(configID, "root", "1234");
@@ -46,11 +47,11 @@ public class Warehouse {
 				step2.extractToStaging();
 				dbControl.updateFlag(configID, "Done Step 2");
 				
-				LoadToWarehouse step3 = new LoadToWarehouse(config, fileService, dbWarehouse, logService);
-				step3.loadToWarehouse();
-				dbControl.updateFlag(configID, "Done Step 3");
-				
-				dbControl.updateFlag(configID++, "prepare");
+//				LoadToWarehouse step3 = new LoadToWarehouse(config, fileService, dbWarehouse, logService);
+//				step3.loadToWarehouse();
+//				dbControl.updateFlag(configID, "Done Step 3");
+				configID++;
+				dbControl.updateFlag(configID, "prepare");
 			}
 			
 		} catch (SQLException e) {
