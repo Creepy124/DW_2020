@@ -26,7 +26,7 @@ public class ExtractToStaging {
 
 	public ExtractToStaging(Configuration configuration, FileService fileService, DBService dbService,
 			LogService logService) {
-		// 2. Lấy 1 dòng trong bảng configuration theo tên tương ứng
+		// 2. 
 		this.config = configuration;
 		this.fileService = fileService;
 		this.dbService = dbService;
@@ -69,6 +69,7 @@ public class ExtractToStaging {
 			}
 			// 4.4.
 			updateLog("TR");
+			
 		} catch (EncryptedDocumentException | IOException | SQLException e) {
 			WritingError.sendError(e.toString() + "\n ExtractToStaging.java Step 4", config.getToEmails());
 			updateLog("ERR");
@@ -85,7 +86,7 @@ public class ExtractToStaging {
 	}
 
 	// 5.
-	private void tranform() {
+	private boolean tranform() {
 
 		String[] columns = config.getFileColumnList().split(",");
 		for (int i = 1; i < columns.length; i++) {
@@ -95,20 +96,22 @@ public class ExtractToStaging {
 				} else
 					dbService.tranformNullValue(config.getConfigName(), columns[i], DEFAUT);
 
-				updateLog("" + config.getConfigID());
-
+				logService.updateAction(config.getConfigID(), "WH");
 			} catch (SQLException e) {
 				WritingError.sendError("Cant't Tranform. ExtractToStaging.java Column= " + i, config.getToEmails());
+				return false;
 			}
 		}
+		return true;
 	}
 
-	public void extractToStaging() {
+	public boolean extractToStaging() {
+		
 		while (getFile()) {
 			loadToTable();
 		}
 		// 5.
-		tranform();
+		return tranform();
 	}
 
 	public static void main(String[] args) throws SQLException {

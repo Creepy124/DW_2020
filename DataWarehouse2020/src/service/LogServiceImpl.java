@@ -27,9 +27,6 @@ public class LogServiceImpl implements LogService {
 		ps.setInt(1, configID);
 		ps.setString(2, action);
 		ResultSet rs = ps.executeQuery();
-//		rs.last();
-//		if (rs.getRow() >= 1) {
-//			rs.first();
 		if(rs.next()) {
 			System.out.println(rs.getString("file_name"));
 			return new MyFile(rs.getString("file_name"), rs.getString("file_type"));

@@ -14,14 +14,14 @@ import service.FileServiceImpl;
 import service.LogService;
 import service.LogServiceImpl;
 
-public class Warehouse {
+public class WarehouseScheduled {
 	DBService dbControl;
 	DBService dbStaging;
 	DBService dbWarehouse;
 	LogService logService;
 	FileService fileService;
 
-	public Warehouse() throws SQLException {
+	public WarehouseScheduled() throws SQLException {
 		dbControl = new DBServiceImpl("control", "root", "1234");
 		dbStaging = new DBServiceImpl("staging", "root", "1234");
 		dbWarehouse = new DBServiceImpl("datawarehouse", "root", "1234");
@@ -31,38 +31,54 @@ public class Warehouse {
 
 	public void run() throws AddressException, IOException, MessagingException {
 		Configuration config;
+		boolean success = false;
 		try {
 			int configID = dbControl.getFlag("prepare");
 			System.out.println(configID);
 			if (configID != 0) {
 				config = new Configuration(configID, "root", "1234");
 				
+				//Step 1
+				dbControl.updateFlag(configID, "Running Step 1");
 				Download step1  = new Download(config);
-				step1.DownloadFile();
+				success = step1.DownloadFile();
+				if(!success) 
+					return;
+				
 				dbControl.updateFlag(configID, "Done Step 1");
 				
+				//Step 2
+				dbControl.updateFlag(configID, "Running Step 2");
+				dbStaging.truncateTable(config.getConfigName());
 				ExtractToStaging step2 = new ExtractToStaging(config, fileService, dbStaging, logService);
-				step2.extractToStaging();
+				success = step2.extractToStaging();
+				if(!success) 
+					return;
 				dbControl.updateFlag(configID, "Done Step 2");
 				
+				//Step 3
+				dbControl.updateFlag(configID, "Running Step 3");
 				LoadToWarehouse step3 = new LoadToWarehouse(config, fileService, dbWarehouse, logService);
-				step3.loadToWarehouse();
+				success = step3.loadToWarehouse();
+				if(!success) 
+					return;
 				dbControl.updateFlag(configID, "Done Step 3");
 				
-//				dbStaging.truncateTable(config.getConfigName());
-				
+				//next config
 				configID++;
-				dbControl.updateFlag(configID, "prepare");
+				int nextConfig = dbControl.nextConfig(configID);
+				dbControl.updateFlag(nextConfig, "prepare");
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return;
 		}
 
 	}
 
 	public static void main(String[] args) throws SQLException, AddressException, IOException, MessagingException {
-		Warehouse wh = new Warehouse();
+		WarehouseScheduled wh = new WarehouseScheduled();
 		wh.run();
 	}
 

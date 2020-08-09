@@ -22,13 +22,14 @@ public class LoadToWarehouse {
 	}
 
 	//call procedure that compatible to config name
-	public void loadToWarehouse() {
+	public boolean loadToWarehouse() {
 		String tableName = config.getConfigName();
 		try {
 			dbService.callProcedure("load"+tableName);
-			
+			return true;
 		} catch (SQLException e) {
 			WritingError.sendError(e.getMessage().toString(), config.getToEmails());
+			return false;
 		}
 	}
 }

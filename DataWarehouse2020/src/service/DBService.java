@@ -32,5 +32,8 @@ public interface DBService {
 	
 	//update config state: prepare -> done step 1 -> done step 2 -> done step 3 -> prepare(new config)
 	public void updateFlag(int config_id, String state) throws SQLException;
+
+	//get next config id for processing
+	public int nextConfig(int previousConfigID) throws SQLException;
 	
 }

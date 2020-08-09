@@ -10,15 +10,15 @@ import javax.mail.internet.AddressException;
  */
 public class WritingError {
 	
-	//write error -> send mail
+	// 8. write error -> send mail
 	public static void sendError(String error, String toEmails) {
 		try {
-			//write error to error file
+			// 8.1. write error to error file
 			FileService fileService = new FileServiceImpl();
 			String message = LocalDateTime.now().toString() + "\n" + error + "\n ---------------- \n";
 			fileService.writeLinesToFile("DataWareHouse2020\\local\\error.txt", message);
 			
-			//send mail
+			// 8.2. send mail
 			JavaEmail.prepareSending(error, toEmails);
 			
 		} catch (MessagingException e) {

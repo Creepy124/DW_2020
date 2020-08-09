@@ -28,7 +28,7 @@ public class Download {
 	private String pattern;
 	private String emails;
 	private String local;
-	
+
 	public Download(Configuration config) {
 		this.config = config;
 //1.Load các thuộc tính tại dòng config có flag = prepare vào các biến
@@ -38,7 +38,7 @@ public class Download {
 	private void prepareDownload() {
 		username = config.getSourceUsername();
 		host = config.getSourceHost();
-		rDir = "/" + config.getSourceRemoteFile() ;
+		rDir = "/" + config.getSourceRemoteFile();
 		lDir = config.getDownloadPath();
 		password = config.getSourcePassword();
 		port = config.getSourcePort();
@@ -47,22 +47,25 @@ public class Download {
 		local = config.getLocal();
 	}
 
-	public void DownloadFile() throws AddressException, IOException, MessagingException {
-
+	public boolean DownloadFile() throws AddressException, IOException, MessagingException {
+		boolean result = false;
 //3.1.1 Download from local
-		if(local.equals("y")) {
+		if (local.equals("y")) {
 			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
-			localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
+			result = localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern,
+					emails);
+			System.out.println(this.toString());
+		}
+
+//3.2.1 Download from ecepvn
+		if (local.equals("n")) {
+			ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
+			result = download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern,
+					emails);
 			System.out.println(this.toString());
 		}
 		
-//3.2.1 Download from ecepvn
-		if(local.equals("n")) {
-		ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
-		download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern, emails);
-		System.out.println(this.toString());
-		}
-		
+		return result;
 	}
 
 	@Override
@@ -79,24 +82,24 @@ public class Download {
 		LogService logService = new LogServiceImpl();
 		while (true) {
 			System.out.print("ID: ");
-		String command = sc.nextLine();
-		System.out.println("command");
-		if(command.equals("end")) {
-			break;
+			String command = sc.nextLine();
+			System.out.println("command");
+			if (command.equals("end")) {
+				break;
 			}
 //		System.out.println(cm);
-		
-		try {
-		configuration = new Configuration(Integer.parseInt(command), "root", "1234");
-		Download rp = new Download(configuration);
-		rp.DownloadFile();
+
+			try {
+				configuration = new Configuration(Integer.parseInt(command), "root", "1234");
+				Download rp = new Download(configuration);
+				rp.DownloadFile();
 //		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);
 //		ex.extractToStaging();
-		}catch(Exception e) {
-			System.out.println("Wrong config name");
-			continue;
-		}
-		
+			} catch (Exception e) {
+				System.out.println("Wrong config name");
+				continue;
+			}
+
 		}
 	}
 }

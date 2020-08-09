@@ -36,7 +36,7 @@ public class ChilkatDownloadSShHost {
 	 * Prepare: connect to server, get all file which matched with the input pattern
 	 * from remote directory
 	 */
-	public void prepareAndDownload(int configID, String username, String password, String host, String rDir,
+	public boolean prepareAndDownload(int configID, String username, String password, String host, String rDir,
 			String lDir, int port, String pattern, String emails)
 			throws IOException, AddressException, MessagingException {
 		// This example requires the Chilkat API to have been previously unlocked.
@@ -50,7 +50,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong host or port. ChilkatDownload.java", emails);
-			return;
+			return false;
 
 		}
 
@@ -59,7 +59,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong username or password. ChilkatDownload.java", emails);
-			return;
+			return false;
 		}
 
 //4. Lấy ra các file có trong remote directory (3.2.2 Mở 1 ssh session chanel)
@@ -72,17 +72,18 @@ public class ChilkatDownloadSShHost {
 		System.out.println("correct: " + correspondingToPattern);
 
 //5.1 Có tồn tại file nào không?
-		if(correspondingToPattern.size() == 0) {
-			
+		if (correspondingToPattern.size() == 0) {
+			WritingError.sendError("Do not have any files that compatible to the pattern", emails);
+			return false;
 		}
 
 //6. Tiến hành tải file tất cả các file tương ứng với pattern
 		// Start downloading
-		download(configID, correspondingToPattern, ssh, rDir, lDir, emails);
+		return download(configID, correspondingToPattern, ssh, rDir, lDir, emails);
 
 	}
 
-	private void download(int configID, List<String> correspondingToPattern, CkSsh ssh, String rDir, String lDir,
+	private boolean download(int configID, List<String> correspondingToPattern, CkSsh ssh, String rDir, String lDir,
 			String emails) throws AddressException, IOException, MessagingException {
 		// Once the SSH object is connected and authenticated, use it
 		// in the SCP object.
@@ -91,7 +92,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //					System.out.println(scp.lastErrorText());
 			WritingError.sendError("Cannot create scp connection. ChilkatDownload.java", emails);
-			return;
+			return false;
 		}
 
 		for (String filename : correspondingToPattern) {
@@ -101,11 +102,11 @@ public class ChilkatDownloadSShHost {
 			String localFile = lDir + "/" + filename;
 
 			success = scp.DownloadFile(remoteFile, localFile);
-
+//Download fail
 			if (success != true) {
 //					System.out.println(scp.lastErrorText());
 				WritingError.sendError("Cannot download. ChilkatDownload.java " + filename, emails);
-				return;
+				return false;
 			} else
 //7.1. Ghi thông tin file vừa tải vào table Log với trạng thái "ER"
 				ok = writingLog(configID, filename);
@@ -114,37 +115,39 @@ public class ChilkatDownloadSShHost {
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
+				return false;
 			}
 		}
 		System.out.println("SCP download matching success.");
 
 		// Disconnect
 		ssh.Disconnect();
+		return true;
 
 	}
 
 	public List<String> getListFileName(String rDir, CkSsh ssh) {
 		List<String> result = null;
-		
+
 //3.2.2 Mở 1 ssh session chanel
 		// open channel
 		int channel = ssh.OpenSessionChannel();
 
 		// command
 		String cmd = "cd " + rDir + "; ls;";
-		 boolean success = ssh.SendReqExec(channel, cmd);
-		//Receive channel
+		boolean success = ssh.SendReqExec(channel, cmd);
+		// Receive channel
 		ssh.ChannelReceiveToClose(channel);
-		
+
 		// The ANSI character set includes the standard ASCII character set (values 0 to
 		// 127), plus an extended character set (values 128 to 255).
-		//Note: includes Latin charset
-		
+		// Note: includes Latin charset
+
 //4. Lấy ra các file có trong remote directory 
-		//receive result
+		// receive result
 		String list = ssh.getReceivedText(channel, "ansi");
 
-		//add files to result's list
+		// add files to result's list
 		String[] temp = list.split("\n");
 		if (temp.length != 0)
 			result = new LinkedList<String>(Arrays.asList(temp));
@@ -153,7 +156,7 @@ public class ChilkatDownloadSShHost {
 		return result;
 
 	}
-	
+
 	// is file's name matched to pattern
 	private List<String> checkPattern(List<String> list, String pattern) {
 		List<String> result = new LinkedList<String>();

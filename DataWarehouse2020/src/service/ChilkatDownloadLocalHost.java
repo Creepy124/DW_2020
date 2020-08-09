@@ -52,6 +52,7 @@ public class ChilkatDownloadLocalHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong username or password. ChilkatDownloadLocalHost.java", emails);
+			System.out.println("Wrong username or password. ChilkatDownloadLocalHost.java");
 			return false;
 
 		}
@@ -61,6 +62,7 @@ public class ChilkatDownloadLocalHost {
 		if (success != true) {
 			// System.out.println(sftp.lastErrorText());
 			WritingError.sendError("Can't initial sftp channel. ChilkatDownloadLocalHost.java", emails);
+			System.out.println("Can't initial sftp channel. ChilkatDownloadLocalHost.java");
 			return false;
 
 		}
@@ -74,8 +76,10 @@ public class ChilkatDownloadLocalHost {
 		System.out.println("correct: " + correspondingToPattern);
 
 //5.1 Có tồn tại file nào không?l
-		if (correspondingToPattern.size() == 0)
+		if (correspondingToPattern.size() == 0) {
+			WritingError.sendError("Do not have any files that compatible to the pattern", emails);
 			return false;
+		}
 		// Start downloading
 //6. Tiến hành tải file tất cả các file tương ứng với pattern
 		return download(configID, correspondingToPattern, sftp, rDir, lDir, emails);
@@ -108,6 +112,7 @@ public class ChilkatDownloadLocalHost {
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
+				return false;
 			}
 		}
 		System.out.println("SCP download matching success.");
