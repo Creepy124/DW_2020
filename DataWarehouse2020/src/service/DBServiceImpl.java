@@ -62,9 +62,9 @@ public class DBServiceImpl implements DBService {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 		PreparedStatement ps = connection.prepareStatement("LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
 				+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\n'" + "IGNORE 1 lines");
-//		System.out.println(
-//				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
-//						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\n'" + "IGNORE 1 lines");
+		System.out.println(
+				"LOAD DATA INFILE '" + sourceFile + "' INTO TABLE " + targetDBName+"."+tableName + "\r\n" + "FIELDS TERMINATED BY '"
+						+ dilimiter + "' \r\n" + "ENCLOSED BY '\"' \r\n" + "LINES TERMINATED BY '\\n'" + "IGNORE 1 lines");
 		return ps.executeUpdate();
 	}
 
@@ -144,11 +144,11 @@ public class DBServiceImpl implements DBService {
 		try {
 //			System.out.println(test.createTable(config.getConfigName(), config.getFileVariables(), config.getFileColumnList()));
 //			System.out.println(test.truncateTable(config.getConfigName()));
-//			System.out.println(test.loadFile("C:\\\\Users\\\\Phuong\\\\git\\\\DW_2020\\\\Datawarehouse2020\\\\local\\\\test\\\\sinhvien_chieu_nhom9.txt", "sinhvien", "|"));
+			System.out.println(test.loadFile("E:\\\\Warehouse2\\\\sinhvien_chieu_nhom9.txt", "sinhvien", "|"));
 //			test.deleteNullID("sinhvien", "mssv");
 //			test.tranformNullValue("sinhvien", "sdt", "null");
 //			test.callProcedure("loadStudent");
-			test.updateFlag(5, "ee");
+//			test.updateFlag(5, "ee");1
 			
 		} catch (Exception e) {
 			System.out.println("error");
