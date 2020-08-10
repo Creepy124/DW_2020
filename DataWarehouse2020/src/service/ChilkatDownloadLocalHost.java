@@ -44,6 +44,7 @@ public class ChilkatDownloadLocalHost {
 		if (success != true) {
 			// System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong host or port. ChilkatDownloadLocalHost.java", emails);
+			System.out.println("Can't connect, check host or port again. ChilkatDownloadLocalHost.java");
 			return false;
 		}
 
@@ -52,7 +53,7 @@ public class ChilkatDownloadLocalHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong username or password. ChilkatDownloadLocalHost.java", emails);
-			System.out.println("Wrong username or password. ChilkatDownloadLocalHost.java");
+			System.out.println("Can't connect, check username or password again. ChilkatDownloadLocalHost.java");
 			return false;
 
 		}
@@ -78,6 +79,7 @@ public class ChilkatDownloadLocalHost {
 //5.1 Có tồn tại file nào không?l
 		if (correspondingToPattern.size() == 0) {
 			WritingError.sendError("Do not have any files that compatible to the pattern", emails);
+			System.out.println("Do not have any files that compatible to the pattern");
 			return false;
 		}
 		// Start downloading
@@ -103,6 +105,7 @@ public class ChilkatDownloadLocalHost {
 			if (success != true) {
 				// System.out.println(scp.lastErrorText());
 				WritingError.sendError("Cannot download. ChilkatDownload.java " + filename, emails);
+				System.out.println("Cannot download. ChilkatDownload.java ");
 				return false;
 			} else
 //7.1. Ghi thông tin file vừa tải vào table Log với trạng thái "ER"
@@ -112,6 +115,7 @@ public class ChilkatDownloadLocalHost {
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
+				System.out.println("Cannot write log. ChilkatDownload.java ");
 				return false;
 			}
 		}

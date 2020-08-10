@@ -40,13 +40,14 @@ public class ExtractToStaging {
 			file = logService.getFileWithAction(config.getConfigID(), "ER");
 
 			if (file != null) {
-				System.out.println(file.toString());
+//				System.out.println(file.toString());
 				return true;
 			} else
 				return false;
 
 		} catch (SQLException e) {
 			WritingError.sendError(e.toString() + "\n ExtractToStaging.java step3", config.getToEmails());
+			System.out.println(e.toString() + "\n ExtractToStaging.java step3");
 			return false;
 		}
 	}
@@ -72,6 +73,7 @@ public class ExtractToStaging {
 			
 		} catch (EncryptedDocumentException | IOException | SQLException e) {
 			WritingError.sendError(e.toString() + "\n ExtractToStaging.java Step 4", config.getToEmails());
+			System.out.println(e.toString() + "\n ExtractToStaging.java Step 4");
 			updateLog("ERR");
 		}
 	}
@@ -82,6 +84,7 @@ public class ExtractToStaging {
 			logService.updateAction(file.getFileName(), action);
 		} catch (SQLException e) {
 			WritingError.sendError(e.toString() + "\n ExtractToStaging.java", config.getToEmails());
+			System.out.println(e.toString() + "\n ExtractToStaging.java");
 		}
 	}
 
@@ -99,6 +102,7 @@ public class ExtractToStaging {
 				logService.updateAction(config.getConfigID(), "WH");
 			} catch (SQLException e) {
 				WritingError.sendError("Cant't Tranform. ExtractToStaging.java Column= " + i, config.getToEmails());
+				System.out.println("Cant't Tranform. ExtractToStaging.java Column= " + i);
 				return false;
 			}
 		}

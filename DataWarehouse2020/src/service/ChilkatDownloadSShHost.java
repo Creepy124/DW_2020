@@ -50,6 +50,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong host or port. ChilkatDownload.java", emails);
+			System.out.println("Can't connect, check host or port again. ChilkatDownload.java");
 			return false;
 
 		}
@@ -59,6 +60,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //			System.out.println(ssh.lastErrorText());
 			WritingError.sendError("Wrong username or password. ChilkatDownload.java", emails);
+			System.out.println("Can't connect,  check username or password again. ChilkatDownload.java");
 			return false;
 		}
 
@@ -74,6 +76,7 @@ public class ChilkatDownloadSShHost {
 //5.1 Có tồn tại file nào không?
 		if (correspondingToPattern.size() == 0) {
 			WritingError.sendError("Do not have any files that compatible to the pattern", emails);
+			System.out.println("Do not have any files that compatible to the pattern");
 			return false;
 		}
 
@@ -92,6 +95,7 @@ public class ChilkatDownloadSShHost {
 		if (success != true) {
 //					System.out.println(scp.lastErrorText());
 			WritingError.sendError("Cannot create scp connection. ChilkatDownload.java", emails);
+			System.out.println("Cannot create scp connection. ChilkatDownload.java");
 			return false;
 		}
 
@@ -106,6 +110,7 @@ public class ChilkatDownloadSShHost {
 			if (success != true) {
 //					System.out.println(scp.lastErrorText());
 				WritingError.sendError("Cannot download. ChilkatDownload.java " + filename, emails);
+				System.out.println("Cannot download. ChilkatDownload.java ");
 				return false;
 			} else
 //7.1. Ghi thông tin file vừa tải vào table Log với trạng thái "ER"
@@ -115,6 +120,7 @@ public class ChilkatDownloadSShHost {
 			// can't write log then send error
 			if (!ok) {
 				WritingError.sendError("Cannot write log. ChilkatDownload.java " + filename, emails);
+				System.out.println("Cannot write log. ChilkatDownload.java ");
 				return false;
 			}
 		}

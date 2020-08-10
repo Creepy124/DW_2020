@@ -54,7 +54,7 @@ public class Download {
 			ChilkatDownloadLocalHost localDownload = new ChilkatDownloadLocalHost();
 			result = localDownload.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern,
 					emails);
-			System.out.println(this.toString());
+//			System.out.println(this.toString());
 		}
 
 //3.2.1 Download from ecepvn
@@ -62,7 +62,7 @@ public class Download {
 			ChilkatDownloadSShHost download = new ChilkatDownloadSShHost();
 			result = download.prepareAndDownload(config.getConfigID(), username, password, host, rDir, lDir, port, pattern,
 					emails);
-			System.out.println(this.toString());
+//			System.out.println(this.toString());
 		}
 		
 		return result;

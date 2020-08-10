@@ -43,7 +43,7 @@ public class DBServiceImpl implements DBService {
 			sql += col[i] + " " + vari[i] + " ,";
 		}
 		sql = sql.substring(0, sql.length() - 1) + ")";
-		System.out.println(sql);
+//		System.out.println(sql);
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 		PreparedStatement ps = connection.prepareStatement(sql);
 		return ps.executeUpdate();
@@ -53,7 +53,7 @@ public class DBServiceImpl implements DBService {
 	public int truncateTable(String tableName) throws SQLException {
 		Connection connection = DBConnection.getConnection(targetDBName, userName, password);
 		PreparedStatement ps = connection.prepareStatement("TRUNCATE TABLE " + this.targetDBName + "." + tableName);
-		System.out.println("TRUNCATE TABLE " + tableName);
+//		System.out.println("TRUNCATE TABLE " + tableName);
 		return ps.executeUpdate();
 	}
 

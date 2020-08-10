@@ -16,7 +16,7 @@ public class WritingError {
 			// 8.1. write error to error file
 			FileService fileService = new FileServiceImpl();
 			String message = LocalDateTime.now().toString() + "\n" + error + "\n ---------------- \n";
-			fileService.writeLinesToFile("DataWareHouse2020\\local\\error.txt", message);
+			fileService.writeLinesToFile("E:\\Warehouse\\DW_2020\\DataWarehouse2020\\local\\error.txt", message);
 			
 			// 8.2. send mail
 			JavaEmail.prepareSending(error, toEmails);
