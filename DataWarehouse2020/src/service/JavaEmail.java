@@ -54,10 +54,10 @@ public class JavaEmail {
         /**
          * Sender's credentials
          * */
-        String fromUser = "MomoiroNyanko2612@gmail.com";
-//    	 String fromUser ="creepy120499@gmail.com";
-        String fromUserEmailPassword = "peDIA2612!";
-//    	  String fromUserEmailPassword = "antrom113";
+//        String fromUser = "MomoiroNyanko2612@gmail.com";
+    	 String fromUser ="creepy120499@gmail.com";
+//        String fromUserEmailPassword = "peDIA2612!";
+    	  String fromUserEmailPassword = "antrom113";
         
         String emailHost = "smtp.gmail.com";
         Transport transport = mailSession.getTransport("smtp");

@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
 encoding//DataWarehouse2020/local/test/sinhvien_chieu_nhom9.txt=UTF-8
+encoding//DataWarehouse2020/src/control/Download.java=UTF-8
+encoding//DataWarehouse2020/src/control/WarehouseScheduled.java=UTF-8
+encoding//DataWarehouse2020/src/service/ChilkatDownloadLocalHost.java=UTF-8
+encoding//DataWarehouse2020/src/service/ChilkatDownloadSShHost.java=UTF-8

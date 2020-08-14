@@ -187,22 +187,22 @@ public class ChilkatDownloadSShHost {
 	}
 
 	public static void main(String[] args) throws IOException, AddressException, MessagingException {
-//		ChilkatDownload c = new ChilkatDownload();
-//		String username = "guest_access";
-//		String pass = "123456";
-//		String host = "drive.ecepvn.org";
-//		String rDir = "/volume1/ECEP/song.nguyen/DW_2020/data";
-//		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
-//				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
-//				"thuyphuongnguyen0170@gmail.com");
 		ChilkatDownloadSShHost c = new ChilkatDownloadSShHost();
-		String username = "asus";
-		String pass = "Langtutrunggio";
-		String host = "DESKTOP-P7RFKBN";
-		String rDir = "E:/Warehouse";
-		c.prepareAndDownload(1, username, pass, host, rDir,
-				"E:\\Warehouse\\DW_2020\\DataWarehouse2020\\local\\test\\New folder", 22, "sinhvien*.*",
+		String username = "guest_access";
+		String pass = "123456";
+		String host = "drive.ecepvn.org";
+		String rDir = "/Team Folder/ECEP/song.nguyen/DW_2020/data";
+		c.prepareAndDownload(1, username, pass, host, rDir, "/DataWarehouse2020/local/", 2227,
+				"sinhvien_(sang|chieu)_nhom([0-9]|[0-9][0-9]).txt",
 				"thuyphuongnguyen0170@gmail.com");
+//		ChilkatDownloadSShHost c = new ChilkatDownloadSShHost();
+//		String username = "asus";
+//		String pass = "Langtutrunggio";
+//		String host = "DESKTOP-P7RFKBN";
+//		String rDir = "E:/Warehouse";
+//		c.prepareAndDownload(1, username, pass, host, rDir,
+//				"E:\\Warehouse\\DW_2020\\DataWarehouse2020\\local\\test\\New folder", 22, "sinhvien*.*",
+//				"thuyphuongnguyen0170@gmail.com");
 	}
 
 }

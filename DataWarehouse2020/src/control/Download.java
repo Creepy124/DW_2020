@@ -75,31 +75,9 @@ public class Download {
 	}
 
 	public static void main(String[] args) throws AddressException, IOException, MessagingException {
-		Scanner sc = new Scanner(System.in);
-		Configuration configuration;
-		FileService fileService = new FileServiceImpl();
-		DBService dbService = new DBServiceImpl("staging", "root", "1234");
-		LogService logService = new LogServiceImpl();
-		while (true) {
-			System.out.print("ID: ");
-			String command = sc.nextLine();
-			System.out.println("command");
-			if (command.equals("end")) {
-				break;
-			}
-//		System.out.println(cm);
+		Download d = new Download(new Configuration(1, "root", "1234"));
+		d.DownloadFile();
 
-			try {
-				configuration = new Configuration(Integer.parseInt(command), "root", "1234");
-				Download rp = new Download(configuration);
-				rp.DownloadFile();
-//		ExtractToStaging ex = new ExtractToStaging(configuration, fileService, dbService, logService);
-//		ex.extractToStaging();
-			} catch (Exception e) {
-				System.out.println("Wrong config name");
-				continue;
-			}
-
-		}
+		
 	}
 }

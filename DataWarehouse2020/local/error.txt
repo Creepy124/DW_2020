@@ -475,3 +475,249 @@ java.sql.SQLException: File 'C:\Users\Phuong\git\sinhvien_sang_nhom9.txt' not fo
 2020-08-03T13:02:10.956
 java.sql.SQLException: Row 26 doesn't contain data for all columns
  ---------------- 
+2020-08-07T23:34:07.402213100
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-07T23:35:43.148347900
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-08T01:12:31.018899400
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-08T01:12:51.020379900
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-08T02:28:20.466166200
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-08T02:28:39.569579300
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-08T15:29:10.572861200
+Wrong host or port. ChilkatDownloadLocalHost.java
+ ---------------- 
+2020-08-08T15:30:18.473797800
+Wrong host or port. ChilkatDownloadLocalHost.java
+ ---------------- 
+2020-08-08T18:29:18.969440100
+[Ljava.lang.StackTraceElement;@215be6bb
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T18:30:45.647145900
+[Ljava.lang.StackTraceElement;@215be6bb
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T18:31:55.908103800
+[Ljava.lang.StackTraceElement;@215be6bb
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T18:55:31.025574200
+[Ljava.lang.StackTraceElement;@61832929
+ ---------------- 
+2020-08-08T19:46:59.864912900
+[Ljava.lang.StackTraceElement;@5e5792a0
+ ---------------- 
+2020-08-08T19:51:25.777676300
+[Ljava.lang.StackTraceElement;@1b604f19
+ ---------------- 
+2020-08-08T21:09:33.768187600
+[Ljava.lang.StackTraceElement;@2b98378d
+ ---------------- 
+2020-08-08T21:11:40.998659
+[Ljava.lang.StackTraceElement;@2b98378d
+ ---------------- 
+2020-08-08T21:13:00.759577500
+[Ljava.lang.StackTraceElement;@7a6d7e92
+ ---------------- 
+2020-08-08T21:48:01.537409200
+java.sql.SQLException: Invalid utf8mb4 character string: 'I'
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:48:06.877436700
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:48:10.994048800
+[Ljava.lang.StackTraceElement;@fcb4004
+ ---------------- 
+2020-08-08T21:55:01.128135700
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:06.398837
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:11.022386100
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:15.252799200
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:19.470452400
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:23.573218100
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:27.604026700
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:32.283902500
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:55:36.213050600
+java.sql.SQLException: File 'E:\Warehouse\E:Warehousemonhoc2013.csv' not found (OS errno 13 - Permission denied)
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:57:39.757770900
+java.sql.SQLException: Invalid utf8mb4 character string: 'I'
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T21:57:44.962638200
+java.sql.SQLException: Invalid utf8mb4 character string: ''
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-08T22:06:29.705680800
+[Ljava.lang.StackTraceElement;@7a6d7e92
+ ---------------- 
+2020-08-08T22:07:21.117588400
+[Ljava.lang.StackTraceElement;@5a5a729f
+ ---------------- 
+2020-08-08T22:10:36.886274500
+[Ljava.lang.StackTraceElement;@1a4927d6
+ ---------------- 
+2020-08-08T22:11:36.771413100
+[Ljava.lang.StackTraceElement;@18be83e4
+ ---------------- 
+2020-08-08T22:11:50.308488700
+[Ljava.lang.StackTraceElement;@4501b7af
+ ---------------- 
+2020-08-08T22:15:28.436796600
+PROCEDURE datawarehouse.LoadSubjectDim does not exist
+ ---------------- 
+2020-08-08T22:16:16.313871700
+PROCEDURE datawarehouse.loadlophoc does not exist
+ ---------------- 
+2020-08-08T23:37:26.007649700
+Unknown column 'dk.MSSV' in 'where clause'
+ ---------------- 
+2020-08-09T17:59:43.598399600
+Data truncation: Truncated incorrect DOUBLE value: ' M? MH '
+ ---------------- 
+2020-08-09T18:36:48.938715900
+Subquery returns more than 1 row
+ ---------------- 
+2020-08-09T18:52:08.339973200
+Subquery returns more than 1 row
+ ---------------- 
+2020-08-09T19:22:27.743654500
+Wrong host or port. ChilkatDownloadLocalHost.java
+ ---------------- 
+2020-08-09T19:23:43.560366400
+Wrong host or port. ChilkatDownloadLocalHost.java
+ ---------------- 
+2020-08-09T19:25:20.815172800
+Wrong host or port. ChilkatDownloadLocalHost.java
+ ---------------- 
+2020-08-09T23:23:06.597128500
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-09T23:59:41.059500500
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T00:00:11.569242600
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:00:16.279542400
+PROCEDURE staging.loadsinhvien does not exist
+ ---------------- 
+2020-08-10T00:03:00.259696300
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:04:50.109301900
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T00:17:13.910468
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T00:20:01.903284400
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T00:30:25.652593300
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T00:30:36.420931400
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:36:21.125828800
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T00:36:35.003226100
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:38:31.971518500
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:39:05.216089800
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T00:47:13.948869700
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T00:49:33.226518900
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T12:04:35.444087400
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T12:37:11.147773900
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T12:38:20.892948100
+Wrong host or port. ChilkatDownload.java
+ ---------------- 
+2020-08-10T17:35:38.752111700
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T17:58:47.110387300
+java.sql.SQLException: Row 27 doesn't contain data for all columns
+ ExtractToStaging.java Step 4
+ ---------------- 
+2020-08-10T21:50:51.718450900
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T21:51:20.490499100
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T21:55:21.932070600
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T21:59:33.697318300
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T22:01:25.514338300
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T22:01:55.772598300
+Do not have any files that compatible to the pattern
+ ---------------- 
+2020-08-10T22:03:54.257734200
+Do not have any files that compatible to the pattern
+ ---------------- 
